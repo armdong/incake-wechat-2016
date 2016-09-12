@@ -1,0 +1,54 @@
+/**
+ * HomePage CSS file
+ */
+
+@import "mixins/triangle";
+
+#idxHeader {
+	position: relative;
+	width: 100%;
+	height: 90px;
+	background-color: #303341;
+
+	.location {
+		position: absolute;
+		top: 50%;
+		left: 30px;
+		width: 120px;
+		height: 30px;
+		color: #f0f0f0;
+		text-align: center;
+  		font-size: 28px;
+  		line-height: 30px;
+		transform: translateY(-50%);
+		background: {
+			image: url('../imgs/index/location_bg.png');
+			repeat: no-repeat;
+			size: 24px 30px;
+			position: left top;
+		}
+
+		&:after {
+			/* @include triangle($direction: bottom, $color: #f0f0f0, $size: 1em); */
+			position: absolute;
+			top: 50%;
+			right: 0;
+			transform: translateY(-50%);
+		}
+	}
+
+	.logo {
+		position: absolute;
+		left: 50%;
+		top: 14px;
+		width: 160px;
+		height: 58px;
+		transform: translateX(-50%);
+		background: {
+			image: url('../imgs/index/logo_bg.png');
+			repeat: no-repeat;
+			size: cover;
+			position: center center;
+		}
+	}
+}
