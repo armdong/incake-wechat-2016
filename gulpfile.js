@@ -13,23 +13,28 @@ var gulp = require('gulp'),
 	cache = require('gulp-cache'),
 	del = require('del'),
 	changed = require('gulp-changed'),
-	runSequence = require('run-sequence');
+	runSequence = require('run-sequence'),
+	postcss = require('gulp-postcss'),
+	px2rem = require('postcss-px2rem');
 
 /**
  * Converts Sass to CSS with gulp-sass *
  * Gets all files ending with .scss in src/scss and children dirs
  */
 gulp.task('sass', function(){
-	return gulp.src('src/assets/scss/**/*.scss')
+	var processors = [px2rem({remUnit: 75})];
+	return gulp.src('src/assets/scss/*.scss')
 		.pipe(changed('src', {extension: '.scss'}))
 		.pipe(sass())
-		.pipe(sourcemaps.init())
+		//.pipe(sourcemaps.init())
 		// Autoprefixer only if it's a CSS file
 		.pipe(autoprefixer({
 			browsers: ['last 2 versions'],
 			cascade: false
 		}))
-		.pipe(sourcemaps.write('.'))
+		//.pipe(sourcemaps.write('.'))
+		// run px2rem convertion
+		.pipe(postcss(processors))
 		.pipe(gulp.dest('src/assets/css'))
 		.pipe(browserSync.reload({
 			stream: true
@@ -127,6 +132,10 @@ gulp.task('clean:build', function(){
 	return del.sync('build');
 });
 
+// Clean src/assets/css dir
+gulp.task('clean:css', function(){
+	return del.sync('src/assets/css');
+});
 
 /**
  * Combining Gulp tasks
