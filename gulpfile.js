@@ -20,7 +20,7 @@ var gulp = require('gulp'),
  * Gets all files ending with .scss in src/scss and children dirs
  */
 gulp.task('sass', function(){
-	return gulp.src('src/scss/**/*.scss')
+	return gulp.src('src/assets/scss/**/*.scss')
 		.pipe(changed('src', {extension: '.scss'}))
 		.pipe(sass())
 		.pipe(sourcemaps.init())
@@ -30,7 +30,7 @@ gulp.task('sass', function(){
 			cascade: false
 		}))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('src/css'))
+		.pipe(gulp.dest('src/assets/css'))
 		.pipe(browserSync.reload({
 			stream: true
 		}));
@@ -52,7 +52,7 @@ var myReporter = map(function(file, cb){
 });
 
 gulp.task('lint', function(){
-	return gulp.src('src/js/**/*.js')
+	return gulp.src('src/assets/js/**/*.js')
 		.pipe(jshint())
 		.pipe(myReporter);
 });
@@ -63,11 +63,11 @@ gulp.task('lint', function(){
 gulp.task('watch', ['browserSync', 'sass', 'lint'], function(){
 
 	// watch all Sass files and run the sass  task whenever a Sass file is saved
-	gulp.watch('src/scss/**/*.scss', ['sass']);
+	gulp.watch('src/assets/scss/**/*.scss', ['sass']);
 
 	// Reloads the browser whenever HTML or JS files change
 	gulp.watch('src/**/*.html', browserSync.reload);
-	gulp.watch('src/js/**/*.js', browserSync.reload);
+	gulp.watch('src/assets/js/**/*.js', browserSync.reload);
 });
 
 /**
@@ -104,20 +104,20 @@ gulp.task('useref', function(){
  * Optmizing Images
  */
 gulp.task('images', function(){
-	return gulp.src('src/imgs/**/*.+(png|jpg|jpeg|gif|svg)')
+	return gulp.src('src/assets/imgs/**/*.+(png|jpg|jpeg|gif|svg)')
 		// Caching images that ran through imagemin
 		.pipe(cache(imagemin({
 			interlaced: true
 		})))
-		.pipe(gulp.dest('build/imgs'));
+		.pipe(gulp.dest('build/assets/imgs'));
 });
 
 /**
  * Copying Fonts to Build
  */
 gulp.task('fonts', function(){
-	return gulp.src('src/fonts/**/*')
-		.pipe(gulp.dest('build/fonts'));
+	return gulp.src('src/assets/fonts/**/*')
+		.pipe(gulp.dest('build/assets/fonts'));
 });
 
 /**
