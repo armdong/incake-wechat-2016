@@ -10,6 +10,13 @@
 .clearfix {
 	@include clearfix()
 }
+body, p, h1, h2, h3, ul, ol, dl, li, dt, dd {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style: none;
+}
 
 // Fonts
 @font-face {

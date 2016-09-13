@@ -9,8 +9,9 @@
 	<script src="assets/plugins/lib-flexible/flexible.js"></script>
 	<link rel="apple-touch-icon" href="favicon.png">
 	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
-	<title>模板页</title>
+	<title>INCAKE | 首页</title>
 	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/plugins/swiper/css/swiper.min.css">
 	<link rel="stylesheet" href="assets/css/global.css">
 	<link rel="stylesheet" href="assets/css/index.css">
 </head>
@@ -23,8 +24,67 @@
 	</header>
 	<!-- index-page header end -->
 
+	<!-- index-page slide begin -->
+	<div id="idxSlide" class="swiper-container">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<a href="javascript:;"><img src="assets/imgs/slides/01.jpg" alt=""></a>
+			</div>
+			<div class="swiper-slide">
+				<a href="javascript:;"><img src="assets/imgs/slides/02.jpg" alt=""></a>
+			</div>
+			<div class="swiper-slide">
+				<a href="javascript:;"><img src="assets/imgs/slides/03.jpg" alt=""></a>
+			</div>
+			<div class="swiper-slide">
+				<a href="javascript:;"><img src="assets/imgs/slides/01.jpg" alt=""></a>
+			</div>
+			<div class="swiper-slide">
+				<a href="javascript:;"><img src="assets/imgs/slides/01.jpg" alt=""></a>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<!-- index-page slide end -->
+
+	<!-- index-page nav begin -->
+	<nav id="idxNav">
+		<ul class="clearfix">
+			<li class="all">
+				<a href="javascript:;"></a>
+				<div class="text">
+					<p class="en">All cakes</p>
+					<p class="cn">全部商品</p>
+				</div>
+			</li>
+			<li class="tea">
+				<a href="javascript:;"></a>
+				<div class="text">
+					<p class="en">Afternoon tea</p>
+					<p class="cn">下午茶</p>
+				</div>
+			</li>
+			<li class="diy">
+				<a href="javascript:;"></a>
+				<div class="text">
+					<p class="en">DIY cake</p>
+					<p class="cn">蛋糕定制</p>
+				</div>
+			</li>
+			<li class="gaw">
+				<a href="javascript:;"></a>
+				<div class="text">
+					<p class="en">Genius at work</p>
+					<p class="cn">GAW蛋糕</p>
+				</div>
+			</li>
+		</ul>
+	</nav>
+	<!-- index-page nav end -->
+
 	<!-- scripts begin -->
 	<script src="assets/plugins/zepto/zepto.min.js"></script>
+	<script src="assets/plugins/swiper/js/swiper.min.js"></script>
 	<script src="assets/js/index.js"></script>
 	<!-- script end -->
 </body>

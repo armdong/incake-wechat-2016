@@ -1,25 +1,57 @@
-/// Triangle helper mixin
-/// @param {Direction} $direction - Triangle direction, either `top`, `right`, `bottom` or `left`
-/// @param {Color} $color [currentcolor] - Triangle color 
-/// @param {Length} $size [1em] - Triangle size
-@mixin triangle($direction, $color: currentcolor, $size: 1em) {
-  @if not index(top right bottom left, $direction) {
-    @error "Direction must be either `top`, `right`, `bottom` or `left`.";
-  }
+/**
+* Sass CSS triangle mixin, create any kind of triangles with ease
 
-  width: 0;
-  height: 0;
-  content: '';
-  z-index: 2;
-  border-#{opposite-position($direction)}: ($size * 1.5) solid $color;
-  
-  $perpendicular-borders: $size solid transparent;
-  
-  @if $direction == top or $direction == bottom {
-    border-left:   $perpendicular-borders;
-    border-right:  $perpendicular-borders;
-  } @else if $direction == right or $direction == left {
-    border-bottom: $perpendicular-borders;
-    border-top:    $perpendicular-borders;
+* Use: 
+* @include triangle(direction,width,height,color);
+
+* Example:
+* $square: 50px;
+* $color: red;
+* selector {
+*  @include triangle(bottomright,$square,$square,$color);
+* }
+
+* Forked from https://github.com/juanbrujo/triangle-mixin.less
+*/
+
+@mixin triangle($direction, $sizeH, $sizeV, $color){
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    -moz-transform: scale(.9999);
+      
+  @if $direction == top {
+    border-width: 0 $sizeV $sizeH $sizeV;
+    border-color: transparent transparent $color transparent;
+  }
+  @if $direction == bottom{
+    border-width: $sizeV $sizeH 0 $sizeV;
+    border-color: $color transparent transparent transparent;
+  }
+  @if $direction == left{
+    border-width: $sizeV $sizeH $sizeV 0;
+    border-color: transparent $color transparent transparent;
+  }
+  @if $direction == right{
+    border-width: $sizeV 0 $sizeV $sizeH;
+    border-color: transparent transparent transparent $color;
+  }
+  @if $direction == topright{
+    border-width: 0 $sizeH $sizeV 0;
+    border-color: transparent $color transparent transparent;
+  }
+  @if $direction == bottomright{
+    border-width: 0 0 $sizeH $sizeV;
+    border-color: transparent transparent $color transparent;
+  }
+  @if $direction == bottomleft{
+    border-width: $sizeH 0 0 $sizeV;
+    border-color: transparent transparent transparent $color;
+  }
+  @if $direction == topleft{
+    border-width: $sizeH $sizeV 0 0;
+    border-color: $color transparent transparent transparent;
   }
 }

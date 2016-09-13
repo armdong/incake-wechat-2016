@@ -12,6 +12,25 @@
   clear: both;
 }
 
+body,
+p,
+h1,
+h2,
+h3,
+ul,
+ol,
+dl,
+li,
+dt,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
 @font-face {
   font-family: 'FZLTH_Regular';
   src: url("../fonts/FZLTH_Regular.eot");
