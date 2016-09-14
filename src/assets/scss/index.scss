@@ -2,8 +2,10 @@
  * HomePage CSS file
  */
 
+// Mixins
 @import "mixins/triangle";
 
+// Variables
 $loc-triangle-w: 13px;
 $loc-triangle-bgcolor: #f0f0f0;
 
@@ -56,6 +58,54 @@ body {
 			repeat: no-repeat;
 			size: cover;
 			position: center center;
+		}
+	}
+}
+
+#idxNotice {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	background-color: #e64f59;
+	border-bottom: 1px solid #a6252c; /* no */
+	overflow: hidden;
+
+	.notice-icon {
+		position: absolute;
+		left: 30px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 32px;
+		height: 40px;
+		background: {
+			image: url('../imgs/index/notice_icon.png');
+			repeat: no-repeat;
+			size: cover;
+		}
+	}
+
+	.notice-msg {
+		position: absolute;
+		top: 0;
+		left: 80px;
+		width: 610px;
+		margin: 0 auto;
+		line-height: 60px;
+		color: #edf0f0;
+	}
+
+	.notice-close {
+		display: block;
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 26px;
+		height: 26px;
+		background: {
+			image: url('../imgs/index/notice_close.png');
+			repeat: no-repeat;
+			size: cover;
 		}
 	}
 }
@@ -164,6 +214,13 @@ body {
 				font-size: 26px; /* px */
 				line-height: 32px;
 				color: #303241;
+				padding-left: 20px;
+				background: {
+					image: url('../imgs/index/sec_header_bg.png');
+					position: left center;
+					repeat: no-repeat;
+					size: 13px 13px;
+				}
 			}
 		}
 
@@ -176,7 +233,7 @@ body {
 	/* 精品推荐 */
 	.sec-recommend {
 		width: 100%;
-		padding-bottom: 33px;
+		padding-bottom: 43px;
 
 		.slide-item {
 			width: 100%;
@@ -289,6 +346,19 @@ body {
 							}
 						}
 					}
+				}
+			}
+		}
+
+		.swiper-pagination {
+			bottom: 5px;
+
+			.swiper-pagination-bullet {
+				background: #ffffff;
+				border: 1px solid #b4b4b4; /* no */
+
+				&.swiper-pagination-bullet-active {
+					background: #eb2249;
 				}
 			}
 		}

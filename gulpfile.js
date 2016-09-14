@@ -15,7 +15,8 @@ var gulp = require('gulp'),
 	changed = require('gulp-changed'),
 	runSequence = require('run-sequence'),
 	postcss = require('gulp-postcss'),
-	px2rem = require('postcss-px2rem');
+	px2rem = require('postcss-px2rem'),
+	plumber = require('gulp-plumber');
 
 /**
  * Converts Sass to CSS with gulp-sass *
@@ -25,6 +26,7 @@ gulp.task('sass', function(){
 	var processors = [px2rem({remUnit: 75})];
 	return gulp.src('src/assets/scss/*.scss')
 		.pipe(changed('src', {extension: '.scss'}))
+		.pipe(plumber())
 		.pipe(sass())
 		//.pipe(sourcemaps.init())
 		// Autoprefixer only if it's a CSS file
