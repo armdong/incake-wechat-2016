@@ -62,10 +62,10 @@ body {
 
 #idxSlide {
 	width: 100%;
+	height: 375px;
 
 	img {
-		border: none;
-		vertical-align: top;
+		width: 100%;
 	}
 	
 	.swiper-pagination-bullet {
@@ -132,6 +132,8 @@ body {
 					line-height: 30px; /*px*/
 					text-overflow: ellipsis;
 					white-space: nowrap;
+					overflow: hidden;
+					color: #303241;
 
 					&.en {
 						font-size: 16px; /*px*/
@@ -139,6 +141,153 @@ body {
 
 					&.cn {
 						font-size: 24px; /*px*/
+					}
+				}
+			}
+		}
+	}
+}
+
+#idxSection {
+	width: 100%;
+
+	section {
+		width: 100%;
+		background-color: #fff;
+
+		.sec-header {
+			width: 94.666%;
+			margin: 0 auto;
+			padding-top: 23px;
+
+			h2 {
+				font-size: 26px; /* px */
+				line-height: 32px;
+				color: #303241;
+			}
+		}
+
+		.sec-body {
+			width: 94.666%;
+			margin: 0 auto;
+		}
+	}
+
+	/* 精品推荐 */
+	.sec-recommend {
+		width: 100%;
+		padding-bottom: 33px;
+
+		.slide-item {
+			width: 100%;
+			height: 347px;
+			padding: 24px 0;
+			border-bottom: 1px solid #e6e6e6; /* no */
+
+			&:last-of-type {
+				border-bottom: none;
+				padding-bottom: 0;
+			}
+
+			.img {
+				display: block;
+				float: left;
+				width: 460px;
+				border: 1px solid #f0f0f0; /* no */
+
+				img {
+					width: 100%;
+				}
+			}
+			
+			.text {
+				float: right;
+				position: relative;
+				width: 220px;
+				height: 100%;
+				color: #303241;
+
+				.name {
+					padding: 25px 0 40px;
+					
+					p {
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+					}
+					.cn {
+						font-size: 24px; /* px */
+						padding-bottom: 10px;
+					}
+					.en {
+						font-size: 16px; /* px */
+					}
+				}
+				.desc {
+					font-size: 18px; /* px */
+					line-height: 24px; /* px */
+				}
+
+				.ext {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+
+					> div {						
+						width: 100%;
+						height: 34px;
+
+						p {
+							float: left;
+							line-height: 34px;
+
+							span {
+								display: inline-block;
+								float: left;
+								font-size: 18px; /* px */
+							}
+							.price {
+								font-size: 28px; /* px */
+							}
+						}
+						a {
+							display: block;
+							float: right;
+							width: 36px;
+							height: 34px;
+							margin-right: 10px;
+							background: {
+								image: url('../imgs/icons/icon_unfollow.png');
+								repeat: no-repeat;
+								size: cover;
+							}
+
+							&.followed {
+								background-image: url('../imgs/icons/icon_followed.png');
+							}
+						}
+					}
+
+					.discount {
+						padding-top: 30px;
+						color: #d7b47d;
+
+						span {
+							display: inline-block;
+							float: left;
+							font-size: 24px; /* px */
+							line-height: 30px;
+							
+							&.num1,
+							&.num2 {
+								font-family: '宋体';
+							}
+							&.num1 {
+								font-size: 50px; /* px */
+								line-height: 20px;
+							}
+						}
 					}
 				}
 			}
