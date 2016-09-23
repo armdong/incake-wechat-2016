@@ -11,10 +11,10 @@
         var swiperBanner = null,
             swiperRecommend = null;
 
-        // 首页Banner轮播图模块
+        // 首页Banner模块
         fnInitBanner();
 
-        // 精品推荐轮播图模块
+        // 精品推荐模块
         fnInitRecommend();
 
         $(window).on('resize', function() {
@@ -22,7 +22,7 @@
             fnInitRecommend();
         });
 
-        // 首页Banner轮播图
+        // 首页Banner
         function fnInitBanner() {
             var $oContainer = $('#idxSlide'),
                 containerWidth = $oContainer.width();
@@ -51,7 +51,7 @@
             });
         }
 
-        // 精品推荐轮播图
+        // 精品推荐
         function fnInitRecommend() {
 
         	var $oContainer = $('#idxSection'),
@@ -76,7 +76,10 @@
         }
 
         // 首页公告模块
-        //fnInitNotice();
+        fnInitNotice();
+
+        // 喜欢/收藏
+        fnFavor();
 
     });
 
@@ -85,12 +88,6 @@
     		$oNoticeMsg = $oNotice.find('.notice-msg'),
     		$oNoticeClose = $oNotice.find('.notice-close'),
     		tl = new TimelineLite();
-
-    	var iStep = 60,
-    		iMsgH = $oNoticeMsg.height(),
-    		iTotal = Math.round(iMsgH / iStep),
-    		iCurr = 0,
-    		iTimer = null;
 
     	// 关闭公告
     	$oNoticeClose.on('click', function(){
@@ -106,22 +103,25 @@
     	});
 
     	// 公告轮播
-    	iTimer = setInterval(function(){
-    		tl.clear();
-    		iCurr ++;
+        var marqueeText = '非真正内容非真正内容，非真正内容非真正内容非真正内容。非真正内容非真正内容，非真正内容非真正内容非真正内容。';
+        $oNoticeMsg.marquee({
+            text: marqueeText,
+            timer: 200,
+            direction: 'left'
+        });
+    }
 
-    		if(iCurr >= iTotal){
-    			iCurr = 0;
-    		}
+    function fnFavor() {
+        var $oContainer = $('#idxSection'),
+            $aFavor = $oContainer.find('.favor');
 
-    		tl.to($oNoticeMsg, 0.5, {
-    			top: -iStep * iCurr + 'px',
-    			ease: Bounce.easeOut,
-    			useFrames: true
-    		});
-
-    	}, 3000);
-
+        $.each($aFavor, function(i, ele){
+            $(ele).on('click', function(){
+                $(this).toggleClass('followed');
+            });
+        });
     }
 
 })(Zepto, window, document);
+
+

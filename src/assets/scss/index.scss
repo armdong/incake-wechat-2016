@@ -203,6 +203,7 @@ body {
 
 	section {
 		width: 100%;
+		margin-bottom: 30px;
 		background-color: #fff;
 
 		.sec-header {
@@ -283,6 +284,10 @@ body {
 				.desc {
 					font-size: 18px; /* px */
 					line-height: 24px; /* px */
+					display: -webkit-box; 
+					-webkit-box-orient: vertical; 
+					-webkit-line-clamp: 3; 
+					overflow: hidden;
 				}
 
 				.ext {
