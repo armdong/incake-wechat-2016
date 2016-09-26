@@ -34,54 +34,33 @@
 
 	<!-- index-page slide begin -->
 	<div id="idxSlide" class="swiper-container">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-				<a href="javascript:;"><img src="assets/imgs/slides/01.jpg" alt=""></a>
-			</div>
-			<div class="swiper-slide">
-				<a href="javascript:;"><img src="assets/imgs/slides/02.jpg" alt=""></a>
-			</div>
-			<div class="swiper-slide">
-				<a href="javascript:;"><img src="assets/imgs/slides/03.jpg" alt=""></a>
-			</div>
-		</div>
+		<div class="swiper-wrapper"></div>
 		<div class="swiper-pagination"></div>
 	</div>
+	<script id="tplIdxSlide" type="text/html">
+		{{each list as value i}}
+		<div class="swiper-slide">
+			<a href="{{value.link}}"><img src="{{value.img}}" alt=""></a>
+		</div>
+		{{/each}}
+	</script>
 	<!-- index-page slide end -->
 
 	<!-- index-page nav begin -->
-	<nav id="idxNav">
+	<nav id="idxNav"></nav>
+	<script id="tplIdxNav" type="text/html">
 		<ul class="clearfix">
-			<li class="all">
-				<a href="javascript:;"></a>
+			{{each list as value i}}
+			<li class="{{value.category}}">
+				<a href="{{value.link}}"></a>
 				<div class="text">
-					<p class="cn">全部商品</p>
-					<p class="en">All cakes</p>
+					<p class="cn">{{value.title.cn}}</p>
+					<p class="en">{{value.title.en}}</p>
 				</div>
 			</li>
-			<li class="tea">
-				<a href="javascript:;"></a>
-				<div class="text">
-					<p class="cn">下午茶</p>
-					<p class="en">Afternoon tea</p>
-				</div>
-			</li>
-			<li class="diy">
-				<a href="javascript:;"></a>
-				<div class="text">
-					<p class="cn">蛋糕定制</p>
-					<p class="en">DIY cake</p>
-				</div>
-			</li>
-			<li class="gaw">
-				<a href="javascript:;"></a>
-				<div class="text">
-					<p class="cn">GAW蛋糕</p>
-					<p class="en">Genius at work</p>
-				</div>
-			</li>
+			{{/each}}
 		</ul>
-	</nav>
+	</script>
 	<!-- index-page nav end -->
 	
 	<!-- index-page section begin -->
@@ -94,186 +73,47 @@
 			</div>
 			<div class="sec-body">
 				<div class="sec-recommend swiper-container" id="recSlide">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<div class="slide-item clearfix">
-								<a href="javascript:;" class="img">
-									<img src="assets/imgs/index/recommend_img_01.jpg" alt="">
-								</a>
-								<div class="text">
-									<div class="name">
-										<p class="cn">芒果拿破仑</p>
-										<p class="en">Fresh Mango Napoleon</p>
-									</div>
-									<p class="desc">芒果酸甜多汁和酥皮酥脆清香，是芒果拿破仑让人沉沦的独特口感。</p>
-									<div class="ext">
-										<div class="clearfix">
-											<p class="clearfix">
-												<span class="price">￥189</span>
-												<span> / </span>
-												<span class="pound">1.5</span>
-												<span>磅</span>
-											</p>
-											<a href="javascript:;" class="favor"></a>
-										</div>
-										<p class="discount clearfix">
-											<span class="num1">8</span>
-											<span class="num2">.5</span>
-											<span>折</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="slide-item clearfix">
-								<a href="javascript:;" class="img">
-									<img src="assets/imgs/index/recommend_img_01.jpg" alt="">
-								</a>
-								<div class="text">
-									<div class="name">
-										<p class="cn">芒果拿破仑</p>
-										<p class="en">Fresh Mango Napoleon</p>
-									</div>
-									<p class="desc">芒果酸甜多汁和酥皮酥脆清香，是芒果拿破仑让人沉沦的独特口感。</p>
-									<div class="ext">
-										<div class="clearfix">
-											<p class="clearfix">
-												<span class="price">￥189</span>
-												<span> / </span>
-												<span class="pound">1.5</span>
-												<span>磅</span>
-											</p>
-											<a href="javascript:;" class="favor followed"></a>
-										</div>
-										<p class="discount clearfix">
-											<span class="num1">8</span>
-											<span class="num2">.5</span>
-											<span>折</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<div class="slide-item clearfix">
-								<a href="javascript:;" class="img">
-									<img src="assets/imgs/index/recommend_img_01.jpg" alt="">
-								</a>
-								<div class="text">
-									<div class="name">
-										<p class="cn">芒果拿破仑</p>
-										<p class="en">Fresh Mango Napoleon</p>
-									</div>
-									<p class="desc">芒果酸甜多汁和酥皮酥脆清香，是芒果拿破仑让人沉沦的独特口感。</p>
-									<div class="ext">
-										<div class="clearfix">
-											<p class="clearfix">
-												<span class="price">￥189</span>
-												<span> / </span>
-												<span class="pound">1.5</span>
-												<span>磅</span>
-											</p>
-											<a href="javascript:;" class="favor"></a>
-										</div>
-										<p class="discount clearfix">
-											<span class="num1">8</span>
-											<span class="num2">.5</span>
-											<span>折</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="slide-item clearfix">
-								<a href="javascript:;" class="img">
-									<img src="assets/imgs/index/recommend_img_01.jpg" alt="">
-								</a>
-								<div class="text">
-									<div class="name">
-										<p class="cn">芒果拿破仑</p>
-										<p class="en">Fresh Mango Napoleon</p>
-									</div>
-									<p class="desc">芒果酸甜多汁和酥皮酥脆清香，是芒果拿破仑让人沉沦的独特口感。</p>
-									<div class="ext">
-										<div class="clearfix">
-											<p class="clearfix">
-												<span class="price">￥189</span>
-												<span> / </span>
-												<span class="pound">1.5</span>
-												<span>磅</span>
-											</p>
-											<a href="javascript:;" class="favor followed"></a>
-										</div>
-										<p class="discount clearfix">
-											<span class="num1">8</span>
-											<span class="num2">.5</span>
-											<span>折</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="swiper-slide">
-							<div class="slide-item clearfix">
-								<a href="javascript:;" class="img">
-									<img src="assets/imgs/index/recommend_img_01.jpg" alt="">
-								</a>
-								<div class="text">
-									<div class="name">
-										<p class="cn">芒果拿破仑</p>
-										<p class="en">Fresh Mango Napoleon</p>
-									</div>
-									<p class="desc">芒果酸甜多汁和酥皮酥脆清香，是芒果拿破仑让人沉沦的独特口感。</p>
-									<div class="ext">
-										<div class="clearfix">
-											<p class="clearfix">
-												<span class="price">￥189</span>
-												<span> / </span>
-												<span class="pound">1.5</span>
-												<span>磅</span>
-											</p>
-											<a href="javascript:;" class="favor"></a>
-										</div>
-										<p class="discount clearfix">
-											<span class="num1">8</span>
-											<span class="num2">.5</span>
-											<span>折</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="slide-item clearfix">
-								<a href="javascript:;" class="img">
-									<img src="assets/imgs/index/recommend_img_01.jpg" alt="">
-								</a>
-								<div class="text">
-									<div class="name">
-										<p class="cn">芒果拿破仑</p>
-										<p class="en">Fresh Mango Napoleon</p>
-									</div>
-									<p class="desc">芒果酸甜多汁和酥皮酥脆清香，是芒果拿破仑让人沉沦的独特口感。</p>
-									<div class="ext">
-										<div class="clearfix">
-											<p class="clearfix">
-												<span class="price">￥189</span>
-												<span> / </span>
-												<span class="pound">1.5</span>
-												<span>磅</span>
-											</p>
-											<a href="javascript:;" class="favor followed"></a>
-										</div>
-										<p class="discount clearfix">
-											<span class="num1">8</span>
-											<span class="num2">.5</span>
-											<span>折</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div class="swiper-wrapper"></div>
 					<div class="swiper-pagination"></div>
 				</div>
 			</div>
 		</section>
+		<script id="tplRecSlide" type="text/html">
+			{{each list as slide i}}
+			<div class="swiper-slide">
+				{{each slide as item index}}
+				<div class="slide-item clearfix">
+					<a href="{{item.link}}" class="img">
+						<img src="{{item.img}}" alt="">
+					</a>
+					<div class="text">
+						<div class="name">
+							<p class="cn">{{item.name.cn}}</p>
+							<p class="en">{{item.name.en}}</p>
+						</div>
+						<p class="desc">{{item.desc}}</p>
+						<div class="ext">
+							<div class="clearfix">
+								<p class="clearfix">
+									<span class="price">￥{{item.price}}</span>
+									<span> / </span>
+									<span class="pound">{{item.pound}}</span>
+									<span>磅</span>
+								</p>
+								<a href="javascript:;" class="favor"></a>
+							</div>
+							<p class="discount clearfix">
+								<span class="num1">{{item.discount.num1}}</span>
+								<span class="num2">{{item.discount.num2}}</span>
+								<span>折</span>
+							</p>
+						</div>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+			{{/each}}
+		</script>
 		<!-- 精品推荐 end -->
 
 		<!-- 新品上市 begin -->
@@ -282,20 +122,57 @@
 				<h2>新品上市</h2>
 			</div>
 			<div class="sec-body">
-				
+				<div class="sec-new" id="newOnSale">
+					
+				</div>
 			</div>
 		</section>
+		<script id="tplNewOnSale" type="text/html">
+			{{if single}}
+				{{each list as item i}}
+					<div class="single-item">
+						<a href="{{item.link}}" class="img">
+							<img src="{{item.img}}" alt="">
+						</a>
+						<div class="text">
+							<p class="name clearfix">
+								<span class="cn">{{item.name.cn}}</span>
+								<span class="en">{{item.name.en}}</span>
+							</p>
+							<p class="desc">{{item.desc}}</p>
+							<div class="ext">
+								<p class="clearfix">
+									<span class="price">￥{{item.price}}</span>
+									<span> / </span>
+									<span class="pound">{{item.pound}}</span>
+									<span>磅</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				{{/each}}
+			{{else}}
+				{{each list as value i}}
+					
+				{{/each}}
+			{{/if}}			
+		</script>
 		<!-- 新品上市 end -->
 
 	</div>
 	<!-- index-page section end -->
 
 	<!-- scripts begin -->
-	<script src="assets/plugins/zepto/zepto.min.js"></script>
-	<script src="assets/plugins/tweenmax/TweenMax.min.js"></script>
-	<script src="assets/plugins/swiper/js/swiper.min.js"></script>
-	<script src="assets/plugins/zepto.marquee.js"></script>
-	<script src="assets/js/index.js"></script>
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/swiper/js/swiper.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/zepto.marquee.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/js/index.js');
+	</script>
 	<!-- script end -->
 </body>
 </html>

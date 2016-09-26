@@ -209,7 +209,7 @@ body {
 		.sec-header {
 			width: 94.666%;
 			margin: 0 auto;
-			padding-top: 23px;
+			padding: 23px 0 30px;
 
 			h2 {
 				font-size: 26px; /* px */
@@ -241,6 +241,10 @@ body {
 			height: 347px;
 			padding: 24px 0;
 			border-bottom: 1px solid #e6e6e6; /* no */
+			
+			&:first-of-type {
+				padding-top: 0;
+			}
 
 			&:last-of-type {
 				border-bottom: none;
@@ -311,6 +315,7 @@ body {
 							}
 							.price {
 								font-size: 28px; /* px */
+								line-height: 30px;
 							}
 						}
 						a {
@@ -334,6 +339,7 @@ body {
 					.discount {
 						padding-top: 30px;
 						color: #d7b47d;
+						font-style: italic;
 
 						span {
 							display: inline-block;
@@ -367,5 +373,82 @@ body {
 				}
 			}
 		}
+	}
+
+	/* 新品上市 */
+	.sec-new {
+
+		/* single-item styles */
+		.single-item {
+			width: 100%;
+
+			.img {
+				display: block;
+				width: 100%;
+				border: 1px solid #f0f0f0; /* no */
+
+				img {
+					width: 100%;
+				}
+			}
+
+			.text {
+				position: relative;
+				width: 100%;
+				padding-bottom: 30px;
+				color: #303241;
+
+				.name {
+					padding: 25px 20px 20px;
+					line-height: 24px;
+
+					span {
+						display: inline-block;
+						float: left;
+					}
+
+					.cn {
+						font-size: 24px; /* px */
+						margin-right: 28px;
+					}
+					.en {
+						font-size: 16px; /* px */
+					}
+				}
+
+				.desc {
+					width: 440px;
+					padding-left: 20px;
+					font-size: 18px; /* px */
+					line-height: 24px; /* px */
+					display: -webkit-box; 
+					-webkit-box-orient: vertical; 
+					-webkit-line-clamp: 2; 
+					overflow: hidden;
+				}
+
+				.ext {
+					position: absolute;
+					right: 0;
+					bottom: 30px;
+
+					p {
+						line-height: 34px;
+
+						span {
+							display: inline-block;
+							float: left;
+							font-size: 18px; /* px */
+						}
+						.price {
+							font-size: 28px; /* px */
+							line-height: 30px;
+						}
+					}
+				}
+			}
+		}
+
+		/* multiple styles */
 	}
 }
