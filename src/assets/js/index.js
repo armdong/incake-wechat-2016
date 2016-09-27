@@ -9,7 +9,8 @@
     $(function() {
 
         var swiperBanner = null,
-            swiperRecommend = null;
+            swiperRecommend = null,
+            swiperNewOnSale = null;
 
         // 首页Banner模块
         fnInitBanner();
@@ -18,8 +19,9 @@
         fnInitRecommend();
 
         $(window).on('resize', function() {
-            fnInitBanner();
+            fnInitBanner();            
             fnInitRecommend();
+            fnInitNewOnSale();
         });
 
         // 首页Banner
@@ -68,8 +70,7 @@
         // 精品推荐
         function fnInitRecommend() {
 
-            var $oContainer = $('#idxSection'),
-                containerWidth = $oContainer.find('.sec-body').width();
+            var $oContainer = $('#idxSection');
 
             // 渲染 精品推荐 模板
             var _data = {
@@ -192,29 +193,93 @@
         // 新品上市
         fnInitNewOnSale();
 
+        // 新品上市模块
+        function fnInitNewOnSale() {
+            var $oNewOnSale = $('#newOnSale');
+
+            // 渲染模板
+            var _data = {
+                single: false,
+                list: [{
+                    link: 'http://www.baidu.com',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '超级蜂巢',
+                        en: 'Super hive cake'
+                    },
+                    desc: '芒果的酸甜“侵略”了蛋糕的每一寸，果浆比果酱更有热带水果的醇香。',
+                    price: '189',
+                    pound: '1.5'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '超级蜂巢',
+                        en: 'Super hive cake'
+                    },
+                    desc: '芒果的酸甜“侵略”了蛋糕的每一寸，果浆比果酱更有热带水果的醇香。',
+                    price: '189',
+                    pound: '1.5'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '超级蜂巢',
+                        en: 'Super hive cake'
+                    },
+                    desc: '芒果的酸甜“侵略”了蛋糕的每一寸，果浆比果酱更有热带水果的醇香。',
+                    price: '189',
+                    pound: '1.5'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '超级蜂巢',
+                        en: 'Super hive cake'
+                    },
+                    desc: '芒果的酸甜“侵略”了蛋糕的每一寸，果浆比果酱更有热带水果的醇香。',
+                    price: '189',
+                    pound: '1.5'
+                }]
+            };
+            var _html = template('tplNewOnSale', _data);
+            $oNewOnSale.html(_html);
+
+            if(!_data.single) { // 多个产品               
+
+                if (swiperNewOnSale != null) {
+                    swiperNewOnSale.destroy(true, true);
+                }
+                swiperNewOnSale = null;
+                swiperNewOnSale = new Swiper('#newOnSale', {
+                    scrollbarHide: true,
+                    setWrapperSize: true,
+                    slidesPerView: 'auto',
+                    spaceBetween: 30,
+                    grabCursor: true,
+                    loop: false,
+                    speed: 500,
+                    preloadImages: true,
+                    lazyLoading: true,
+                    updateTranslate: true,
+                    onInit: function(swiper) {
+                        //console.log(swiper);
+                        console.log(swiper.width);
+                        console.log(swiper.virtualSize);                        
+                    }
+                });
+                swiperNewOnSale.update(true);
+            }
+        }
+
     });
+    
+    
 
-    function fnInitNewOnSale() {
-        var $oNewOnSale = $('#newOnSale');
-
-        var _data = {
-            single: true,
-            list: [{
-                link: 'javascript:;',
-                img: 'assets/imgs/index/new_img_01.jpg',
-                name: {
-                    cn: '超级蜂巢',
-                    en: 'Super hive cake'
-                },
-                desc: '芒果的酸甜“侵略”了蛋糕的每一寸，果浆比果酱更有热带水果的醇香。',
-                price: '189',
-                pound: '1.5'
-            }]
-        };
-        var _html = template('tplNewOnSale', _data);
-        $oNewOnSale.html(_html);
-    }
-
+    /**
+     * [fnInitNavCategories 首页分类菜单模块]
+     * @return {[type]} [description]
+     */
     function fnInitNavCategories() {
         var $oNav = $('#idxNav');
 
@@ -254,6 +319,10 @@
         $oNav.html(_html);
     }
 
+    /**
+     * [fnInitNotice 首页公告模块]
+     * @return {[type]} [description]
+     */
     function fnInitNotice() {
         var $oNotice = $('#idxNotice'),
             $oNoticeMsg = $oNotice.find('.notice-msg'),
@@ -282,6 +351,10 @@
         });
     }
 
+    /**
+     * [fnFavor 产品收藏模块]
+     * @return {[type]} [description]
+     */
     function fnFavor() {
         var $oContainer = $('#idxSection');
 

@@ -122,7 +122,7 @@
 				<h2>新品上市</h2>
 			</div>
 			<div class="sec-body">
-				<div class="sec-new" id="newOnSale">
+				<div class="sec-new swiper-container" id="newOnSale">
 					
 				</div>
 			</div>
@@ -152,9 +152,30 @@
 					</div>
 				{{/each}}
 			{{else}}
-				{{each list as value i}}
-					
+				<div class="multi-list swiper-wrapper clearfix">
+				{{each list as item i}}
+					<div class="multi-item swiper-slide">
+						<a href="{{item.link}}" class="img">
+							<img src="{{item.img}}" alt="">
+						</a>
+						<div class="text">
+							<p class="name clearfix">
+								<span class="cn">{{item.name.cn}}</span>
+								<span class="en">{{item.name.en}}</span>
+							</p>
+							<p class="desc">{{item.desc}}</p>
+							<div class="ext">
+								<p class="clearfix">
+									<span class="price">￥{{item.price}}</span>
+									<span> / </span>
+									<span class="pound">{{item.pound}}</span>
+									<span>磅</span>
+								</p>
+							</div>
+						</div>
+					</div>
 				{{/each}}
+				</div>
 			{{/if}}			
 		</script>
 		<!-- 新品上市 end -->
