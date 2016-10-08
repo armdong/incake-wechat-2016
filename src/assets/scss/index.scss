@@ -229,6 +229,14 @@ body {
 			width: 94.666%;
 			margin: 0 auto;
 		}
+
+		.ad-container {
+			width: 100%;
+
+			> img {
+				width: 100%;
+			}
+		}
 	}
 
 	/* 精品推荐 */

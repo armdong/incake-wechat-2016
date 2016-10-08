@@ -194,14 +194,16 @@
         fnInitNewOnSale();
 
         // 新品上市模块
+        // TODO 横竖屏切换时slide的translate不匹配问题
         function fnInitNewOnSale() {
             var $oNewOnSale = $('#newOnSale');
+            $oNewOnSale.empty();
 
             // 渲染模板
             var _data = {
                 single: false,
                 list: [{
-                    link: 'http://www.baidu.com',
+                    link: 'javascript:;',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -245,24 +247,24 @@
             var _html = template('tplNewOnSale', _data);
             $oNewOnSale.html(_html);
 
-            if(!_data.single) { // 多个产品               
+            if(!_data.single) { // 多个产品   
+
+                var $aItem = $oNewOnSale.find('.multi-item'),
+                    iItemW = $aItem.width(),
+                    itemCount = $aItem.length;
 
                 if (swiperNewOnSale != null) {
                     swiperNewOnSale.destroy(true, true);
                 }
                 swiperNewOnSale = null;
-                swiperNewOnSale = new Swiper('#newOnSale', {
+                swiperNewOnSale = new Swiper('#newOnSale .swiper-container', {
                     scrollbarHide: true,
-                    setWrapperSize: true,
                     slidesPerView: 'auto',
                     spaceBetween: 30,
                     grabCursor: true,
-                    loop: false,
-                    speed: 500,
-                    preloadImages: true,
-                    lazyLoading: true,
-                    updateTranslate: true,
+                    freeMode: true,
                     onInit: function(swiper) {
+                        //swiper.virtualSize = Math.floor(iItemW * itemCount + swiper.params.spaceBetween * (itemCount - 1));
                         //console.log(swiper);
                         console.log(swiper.width);
                         console.log(swiper.virtualSize);                        

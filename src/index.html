@@ -122,9 +122,7 @@
 				<h2>新品上市</h2>
 			</div>
 			<div class="sec-body">
-				<div class="sec-new swiper-container" id="newOnSale">
-					
-				</div>
+				<div class="sec-new" id="newOnSale"></div>
 			</div>
 		</section>
 		<script id="tplNewOnSale" type="text/html">
@@ -152,9 +150,58 @@
 					</div>
 				{{/each}}
 			{{else}}
-				<div class="multi-list swiper-wrapper clearfix">
+				<div class="swiper-container">
+					<div class="multi-list swiper-wrapper clearfix">
+					{{each list as item i}}
+						<div class="multi-item swiper-slide">
+							<a href="{{item.link}}" class="img">
+								<img src="{{item.img}}" alt="">
+							</a>
+							<div class="text">
+								<p class="name clearfix">
+									<span class="cn">{{item.name.cn}}</span>
+									<span class="en">{{item.name.en}}</span>
+								</p>
+								<p class="desc">{{item.desc}}</p>
+								<div class="ext">
+									<p class="clearfix">
+										<span class="price">￥{{item.price}}</span>
+										<span> / </span>
+										<span class="pound">{{item.pound}}</span>
+										<span>磅</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					{{/each}}
+					</div>
+				</div>
+			{{/if}}			
+		</script>
+		<!-- 新品上市 end -->
+
+		<!-- 广告位 begin -->
+		<section>
+			<div class="ad-container" id="idxAd">
+				<img src="assets/imgs/index/ad_img.jpg" alt="">
+			</div>
+		</section>
+		<!-- 广告位 end -->
+
+		<!-- 口味 begin -->
+		<section>
+			<div class="sec-header">
+				<h2>口味</h2>
+			</div>
+			<div class="sec-body">
+				<div class="sec-taste" id="tasteSec"></div>
+			</div>
+		</section>
+		<script id="tplTaste" type="text/html">
+			<div class="swiper-container">
+				<div class="list swiper-wrapper clearfix">
 				{{each list as item i}}
-					<div class="multi-item swiper-slide">
+					<div class="item swiper-slide">
 						<a href="{{item.link}}" class="img">
 							<img src="{{item.img}}" alt="">
 						</a>
@@ -163,22 +210,13 @@
 								<span class="cn">{{item.name.cn}}</span>
 								<span class="en">{{item.name.en}}</span>
 							</p>
-							<p class="desc">{{item.desc}}</p>
-							<div class="ext">
-								<p class="clearfix">
-									<span class="price">￥{{item.price}}</span>
-									<span> / </span>
-									<span class="pound">{{item.pound}}</span>
-									<span>磅</span>
-								</p>
-							</div>
 						</div>
 					</div>
 				{{/each}}
 				</div>
-			{{/if}}			
+			</div>
 		</script>
-		<!-- 新品上市 end -->
+		<!-- 口味 end -->
 
 	</div>
 	<!-- index-page section end -->
