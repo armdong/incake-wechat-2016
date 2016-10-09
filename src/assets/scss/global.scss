@@ -20,7 +20,6 @@ li {
 img {
     border: none;
     vertical-align: top;
-    -webkit-touch-callout: none;
 }
 
 a {
@@ -38,3 +37,16 @@ html {
 body {
 	font-family: 'Microsoft YaHei', Arial;
 }
+
+
+/* .swiper-container {
+	position: relative;
+	overflow: hidden;
+}
+
+.swiper-wrapper {
+	-webkit-backface-visibility: hidden; 
+	backface-visibility: hidden; 
+	-webkit-transform-style: preserve-3d; 
+	transform-style: preserve-3d; 	
+} */
