@@ -8,9 +8,22 @@
 
     $(function() {
 
+        /**
+         * ========================
+         * =      声明变量
+         * ========================
+         */
         var swiperBanner = null,
             swiperRecommend = null,
-            swiperNewOnSale = null;
+            swiperNewOnSale = null,
+            swiperTaste = null,
+            swiperScene = null;
+
+        /**
+         * ========================
+         * =      函数调用
+         * ========================
+         */
 
         // 首页Banner模块
         fnInitBanner();
@@ -18,11 +31,38 @@
         // 精品推荐模块
         fnInitRecommend();
 
+        // 首页分类导航
+        fnInitNavCategories();
+
+        // 首页公告模块
+        fnInitNotice();
+
+        // 收藏/取消收藏
+        fnFavor();
+
+        // 新品上市
+        fnInitNewOnSale();
+
+        // 口味
+        fnInitTaste();
+
+        // 场景
+        fnInitScene();
+
+        // 设备横竖屏发生改变监听事件
         $(window).on('resize', function() {
-            fnInitBanner();            
+            fnInitBanner();
             fnInitRecommend();
             fnInitNewOnSale();
+            fnInitTaste();
+            fnInitScene();
         });
+
+        /**
+         * ========================
+         * =      函数声明
+         * ========================
+         */
 
         // 首页Banner
         function fnInitBanner() {
@@ -103,7 +143,8 @@
                             num1: '8',
                             num2: '.5'
                         }
-                    }], [{
+                    }],
+                    [{
                         link: 'javascript:;',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
@@ -131,7 +172,8 @@
                             num1: '8',
                             num2: '.5'
                         }
-                    }], [{
+                    }],
+                    [{
                         link: 'javascript:;',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
@@ -168,7 +210,7 @@
             if (swiperRecommend != null) {
                 swiperRecommend.destroy(true, true);
             }
-
+            swiperRecommend = null;
             swiperRecommend = new Swiper('#recSlide', {
                 pagination: '.swiper-pagination',
                 loop: false,
@@ -181,25 +223,12 @@
             swiperRecommend.update(true);
         }
 
-        // 首页分类导航
-        fnInitNavCategories();
-
-        // 首页公告模块
-        fnInitNotice();
-
-        // 收藏/取消收藏
-        fnFavor();
-
-        // 新品上市
-        fnInitNewOnSale();
-
         // 新品上市模块
-        // TODO 横竖屏切换时slide的translate不匹配问题
         function fnInitNewOnSale() {
             var $oNewOnSale = $('#newOnSale');
             $oNewOnSale.empty();
 
-            // 渲染模板
+            // 渲染模板 TODO 通过ajax调用对应api获取data
             var _data = {
                 single: false,
                 list: [{
@@ -214,7 +243,7 @@
                     pound: '1.5'
                 }, {
                     link: 'javascript:;',
-                    img: 'assets/imgs/index/new_img_01.jpg',
+                    img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '超级蜂巢',
                         en: 'Super hive cake'
@@ -234,7 +263,7 @@
                     pound: '1.5'
                 }, {
                     link: 'javascript:;',
-                    img: 'assets/imgs/index/new_img_01.jpg',
+                    img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '超级蜂巢',
                         en: 'Super hive cake'
@@ -247,11 +276,7 @@
             var _html = template('tplNewOnSale', _data);
             $oNewOnSale.html(_html);
 
-            if(!_data.single) { // 多个产品   
-
-                var $aItem = $oNewOnSale.find('.multi-item'),
-                    iItemW = $aItem.width(),
-                    itemCount = $aItem.length;
+            if (!_data.single) { // 多个产品   
 
                 if (swiperNewOnSale != null) {
                     swiperNewOnSale.destroy(true, true);
@@ -263,20 +288,148 @@
                     spaceBetween: 30,
                     grabCursor: true,
                     freeMode: true,
-                    onInit: function(swiper) {
-                        //swiper.virtualSize = Math.floor(iItemW * itemCount + swiper.params.spaceBetween * (itemCount - 1));
-                        //console.log(swiper);
-                        console.log(swiper.width);
-                        console.log(swiper.virtualSize);                        
-                    }
+                    updateTranslate: true,
+                    setWrapperSize: true,
+                    observer: true,
+                    observeParents: true
                 });
                 swiperNewOnSale.update(true);
             }
         }
 
+        // 口味模块
+        function fnInitTaste() {
+            var $oTaste = $('#tasteSec');
+            $oTaste.empty();
+
+            // 渲染模板 TODO 通过ajax调用对应api获取data
+            var _data = {
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: {
+                        cn: '芝士口味',
+                        en: 'Cheese'
+                    }
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '巧克力口味',
+                        en: 'Chocolate'
+                    }
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: {
+                        cn: '拿破仑口味',
+                        en: 'Napoleon'
+                    }
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '慕斯口味',
+                        en: 'Mousse'
+                    }
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: {
+                        cn: '乳脂口味',
+                        en: 'Cream'
+                    }
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '咖啡口味',
+                        en: 'Coffee'
+                    }
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: {
+                        cn: '水果口味',
+                        en: 'Fruit'
+                    }
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '无糖口味',
+                        en: 'Sugar-free'
+                    }
+                }]
+            };
+            var _html = template('tplTaste', _data);
+            $oTaste.html(_html);
+
+            if (swiperTaste != null) {
+                swiperTaste.destroy(true, true);
+            }
+            swiperTaste = null;
+            swiperTaste = new Swiper('#tasteSec .swiper-container', {
+                scrollbarHide: true,
+                slidesPerView: 'auto',
+                spaceBetween: 30,
+                grabCursor: true,
+                freeMode: true,
+                updateTranslate: true,
+                setWrapperSize: true,
+                observer: true,
+                observeParents: true
+            });
+            swiperTaste.update(true);
+        }
+        
+        // 场景模块
+        function fnInitScene() {
+            var $oScene = $('#sceneSec');
+            $oScene.empty();
+
+            // 渲染模板 TODO 通过ajax调用对应api获取data
+            var _data = {
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: '生日Party'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: '生日Party'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: '生日Party'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: '生日Party'
+                }]
+            };
+            var _html = template('tplScene', _data);
+            $oScene.html(_html);
+
+            if (swiperScene != null) {
+                swiperScene.destroy(true, true);
+            }
+            swiperScene = null;
+            swiperScene = new Swiper('#sceneSec .swiper-container', {
+                scrollbarHide: true,
+                slidesPerView: 'auto',
+                spaceBetween: 30,
+                grabCursor: true,
+                freeMode: true,
+                updateTranslate: true,
+                setWrapperSize: true,
+                observer: true,
+                observeParents: true
+            });
+            swiperScene.update(true);
+        }
+
     });
-    
-    
 
     /**
      * [fnInitNavCategories 首页分类菜单模块]
@@ -362,7 +515,7 @@
 
         $oContainer.on('click', '.favor', function() {
             $(this).toggleClass('followed');
-        });            
+        });
     }
 
 })(Zepto, window, document);

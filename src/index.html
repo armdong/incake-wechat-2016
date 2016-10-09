@@ -206,10 +206,11 @@
 							<img src="{{item.img}}" alt="">
 						</a>
 						<div class="text">
-							<p class="name clearfix">
+							<a href="{{item.link}}" class="name">
 								<span class="cn">{{item.name.cn}}</span>
 								<span class="en">{{item.name.en}}</span>
-							</p>
+								<i class="circle-arrow"></i>
+							</a>
 						</div>
 					</div>
 				{{/each}}
@@ -218,8 +219,52 @@
 		</script>
 		<!-- 口味 end -->
 
+		<!-- 场景 begin -->
+		<section>
+			<div class="sec-header">
+				<h2>场景</h2>
+			</div>
+			<div class="sec-body">
+				<div class="sec-scene" id="sceneSec"></div>
+			</div>
+		</section>
+		<script id="tplScene" type="text/html">
+			<div class="swiper-container">
+				<div class="list swiper-wrapper clearfix">
+				{{each list as item i}}
+					<div class="item swiper-slide">
+						<a href="{{item.link}}" class="img">
+							<img src="{{item.img}}" alt="">
+						</a>
+						<div class="text">
+							<a href="{{item.link}}" class="name">
+								<span>{{item.name}}</span>
+								<i class="circle-arrow"></i>
+							</a>
+						</div>
+					</div>
+				{{/each}}
+				</div>
+			</div>
+		</script>
+		<!-- 场景 end -->
+		
+		<!-- 查看全部产品 begin -->
+		<section>
+			<div class="view-all" id="viewAll">
+				<a href="javascript:;">查看全部产品 >></a>
+			</div>
+		</section>
+		<!-- 查看全部产品 end -->
 	</div>
 	<!-- index-page section end -->
+
+	<!-- index-page copyright begin -->
+	<div id="idxCopyright">
+		<p>沪ICP备 12045835 号</p>
+		<p>Copyright © 2014 INCAKE Company All Right Reserved</p>
+	</div>
+	<!-- index-page copyright end -->
 
 	<!-- scripts begin -->
 	<script src="assets/plugins/LABjs/LAB.min.js"></script>

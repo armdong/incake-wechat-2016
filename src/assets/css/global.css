@@ -34,11 +34,20 @@ li {
 img {
   border: none;
   vertical-align: top;
+  -webkit-touch-callout: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 html,
 body {
   width: 100%;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
