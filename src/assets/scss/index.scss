@@ -182,7 +182,7 @@ body {
 
 			.text {
 
-				padding: 10px;
+				padding: 10px 0;
 
 				p { 
 					text-align: center;
@@ -212,7 +212,7 @@ body {
 		width: 100%;
 		margin-bottom: 30px;
 		background-color: #fff;
-		border-bottom: 1px solid #dcdcdc; /* px */
+		border-bottom: 1px solid #dcdcdc; /* no */
 
 		.sec-header {
 			width: 94.666%;
@@ -683,6 +683,7 @@ body {
 #idxCopyright {
 	width: 100%;
 	padding: 5px 0 20px; /* px */
+	margin-bottom: 96px;
 
 	> p {
 		line-height: 28px; /* px */
