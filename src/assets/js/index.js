@@ -24,6 +24,9 @@
          * =      函数调用
          * ========================
          */
+        
+        // 城市切换
+        fnInitCity();
 
         // 首页Banner模块
         fnInitBanner();
@@ -430,6 +433,46 @@
         }
 
     });
+    
+    /**
+     * 城市定位切换
+     * @return {[type]} [description]
+     */
+    function fnInitCity(){
+        var showCityDom = document.querySelector('#showCity');
+        var cityIdDom = document.querySelector('#cityId');
+
+        var data = [
+            {'id': '021', 'value': '上海'},
+            {'id': '0591', 'value': '福州'},
+            {'id': '0512', 'value': '苏州'},
+            {'id': '0999', 'value': '昆山'},
+            {'id': '0592', 'value': '厦门'},
+            {'id': '214000', 'value': '无锡'},
+            {'id': '010', 'value': '北京'},
+            {'id': '025', 'value': '南京'},
+            {'id': '0571', 'value': '杭州'}
+        ];
+
+        showCityDom.addEventListener('click', function () {
+            var cityId = showCityDom.dataset['id'];
+            var cityName = showCityDom.dataset['value'];
+
+            var citySelect = new IosSelect(1, 
+                [data],
+                {
+                    title: '城市选择',
+                    itemHeight: 35,
+                    oneLevelId: cityId,
+                    callback: function (selectOneObj) {
+                        cityIdDom.value = selectOneObj.id;
+                        showCityDom.innerHTML = selectOneObj.value;
+                        showCityDom.dataset['id'] = selectOneObj.id;
+                        showCityDom.dataset['value'] = selectOneObj.value;
+                    }
+            });
+        });
+    }
 
     /**
      * [fnInitNavCategories 首页分类菜单模块]
