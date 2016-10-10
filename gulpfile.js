@@ -1,160 +1,204 @@
-(function(){
-	'use strict';
-	var gulp = require('gulp'),
-		sass = require('gulp-sass'),
-		browserSync = require('browser-sync').create(),
-		useref = require('gulp-useref'),
-		uglify = require('gulp-uglify'),
-		gulpIf = require('gulp-if'),
-		cssnano = require('gulp-cssnano'),
-		autoprefixer = require('gulp-autoprefixer'),
-		sourcemaps = require('gulp-sourcemaps'),
-		jshint = require('gulp-jshint'),
-		map = require('map-stream'),
-		imagemin = require('gulp-imagemin'),
-		cache = require('gulp-cache'),
-		del = require('del'),
-		changed = require('gulp-changed'),
-		runSequence = require('run-sequence'),
-		postcss = require('gulp-postcss'),
-		px2rem = require('postcss-px2rem'),
-		plumber = require('gulp-plumber');
+(function() {
 
-	/**
-	 * Converts Sass to CSS with gulp-sass *
-	 * Gets all files ending with .scss in src/scss and children dirs
-	 */
-	gulp.task('sass', function(){
-		var processors = [px2rem({remUnit: 75})];
-		return gulp.src('src/assets/scss/*.scss')
-			.pipe(changed('src', {extension: '.scss'}))
-			.pipe(plumber())
-			.pipe(sass())
-			//.pipe(sourcemaps.init())
-			// Autoprefixer only if it's a CSS file
-			.pipe(autoprefixer({
-				browsers: ['last 2 versions'],
-				cascade: false
-			}))
-			//.pipe(sourcemaps.write('.'))
-			// run px2rem convertion
-			.pipe(postcss(processors))
-			.pipe(gulp.dest('src/assets/css'))
-			.pipe(browserSync.reload({
-				stream: true
-			}));
-	});
+    /**
+     * ======================================
+     * Gulp插件
+     * ======================================
+     * 
+     * gulp-sass: 将sass编译成css
+     * gulp-cssnano: 压缩css
+     * gulp-autoprefixer: 通过生成浏览器前缀兼容css3特性
+     * gulp-postcss: 主要结合postcss-px2rem插件动态将css的px单位转换成rem单位
+     * postcss-px2rem: 同上
+     * gulp-sourcemaps: gulp.js source map support
+     * gulp-jshint: javascript代码语法合法性检测
+     * map-stream: construct pipes of streams of events
+     * gulp-uglify: 压缩javascript
+     * gulp-imagemin: 压缩图片
+     * gulp-useref: 优化html文件里面的引用的js或者css文件
+     * gulp-if: 条件运行任务
+     * gulp-cache: gulp中的缓存代理
+     * del: 删除文件和目录
+     * gulp-changed: 只让修改的文件通过
+     * run-sequence: 顺序执行任务
+     * browser-sync: 浏览器同步&重新加载
+     * gulp-plumber: 阻止发生错误时导致中断
+     */
+    var gulp = require('gulp'),
+        sass = require('gulp-sass'),
+        cssnano = require('gulp-cssnano'),
+        autoprefixer = require('gulp-autoprefixer'),
+        postcss = require('gulp-postcss'),
+        px2rem = require('postcss-px2rem'),
+        sourcemaps = require('gulp-sourcemaps'),
+        jshint = require('gulp-jshint'),
+        stylish = require('jshint-stylish'),
+        map = require('map-stream'),
+        uglify = require('gulp-uglify'),
+        imagemin = require('gulp-imagemin'),
+        useref = require('gulp-useref'),
+        gulpIf = require('gulp-if'),
+        cache = require('gulp-cache'),
+        del = require('del'),
+        changed = require('gulp-changed'),
+        runSequence = require('run-sequence'),
+        browserSync = require('browser-sync').create(),
+        plumber = require('gulp-plumber'),
+        paths = {
+            root: './',
+            source: {
+                root: 'src/',
+                scss: 'src/assets/scss/',
+                styles: 'src/assets/css/',
+                scripts: 'src/assets/js/',
+                images: 'src/assets/imgs/',
+                fonts: 'src/assets/fonts/',
+                plugins: 'src/assets/plugins/'
+            },
+            build: {
+                root: 'build/',
+                styles: 'build/assets/css/',
+                scripts: 'build/assets/scripts/',
+                images: 'build/assets/imgs/',
+                fonts: 'build/assets/fonts/',
+                plugins: 'build/assets/plugins/'
+            }
+        },
+        config = {
+            remUnit: 75
+        };
 
-	/**
-	 * jsHint
-	 */
-	var myReporter = map(function(file, cb){
-		if (!file.jshint.success) {
-			console.log('JSHINT fail in ' + file.path);
-			file.jshint.results.forEach(function(err) {
-				if (err) {
-					console.log(' ' + file.path + ': line ' + err.line + ', col ' + err.character + ', code ' + err.code + ', ' + err.reason);
-				}
-			});
-		}
-		cb(null, file);
-	});
+    /**
+     * ======================================
+     * 开发阶段Tasks
+     * ======================================
+     */
 
-	gulp.task('lint', function(){
-		return gulp.src('src/assets/js/**/*.js')
-			.pipe(jshint())
-			.pipe(myReporter);
-	});
+    // 将Sass编译成CSS Task
+    gulp.task('sass', function() {
+        var processors = [px2rem({ remUnit: config.remUnit })];
+        return gulp.src(paths.source.scss + '*.scss')
+            .pipe(changed(paths.source.root, { extension: '.scss' }))
+            .pipe(plumber())
+            .pipe(sass())
+            .pipe(sourcemaps.init())
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions'],
+                cascade: false
+            }))
+            .pipe(postcss(processors))
+            .pipe(sourcemaps.write(paths.root))
+            .pipe(gulp.dest(paths.source.styles))
+            .pipe(browserSync.reload({
+                stream: true
+            }));
+    });
 
-	/**
-	 * Gulp watch syntax 
-	 */
-	gulp.task('watch', ['browserSync', 'sass', 'lint'], function(){
+    // js语法检测 Task
+    gulp.task('hint', function() {
+        return gulp.src(paths.source.scripts + '**/*.js')
+            .pipe(jshint())
+            .pipe(jshint.reporter(stylish));
+    });
 
-		// watch all Sass files and run the sass  task whenever a Sass file is saved
-		gulp.watch('src/assets/scss/**/*.scss', ['sass']);
+    // 浏览器同步 Task
+    gulp.task('liveload', function() {
+        browserSync.init({
+            server: {
+                baseDir: paths.source.root
+            }
+        });
+    });
 
-		// Reloads the browser whenever HTML or JS files change
-		gulp.watch('src/**/*.html', browserSync.reload);
-		gulp.watch('src/assets/js/**/*.js', browserSync.reload);
-	});
+    // 清理src/assets/css文件夹 Task
+    gulp.task('clean:css', function() {
+        return del.sync(paths.source.styles);
+    });
 
-	/**
-	 * Live-reloading with Browser Sync
-	 * We need to create a browserSync task to enable Gulp to spin up a server using Browser Sync.
-	 * Since we're running a server, we need to let Browser Sync know where the root of the server should be.
-	 * In our case, it's the 'src' folder.
-	 */
-	gulp.task('browserSync', function(){
-		browserSync.init({
-			server: {
-				baseDir: 'src'
-			}
-		});
-	});
+    // 文件修改监听 Task
+    gulp.task('watch', ['liveload', 'sass', 'hint'], function() {
+        gulp.watch(paths.source.scss + '**/*.scss', ['sass']);
+        gulp.watch(paths.source.root + '**/*.html', browserSync.reload);
+        gulp.watch(paths.source.scripts + '**/*.js', browserSync.reload);
+    });
 
+    /**
+     * ======================================
+     * 构建阶段Tasks
+     * ======================================
+     */
 
-	/**
-	 * ====================================
-	 * Optmizing CSS and JavaScript files
-	 * ====================================
-	 */
-	gulp.task('useref', function(){
-		return gulp.src('src/**/*.html')
-			.pipe(useref())
-			// Minifies only if it's a JavaScript file
-			.pipe(gulpIf('*.js', uglify()))
-			// Minifies only if it's a CSS file
-			pipe(gulpIf('*.css', cssnano()))
-			.pipe(gulp.dest('build'));
-	});
+    // 压缩js和css Task
+    gulp.task('useref', function() {
+        return gulp.src(paths.source.root + '**/*.html')
+            .pipe(useref())
+            .pipe(gulpIf('*.js', uglify()))
+            .pipe(gulpIf('*.css', cssnano()))
+            .pipe(gulp.dest(paths.build.root));
+    });
 
-	/**
-	 * Optmizing Images
-	 */
-	gulp.task('images', function(){
-		return gulp.src('src/assets/imgs/**/*.+(png|jpg|jpeg|gif|svg)')
-			// Caching images that ran through imagemin
-			.pipe(cache(imagemin({
-				interlaced: true
-			})))
-			.pipe(gulp.dest('build/assets/imgs'));
-	});
+    // 拷贝html Task
+    gulp.task('buildHtml', function(){
+    	return gulp.src(paths.source.root + '**/*.html')
+    		.pipe(gulp.dest(paths.build.root));
+    });
 
-	/**
-	 * Copying Fonts to Build
-	 */
-	gulp.task('fonts', function(){
-		return gulp.src('src/assets/fonts/**/*')
-			.pipe(gulp.dest('build/assets/fonts'));
-	});
+    // 拷贝plugins Task
+    gulp.task('buildPlugins', function(){
+    	return gulp.src(paths.source.plugins + '**/*')
+    		.pipe(gulp.dest(paths.build.plugins));
+    });
 
-	/**
-	 * Cleaning up generated files automatically
-	 */
-	gulp.task('clean:build', function(){
-		return del.sync('build');
-	});
+    // 拷贝css Task
+    gulp.task('buildStyles', function(){
+    	return gulp.src(paths.source.styles + '**/*.css')
+    		.pipe(sourcemaps.init())
+    		.pipe(cssnano())
+    		.pipe(sourcemaps.write(paths.root))
+    		.pipe(gulp.dest(paths.build.styles));
+    });
 
-	// Clean src/assets/css dir
-	gulp.task('clean:css', function(){
-		return del.sync('src/assets/css');
-	});
+    // 拷贝js Task
+    gulp.task('buildScripts', function(){
+    	return gulp.src(paths.source.scripts + '**/*.js')
+    		//.pipe(uglify())
+    		.pipe(gulp.dest(paths.build.scripts));
+    });
 
-	/**
-	 * Combining Gulp tasks
-	 */
+    // 压缩图片 Task
+    gulp.task('buildImages', function() {
+        return gulp.src(paths.source.images + '**/*.+(png|jpg|jpeg|gif|svg)')
+            .pipe(cache(imagemin({
+                interlaced: true
+            })))
+            .pipe(gulp.dest(paths.build.images));
+    });
 
-	// build task
-	gulp.task('build', function(callback){
-		runSequence('clean:build',
-			['sass', 'lint', 'useref', 'images', 'fonts'],
-			callback
-		);
-	});
+    // 拷贝字体文件 Task
+    gulp.task('buildFonts', function() {
+        return gulp.src(paths.source.fonts + '**/*')
+            .pipe(gulp.dest(paths.build.fonts));
+    });
 
-	// default task
-	gulp.task('default', function(callback){
-		runSequence(['sass', 'lint', 'browserSync', 'watch'], callback);
-	});
+    // 清理build文件夹 Task
+    gulp.task('clean:build', function() {
+        return del.sync(paths.build.root);
+    });
+
+    gulp.task('build', function(callback){
+    	runSequence(
+    		'clean:build', 
+    		['buildHtml', 'buildPlugins', 'buildStyles', 'buildScripts', 'buildImages', 'buildFonts'], 
+    		callback
+    	);
+    });
+
+    /**
+     * ======================================
+     * 默认Task
+     * ======================================
+     */
+    gulp.task('default', function(cb) {
+        runSequence(['sass', 'hint', 'liveload', 'watch'], cb);
+    });
 })();

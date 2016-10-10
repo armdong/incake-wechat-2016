@@ -89,7 +89,7 @@
                 width: containerWidth,
                 height: containerWidth / 2
             });
-            if (swiperBanner != null) {
+            if (swiperBanner !== null) {
                 swiperBanner.destroy(true, true);
             }
             swiperBanner = null;
@@ -207,7 +207,7 @@
             var _html = template('tplRecSlide', _data);
             $oContainer.find('.swiper-wrapper').html(_html);
 
-            if (swiperRecommend != null) {
+            if (swiperRecommend !== null) {
                 swiperRecommend.destroy(true, true);
             }
             swiperRecommend = null;
@@ -278,7 +278,7 @@
 
             if (!_data.single) { // 多个产品   
 
-                if (swiperNewOnSale != null) {
+                if (swiperNewOnSale !== null) {
                     swiperNewOnSale.destroy(true, true);
                 }
                 swiperNewOnSale = null;
@@ -365,7 +365,7 @@
             var _html = template('tplTaste', _data);
             $oTaste.html(_html);
 
-            if (swiperTaste != null) {
+            if (swiperTaste !== null) {
                 swiperTaste.destroy(true, true);
             }
             swiperTaste = null;
@@ -411,7 +411,7 @@
             var _html = template('tplScene', _data);
             $oScene.html(_html);
 
-            if (swiperScene != null) {
+            if (swiperScene !== null) {
                 swiperScene.destroy(true, true);
             }
             swiperScene = null;
