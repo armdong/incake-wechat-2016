@@ -26,6 +26,11 @@ a {
 	text-decoration: none;
 }
 
+input, select {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
 html, body {
 	width: 100%;
 }

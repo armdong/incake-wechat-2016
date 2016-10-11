@@ -439,7 +439,13 @@
      * @return {[type]} [description]
      */
     function fnInitCity(){
-        
+        $('#selCity').on('change', function(){
+            var val = $(this).val(),
+                text = $('#selCity option').not(function(){
+                    return !this.selected
+                }).text();
+            $('#showCity').text(text).attr('city_id', val);
+        });
     }
 
     /**
