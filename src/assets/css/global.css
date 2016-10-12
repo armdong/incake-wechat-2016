@@ -160,7 +160,18 @@ body {
   text-align: center;
   color: #033241;
   line-height: 0.506667rem;
-  font-size: 0.293333rem;
+}
+
+[data-dpr="1"] .navbar .link p {
+  font-size: 11px;
+}
+
+[data-dpr="2"] .navbar .link p {
+  font-size: 22px;
+}
+
+[data-dpr="3"] .navbar .link p {
+  font-size: 33px;
 }
 
 .navbar .link.active p {

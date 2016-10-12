@@ -18,11 +18,11 @@
 	
 	<!-- list-page header begin -->
 	<header id="listHeader" class="clearfix">
-		<div class="c-item all active"><p>全部</p></div>
-		<div class="c-item taste"><p>口味</p></div>
-		<div class="c-item scene"><p>场景</p></div>
-		<div class="c-item gift"><p>创意/礼品</p></div>
-		<div class="c-item flower"><p>下午茶/鲜花</p></div>
+		<div class="c-item active" category="all"><p>全部</p><span></span></div>
+		<div class="c-item" category="taste"><p>口味</p><span></span></div>
+		<div class="c-item" category="scene"><p>场景</p><span></span></div>
+		<div class="c-item" category="gift"><p>创意/礼品</p><span></span></div>
+		<div class="c-item" category="flower"><p>下午茶/鲜花</p><span></span></div>
 	</header>
 	<!-- list-page header end -->
 
@@ -30,33 +30,89 @@
 	<div id="listContainer" class="clearfix">
 		
 		<!-- all section begin -->
-		<section class="sec-all active" id="secAll"></section>
-		<script id="tplSecAll" type="text/html">
-			<div class="list">
-			{{each list as item i}}
-				<div class="item">
-					<a href="{{item.link}}" class="img">
-						<img src="{{item.img}}" alt="">
-					</a>
-					<div class="text">
-						<div class="name">
-							<p class="cn">{{item.name.cn}}</p>
-							<p class="en">{{item.name.en}}</p>
-						</div>
-						<p class="ext">
-							<span class="price">￥{{item.price}}</span>
-							<span class="pound">/{{item.pound}}磅</span>
-						</p>
-						<a href="javascript:;" class="add-icon"></a>
-					</div>
-				</div>
-			{{/each}}
-			</div>
-		</script>
+		<section class="sec sec-all active" id="secAll" category="all"></section>
 		<!-- all section end -->
+
+		<!-- taste section begin -->
+		<section class="sec sec-taste" id="secTaste" category="taste">
+			<div class="nav-list">
+				<div class="nav-item active" taste="cheese">芝士</div>
+				<div class="nav-item" taste="chocolate">巧克力</div>
+				<div class="nav-item" taste="mousse">慕斯</div>
+				<div class="nav-item" taste="napoleon">拿破仑</div>
+				<div class="nav-item" taste="fruit">水果</div>
+				<div class="nav-item" taste="milk">鲜奶</div>
+				<div class="nav-item" taste="coffee">咖啡</div>
+				<div class="nav-item" taste="sugarfree">无糖</div>
+			</div>
+			<div class="taste-list">
+				<section class="taste-item" taste="cheese">
+					<h2>· 芝士口味 ·</h2>
+				</section>
+				<section class="taste-item" taste="chocolate">
+					<h2>· 巧克力口味 ·</h2>
+				</section>
+				<section class="taste-item" taste="mousse">
+					<h2>· 慕斯口味 ·</h2>
+				</section>
+				<section class="taste-item" taste="napoleon">
+					<h2>· 拿破仑口味 ·</h2>
+				</section>
+				<section class="taste-item" taste="fruit">
+					<h2>· 水果口味 ·</h2>
+				</section>
+				<section class="taste-item" taste="milk">
+					<h2>· 鲜奶口味 ·</h2>
+				</section>
+				<section class="taste-item" taste="coffee">
+					<h2>· 咖啡口味 ·</h2>
+				</section>
+				<section class="taste-item" taste="sugarfree">
+					<h2>· 无糖口味 ·</h2>
+				</section>
+			</div>
+		</section>
+		<!-- taste section end -->
+
+		<!-- scene section begin -->
+		<section class="sec sec-scene" id="secScene" category="scene"></section>
+		<!-- scene section end -->
+
+		<!-- gift section begin -->
+		<section class="sec sec-gift" id="secGift" category="gift"></section>
+		<!-- gift section end -->
+
+		<!-- flower section begin -->
+		<section class="sec sec-flower" id="secFlower" category="flower"></section>
+		<!-- flower section end -->
 
 	</div>
 	<!-- list-page container end -->
+
+	<!-- list-template begin -->
+	<script id="tplList" type="text/html">
+		<div class="list">
+		{{each list as item i}}
+			<div class="item">
+				<a href="{{item.link}}" class="img">
+					<img src="{{item.img}}" alt="">
+				</a>
+				<div class="text">
+					<div class="name">
+						<p class="cn">{{item.name.cn}}</p>
+						<p class="en">{{item.name.en}}</p>
+					</div>
+					<p class="ext">
+						<span class="price">￥{{item.price}}</span>
+						<span class="pound">/{{item.pound}}磅</span>
+					</p>
+					<a href="javascript:;" class="add-icon"></a>
+				</div>
+			</div>
+		{{/each}}
+		</div>
+	</script>
+	<!-- list-template end -->
 
 	<!-- common navbar begin -->
 	<div class="navbar clearfix">
