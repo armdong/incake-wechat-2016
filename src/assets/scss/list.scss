@@ -1,0 +1,133 @@
+/* listHeader */
+#listHeader {
+	width: 100%;
+	height: 100px;
+	background-color: #fff;
+
+	.c-item {
+		position: relative;
+		float: left;
+		width: 20%;
+		height: 100%;
+		margin-left: -1px; /* no */
+		border-bottom: 2px solid #303242; /* no */
+		border-right: 1px solid #f0f0f0; /* no */
+
+		&:last-of-type {
+			border-right: none;
+		}
+		&.active {
+			border-bottom-color: #ef1b47;
+
+			p {
+				color: #ef1b47;
+			}
+		}
+
+		p {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			font-size: 24px; 
+			text-align: center;
+		}
+	}
+}
+
+/* listContainer */
+#listContainer {
+	width: 100%;
+	margin-bottom: 96px;
+
+	section {
+		display: none;
+		width: 100%;
+
+		&.active {
+			display: block;
+		}
+	}
+	
+	/* sec-all */
+	.sec-all {
+		padding-top: 20px;
+
+		.list {
+			width: 710px;
+			margin: 0 auto;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-content: space-between;
+
+			.item {
+				width: 348px;
+				margin-bottom: 14px;
+				background-color: #fff;
+
+				.img {
+					display: block;
+					width: 100%;
+					height: 261px;
+
+					img {
+						width: 100%;
+					}
+				}
+
+				.text {
+					position: relative;
+					width: 100%;
+					padding: 19px 0 22px;
+					color: #323232;
+
+					.name {
+						width: 100%;
+						padding-bottom: 26px;
+
+						p {
+							text-align: center;
+
+							&.cn {
+								font-size: 24px; /* px */
+							}
+
+							&.en {
+								font-size: 16px; /* px */
+								padding-top: 8px;
+							}
+						}
+					}
+
+					.ext {
+						text-align: center;
+
+						.price {
+							font-size: 24px;
+						}
+						.pound {
+							font-size: 18px;
+						}
+					}
+
+					.add-icon {
+						display: block;
+						position: absolute;
+						right: 0;
+						bottom: 0;
+						width: 70px;
+						height: 70px;
+						background: {
+							image: url('../imgs/list/icon_add_bg.png');
+							repeat: no-repeat;
+							size: cover;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -83,7 +83,7 @@
             .pipe(sass())
             .pipe(sourcemaps.init())
             .pipe(autoprefixer({
-                browsers: ['last 2 versions'],
+                browsers: ['last 3 versions'],
                 cascade: false
             }))
             .pipe(postcss(processors))

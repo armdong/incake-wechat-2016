@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>发现</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/list.css">
+</head>
+<body>
+	
+	<!-- list-page header begin -->
+	<header id="listHeader" class="clearfix">
+		<div class="c-item all active"><p>全部</p></div>
+		<div class="c-item taste"><p>口味</p></div>
+		<div class="c-item scene"><p>场景</p></div>
+		<div class="c-item gift"><p>创意/礼品</p></div>
+		<div class="c-item flower"><p>下午茶/鲜花</p></div>
+	</header>
+	<!-- list-page header end -->
+
+	<!-- list-page container begin -->
+	<div id="listContainer" class="clearfix">
+		
+		<!-- all section begin -->
+		<section class="sec-all active" id="secAll"></section>
+		<script id="tplSecAll" type="text/html">
+			<div class="list">
+			{{each list as item i}}
+				<div class="item">
+					<a href="{{item.link}}" class="img">
+						<img src="{{item.img}}" alt="">
+					</a>
+					<div class="text">
+						<div class="name">
+							<p class="cn">{{item.name.cn}}</p>
+							<p class="en">{{item.name.en}}</p>
+						</div>
+						<p class="ext">
+							<span class="price">￥{{item.price}}</span>
+							<span class="pound">/{{item.pound}}磅</span>
+						</p>
+						<a href="javascript:;" class="add-icon"></a>
+					</div>
+				</div>
+			{{/each}}
+			</div>
+		</script>
+		<!-- all section end -->
+
+	</div>
+	<!-- list-page container end -->
+
+	<!-- common navbar begin -->
+	<div class="navbar clearfix">
+		<a href="javascript:;" class="link choiceness">
+			<div class="img"></div>
+			<p>精选</p>
+		</a>
+		<a href="javascript:;" class="link discovery active">
+			<div class="img"></div>
+			<p>发现</p>
+		</a>
+		<a href="javascript:;" class="link shopping-basket">
+			<div class="img">
+				<span class="num">9</span>
+			</div>
+			<p>购物篮</p>
+		</a>
+		<a href="javascript:;" class="link mine">
+			<div class="img"></div>
+			<p>我的</p>
+		</a>
+	</div>
+	<!-- common navbar end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/js/list.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>
