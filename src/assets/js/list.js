@@ -23,6 +23,13 @@
 		// 口味模块scroll事件
 		var lazyScroll = _.debounce(fnLocateTaste, 300);
 		$(window).on('scroll', lazyScroll);
+
+		var lazyResize = _debounce(fnCalcTasteTops, 100);
+		$(window).on('resize', function(){
+			if($('#secTaste').hasClass('active')) {
+				lazyResize();
+			}
+		});
 	});
 
 	/**
@@ -398,14 +405,22 @@
 
 			// 如果是口味模块，计算每种口味的top值
 			if(category === 'taste') {
-				$('#secTaste').find('.taste-item').each(function(i, ele) {
-					var currTaste = $(this).attr('taste'),
-						currOffsetTop = Math.round($(this).offset().top);
-					tasteTops[currTaste] = currOffsetTop;
-					if (i === 0) {
-						tasteTops.disT = currOffsetTop;
-					}
-				});
+				fnCalcTasteTops();
+			}
+		});
+	}
+
+	/**
+	 * 计算口味模块每个口味的offset().top值
+	 * @return {[type]} [description]
+	 */
+	function fnCalcTasteTops() {
+		$('#secTaste').find('.taste-item').each(function(i, ele) {
+			var currTaste = $(this).attr('taste'),
+				currOffsetTop = Math.round($(this).offset().top);
+			tasteTops[currTaste] = currOffsetTop;
+			if (i === 0) {
+				tasteTops.disT = currOffsetTop;
 			}
 		});
 	}
