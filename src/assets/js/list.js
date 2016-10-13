@@ -25,11 +25,7 @@
 		$(window).on('scroll', lazyScroll);
 
 		var lazyResize = _debounce(fnCalcTasteTops, 100);
-		$(window).on('resize', function(){
-			if($('#secTaste').hasClass('active')) {
-				lazyResize();
-			}
-		});
+		$(window).on('resize', lazyResize);
 	});
 
 	/**
@@ -415,14 +411,19 @@
 	 * @return {[type]} [description]
 	 */
 	function fnCalcTasteTops() {
-		$('#secTaste').find('.taste-item').each(function(i, ele) {
-			var currTaste = $(this).attr('taste'),
-				currOffsetTop = Math.round($(this).offset().top);
-			tasteTops[currTaste] = currOffsetTop;
-			if (i === 0) {
-				tasteTops.disT = currOffsetTop;
-			}
-		});
+		var $oSecTaste = $('#secTaste'),
+			$aTasteItem = $oSecTaste.find('.taste-item');
+
+		if($oSecTaste.hasClass('active')){
+			$aTasteItem.each(function(i, ele) {
+				var currTaste = $(this).attr('taste'),
+					currOffsetTop = Math.round($(this).offset().top);
+				tasteTops[currTaste] = currOffsetTop;
+				if (i === 0) {
+					tasteTops.disT = currOffsetTop;
+				}
+			});
+		}
 	}
 
 })(Zepto, window, document);
