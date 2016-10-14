@@ -6,6 +6,7 @@
 
 ;(function($, window, document) {
 
+    // 状态管理
     var stateMap = {
         anchor_map: {}
     };
@@ -50,11 +51,35 @@
      */
     function fnBindFlower() {
         var $oSecFlower = $('#secFlower'),
-            $oFlowerList = $oSecFlower.find('.flower-list'),
-            $aFlowerItem = $oFlowerList.find('.flower-item');
+            $oFlowerList = $oSecFlower.find('.flower-list');
 
         var _data = {
-            sweets: {
+            flowers: [{
+                type: 'sweets',
+                title: '甜品',
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5',
+                    soldout: true
+                }]
+            }, {
+                type: 'drinks',
+                title: '饮品',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -74,59 +99,9 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            },
-            drinks: {
-                list: [{
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }]
-            },
-            flowers: {
-                list: [{
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }]
-            },
-            parts: {
+            }, {
+                type: 'flowers',
+                title: '鲜花',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -155,19 +130,41 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            }
+            }, {
+                type: 'parts',
+                title: '配件',
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }]
+            }]
         };
-
-        // 遍历
-        $.each($aFlowerItem, function(i, item) {
-            var $oCurrFlower = $(item),
-                flowerType = $oCurrFlower.attr('flower');
-
-            if (!!_data[flowerType]) {
-                var _html = template('tplList', _data[flowerType]);
-                $oCurrFlower.append(_html);
-            }
-        });
+        var _html = template('tplFlower', _data);
+        $oFlowerList.html(_html);
     }
 
     /**
@@ -176,11 +173,35 @@
      */
     function fnBindGift() {
         var $oSecGift = $('#secGift'),
-            $oGiftList = $oSecGift.find('.gift-list'),
-            $aGiftItem = $oGiftList.find('.gift-item');
+            $oGiftList = $oSecGift.find('.gift-list');
 
         var _data = {
-            gaw: {
+            giftes:[{
+                type: 'gaw',
+                title: 'GAW经典',
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5',
+                    soldout: true
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }]
+            }, {
+                type: 'diy',
+                title: '选拼系列',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -200,29 +221,9 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            },
-            diy: {
-                list: [{
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }]
-            },
-            star: {
+            }, {
+                type: 'star',
+                title: '星座系列',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -251,19 +252,10 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            }
+            }]
         };
-
-        // 遍历
-        $.each($aGiftItem, function(i, item) {
-            var $oCurrGift = $(item),
-                giftType = $oCurrGift.attr('gift');
-
-            if (!!_data[giftType]) {
-                var _html = template('tplList', _data[giftType]);
-                $oCurrGift.append(_html);
-            }
-        });
+        var _html = template('tplGift', _data);
+        $oGiftList.html(_html);
     }
 
     /**
@@ -366,7 +358,6 @@
             });
         });
     }
-
     function changeTaste(taste) {
         var $oTaste = $('#secTaste').find('.nav-item').filter('[taste=' + taste + ']'),
             currTaste = $oTaste.attr('taste'),
@@ -388,11 +379,12 @@
      */
     function fnBindTaste() {
         var $oSecTaste = $('#secTaste'),
-            $oTasteList = $oSecTaste.find('.taste-list'),
-            $aTasteItem = $oTasteList.find('.taste-item');
+            $oTasteList = $oSecTaste.find('.taste-list');
 
         var _data = {
-            cheese: {
+            tastes:[{
+                type: 'cheese',
+                title: '芝士口味',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -412,8 +404,32 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            },
-            chocolate: {
+            }, {
+                type: 'chocolate',
+                title: '巧克力口味',
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5',
+                    soldout: true
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }]
+            }, {
+                type: 'mousse',
+                title: '慕斯口味',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -433,8 +449,9 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            },
-            napoleon: {
+            }, {
+                type: 'napoleon',
+                title: '拿破仑口味',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -463,62 +480,9 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            },
-            mousse: {
-                list: [{
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }]
-            },
-            milk: {
-                list: [{
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }]
-            },
-            coffee: {
-                list: [{
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/list/cake.jpg',
-                    name: {
-                        cn: '芒果拿破仑',
-                        en: 'Fresh Mango Napoleon'
-                    },
-                    price: '189',
-                    pound: '1.5'
-                }]
-            },
-            fruit: {
+            }, {
+                type: 'fruit',
+                title: '水果口味',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -556,8 +520,44 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            },
-            sugarfree: {
+            }, {
+                type: 'milk',
+                title: '鲜奶口味',
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }]
+            }, {
+                type: 'coffee',
+                title: '咖啡口味',
+                list: [{
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }, {
+                    link: 'javascript:;',
+                    img: 'assets/imgs/list/cake.jpg',
+                    name: {
+                        cn: '芒果拿破仑',
+                        en: 'Fresh Mango Napoleon'
+                    },
+                    price: '189',
+                    pound: '1.5'
+                }]
+            }, {
+                type: 'sugarfree',
+                title: '无糖口味',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -586,19 +586,10 @@
                     price: '189',
                     pound: '1.5'
                 }]
-            }
+            }]
         };
-
-        // 遍历所有的口味
-        $.each($aTasteItem, function(i, item) {
-            var $oCurrTaste = $(item),
-                tasteType = $oCurrTaste.attr('taste');
-
-            if (!!_data[tasteType]) {
-                var _html = template('tplList', _data[tasteType]);
-                $oCurrTaste.append(_html);
-            }
-        });
+        var _html = template('tplTaste', _data);
+        $oTasteList.html(_html);
 
         // 口味切换
         fnChangeTaste();
@@ -621,7 +612,8 @@
                     en: 'Fresh Mango Napoleon'
                 },
                 price: '189',
-                pound: '1.5'
+                pound: '1.5',
+                soldout: true // 如果售罄，则需返回该字段
             }, {
                 link: 'javascript:;',
                 img: 'assets/imgs/list/cake.jpg',
@@ -648,7 +640,8 @@
                     en: 'Fresh Mango Napoleon'
                 },
                 price: '189',
-                pound: '1.5'
+                pound: '1.5',
+                soldout: true
             }, {
                 link: 'javascript:;',
                 img: 'assets/imgs/list/cake.jpg',
@@ -678,7 +671,7 @@
                 pound: '1.5'
             }]
         };
-        var _html = template('tplList', _data);
+        var _html = template('tplAll', _data);
         $oContainer.html(_html);
     }
 
@@ -717,7 +710,6 @@
 
         });
     }
-
     function changeCategories(category) {
         $('#listHeader').find('.c-item').filter('[category=' + category + ']').trigger('click');
     }

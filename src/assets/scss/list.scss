@@ -145,6 +145,41 @@
 						}
 					}
 				}
+
+				&.soldout {
+					position: relative;
+
+					&:after {
+						position: absolute;
+						top: 0;
+						left: 0;
+						z-index: 9;
+						width: 100%;
+						height: 100%;
+						content: '';
+						background-color: rgba(255, 255, 255, .68);
+					}
+
+					.img {
+						position: relative;
+
+						&:after {
+							display: block;
+							position: absolute;
+							top: 0;
+							left: 0;
+							z-index: 10;
+							width: 100%;
+							height: 100%;
+							content: '';
+							background: {
+								image: url('../imgs/list/soldout_bg.png');
+								repeat: no-repeat;
+								size: cover;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -274,6 +309,41 @@
 									image: url('../imgs/list/icon_add_bg.png');
 									repeat: no-repeat;
 									size: cover;
+								}
+							}
+						}
+
+						&.soldout {
+							position: relative;
+
+							&:after {
+								position: absolute;
+								top: 0;
+								left: 0;
+								z-index: 9;
+								width: 100%;
+								height: 100%;
+								content: '';
+								background-color: rgba(255, 255, 255, .68);
+							}
+
+							.img {
+								position: relative;
+
+								&:after {
+									display: block;
+									position: absolute;
+									top: 0;
+									left: 0;
+									z-index: 10;
+									width: 100%;
+									height: 100%;
+									content: '';
+									background: {
+										image: url('../imgs/list/soldout_bg.png');
+										repeat: no-repeat;
+										size: cover;
+									}
 								}
 							}
 						}
@@ -511,6 +581,41 @@
 								}
 							}
 						}
+
+						&.soldout {
+							position: relative;
+
+							&:after {
+								position: absolute;
+								top: 0;
+								left: 0;
+								z-index: 9;
+								width: 100%;
+								height: 100%;
+								content: '';
+								background-color: rgba(255, 255, 255, .68);
+							}
+
+							.img {
+								position: relative;
+
+								&:after {
+									display: block;
+									position: absolute;
+									top: 0;
+									left: 0;
+									z-index: 10;
+									width: 100%;
+									height: 100%;
+									content: '';
+									background: {
+										image: url('../imgs/list/soldout_bg.png');
+										repeat: no-repeat;
+										size: cover;
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -610,6 +715,41 @@
 									image: url('../imgs/list/icon_add_bg.png');
 									repeat: no-repeat;
 									size: cover;
+								}
+							}
+						}
+
+						&.soldout {
+							position: relative;
+
+							&:after {
+								position: absolute;
+								top: 0;
+								left: 0;
+								z-index: 9;
+								width: 100%;
+								height: 100%;
+								content: '';
+								background-color: rgba(255, 255, 255, .68);
+							}
+
+							.img {
+								position: relative;
+
+								&:after {
+									display: block;
+									position: absolute;
+									top: 0;
+									left: 0;
+									z-index: 10;
+									width: 100%;
+									height: 100%;
+									content: '';
+									background: {
+										image: url('../imgs/list/soldout_bg.png');
+										repeat: no-repeat;
+										size: cover;
+									}
 								}
 							}
 						}
