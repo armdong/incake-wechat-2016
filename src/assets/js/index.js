@@ -308,56 +308,56 @@
             // 渲染模板 TODO 通过ajax调用对应api获取data
             var _data = {
                 list: [{
-                    link: 'javascript:;',
+                    link: 'list.html#!category=taste&taste=cheese',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '芝士口味',
                         en: 'Cheese'
                     }
                 }, {
-                    link: 'javascript:;',
+                    link: 'list.html#!category=taste&taste=chocolate',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '巧克力口味',
                         en: 'Chocolate'
                     }
                 }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/index/new_img_02.jpg',
-                    name: {
-                        cn: '拿破仑口味',
-                        en: 'Napoleon'
-                    }
-                }, {
-                    link: 'javascript:;',
+                    link: 'list.html#!category=taste&taste=mousse',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '慕斯口味',
                         en: 'Mousse'
                     }
                 }, {
-                    link: 'javascript:;',
+                    link: 'list.html#!category=taste&taste=napoleon',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
-                        cn: '乳脂口味',
-                        en: 'Cream'
+                        cn: '拿破仑口味',
+                        en: 'Napoleon'
                     }
                 }, {
-                    link: 'javascript:;',
-                    img: 'assets/imgs/index/new_img_01.jpg',
-                    name: {
-                        cn: '咖啡口味',
-                        en: 'Coffee'
-                    }
-                }, {
-                    link: 'javascript:;',
+                    link: 'list.html#!category=taste&taste=fruit',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '水果口味',
                         en: 'Fruit'
                     }
                 }, {
-                    link: 'javascript:;',
+                    link: 'list.html#!category=taste&taste=milk',
+                    img: 'assets/imgs/index/new_img_02.jpg',
+                    name: {
+                        cn: '鲜奶口味',
+                        en: 'Milk'
+                    }
+                }, {
+                    link: 'list.html#!category=taste&taste=coffee',
+                    img: 'assets/imgs/index/new_img_01.jpg',
+                    name: {
+                        cn: '咖啡口味',
+                        en: 'Coffee'
+                    }
+                }, {
+                    link: 'list.html#!category=taste&taste=sugarfree',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '无糖口味',
@@ -459,14 +459,14 @@
         var _data = {
             list: [{
                 category: 'all',
-                link: 'javascript:;',
+                link: 'list.html#!category=all',
                 title: {
                     cn: '全部商品',
                     en: 'All cakes'
                 }
             }, {
                 category: 'tea',
-                link: 'javascript:;',
+                link: 'list.html#!category=flower',
                 title: {
                     cn: '下午茶',
                     en: 'Afternoon tea'
@@ -480,7 +480,7 @@
                 }
             }, {
                 category: 'gaw',
-                link: 'javascript:;',
+                link: 'list.html#!category=gift',
                 title: {
                     cn: 'GAW蛋糕',
                     en: 'Genius at work'
