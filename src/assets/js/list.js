@@ -85,6 +85,8 @@
 
         // 规格切换
         $oCartContainer.find('.spec-list').on('click', 'li', function(){
+
+            // TODO 切换规格后同步 .note 节点
             $(this).addClass('active').siblings().removeClass('active');
         });
 
@@ -119,7 +121,24 @@
 
         // 加入购物篮
         $oCartFooter.on('click', '.join-cart', function(){
-            
+
+            // TODO 处理加入购物车逻辑
+
+            // 收缩弹层
+            tl.clear();
+            tl.to($oAddToCart, .2, {
+                y: '110%',
+                onComplete: function() {
+                    Mask.hide();
+                    $oAddToCart.hide();
+                    var dialog = $(document).dialog({
+                        type: 'toast',
+                        infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
+                        infoText: '已加入购物篮',
+                        autoClose: '3000'
+                    });
+                }
+            });            
         });
 
         // 关闭弹层
