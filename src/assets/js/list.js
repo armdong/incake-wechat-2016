@@ -59,25 +59,62 @@
             $oCartHeader = $oAddToCart.find('.header'),
             $oCartContainer = $oAddToCart.find('.container'),
             $oCartFooter = $oAddToCart.find('.footer'),
-            tl = new TimelineLite();
+            tl = new TimelineLite(),
+            $oBtnMinus = $oCartContainer.find('.btn-minus'),
+            $oBtnAdd = $oCartContainer.find('.btn-add'),
+            $oCountDom = $oCartContainer.find('.count'),
+            iCurrCount = 1;
 
         // 购买‘+’按钮点击事件
-        $('#listContainer').on('click', '.add-icon', function() {          
-
+        $('#listContainer').on('click', '.add-icon', function() {   
             tl.clear();
             tl.to($oAddToCart, .5, {
                 y: '0%',
                 onStart: function() {
                     Mask.show();
+                    $('#mask').css({
+                        'background-color': 'rgba(0, 0, 0, .8)'
+                    });
                     $oAddToCart.show();
+                    $oAddToCart.css({
+                        'opacity': 1
+                    });
                 }
             });
-
         });
 
         // 规格切换
         $oCartContainer.find('.spec-list').on('click', 'li', function(){
             $(this).addClass('active').siblings().removeClass('active');
+        });
+
+        // 数量减少
+        $oBtnMinus.on('click', function(){
+            iCurrCount = parseInt($oCountDom.val(), 10);
+            iCurrCount --;
+
+            if(iCurrCount <= 1) {
+                iCurrCount = 1;
+                $(this).addClass('disabled');
+            }
+
+            $oCountDom.val(iCurrCount);
+        });
+
+        // 数量增加
+        $oBtnAdd.on('click', function(){
+            iCurrCount = parseInt($oCountDom.val(), 10);
+            iCurrCount ++;
+
+            if(iCurrCount > 1 && $oBtnMinus.hasClass('disabled')) {
+                $oBtnMinus.removeClass('disabled');
+            }
+
+            // 限制单个商品每次最多能买99个
+            if(iCurrCount > 99) {
+                iCurrCount = 99;
+            }
+            $oCountDom.val(iCurrCount);
         });
 
         // 加入购物篮
@@ -88,13 +125,19 @@
         // 关闭弹层
         $oAddToCart.find('.cart-close').on('click', function() {
             tl.clear();
-            tl.to($oAddToCart, .5, {
-                y: '110%',
+            tl.to($oAddToCart, .5, {                
+                'opacity': 0,
                 onComplete: function() {
                     Mask.hide();
                     $oAddToCart.hide();
+                    tl.to($oAddToCart, 0, {
+                        y: '110%'
+                    });
                 }
             });
+            tl.to('#mask', .5, {
+                'background-color': 'rgba(0, 0, 0, 0)'
+            }, 0);
         });
     }
 
