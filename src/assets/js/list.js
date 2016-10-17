@@ -43,7 +43,60 @@
         $(window).on('resize', lazyResize);
 
         $(window).bind('hashchange', onHashchange).trigger('hashchange');
+
+        // 立即购买或添加到购物篮
+        fnAddToCart();
     });
+
+    /**
+     * [fnAddToCart 购买商品]
+     * @return {[type]} [description]
+     */
+    function fnAddToCart() {
+
+        // 立即购买或添加至购物篮弹层
+        var $oAddToCart = $('#addToCart'),
+            $oCartHeader = $oAddToCart.find('.header'),
+            $oCartContainer = $oAddToCart.find('.container'),
+            $oCartFooter = $oAddToCart.find('.footer'),
+            tl = new TimelineLite();
+
+        // 购买‘+’按钮点击事件
+        $('#listContainer').on('click', '.add-icon', function() {          
+
+            tl.clear();
+            tl.to($oAddToCart, .5, {
+                y: '0%',
+                onStart: function() {
+                    Mask.show();
+                    $oAddToCart.show();
+                }
+            });
+
+        });
+
+        // 规格切换
+        $oCartContainer.find('.spec-list').on('click', 'li', function(){
+            $(this).addClass('active').siblings().removeClass('active');
+        });
+
+        // 加入购物篮
+        $oCartFooter.on('click', '.join-cart', function(){
+            
+        });
+
+        // 关闭弹层
+        $oAddToCart.find('.cart-close').on('click', function() {
+            tl.clear();
+            tl.to($oAddToCart, .5, {
+                y: '110%',
+                onComplete: function() {
+                    Mask.hide();
+                    $oAddToCart.hide();
+                }
+            });
+        });
+    }
 
     /**
      * 绑定下午茶/鲜花数据模板

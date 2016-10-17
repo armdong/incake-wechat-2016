@@ -27,8 +27,7 @@
 	<!-- list-page header end -->
 
 	<!-- list-page container begin -->
-	<div id="listContainer" class="clearfix">
-		
+	<div id="listContainer" class="clearfix">		
 		<!-- all section begin -->
 		<section class="sec sec-all active" id="secAll" category="all"></section>
 		<!-- all section end -->
@@ -75,9 +74,31 @@
 			<div class="flower-list"></div>
 		</section>		
 		<!-- flower section end -->
-
 	</div>
 	<!-- list-page container end -->
+
+	<!-- common navbar begin -->
+	<div class="navbar clearfix">
+		<a href="index.html" class="link choiceness">
+			<div class="img"></div>
+			<p>精选</p>
+		</a>
+		<a href="list.html" class="link discovery active">
+			<div class="img"></div>
+			<p>发现</p>
+		</a>
+		<a href="javascript:;" class="link shopping-basket">
+			<div class="img">
+				<span class="num">9</span>
+			</div>
+			<p>购物篮</p>
+		</a>
+		<a href="javascript:;" class="link mine">
+			<div class="img"></div>
+			<p>我的</p>
+		</a>
+	</div>
+	<!-- common navbar end -->
 
 	<!-- all-template begin -->
 	<script id="tplAll" type="text/html">
@@ -231,28 +252,57 @@
 	</script>
 	<!-- flower-template end -->
 
-	<!-- common navbar begin -->
-	<div class="navbar clearfix">
-		<a href="index.html" class="link choiceness">
-			<div class="img"></div>
-			<p>精选</p>
-		</a>
-		<a href="list.html" class="link discovery active">
-			<div class="img"></div>
-			<p>发现</p>
-		</a>
-		<a href="javascript:;" class="link shopping-basket">
+	<!-- addToCart begin -->
+	<div id="addToCart">	
+		<a href="javascript:;" class="cart-close"></a>
+		<div class="header">
 			<div class="img">
-				<span class="num">9</span>
+				<img src="assets/imgs/list/cake_thumb.jpg" alt="">
 			</div>
-			<p>购物篮</p>
-		</a>
-		<a href="javascript:;" class="link mine">
-			<div class="img"></div>
-			<p>我的</p>
-		</a>
+			<div class="text">
+				<div class="name clearfix">
+					<p class="cn">狮心国王</p>
+					<p class="en">The Lion-heart King</p>
+				</div>
+				<p class="note">4-7人食用</p>
+			</div>
+			<p class="ext clearfix">
+				<span class="dollar">￥</span>
+				<span class="price">189</span>
+				<span class="pound">/1.5磅</span>
+			</p>
+		</div>
+		<div class="container">
+			<!-- 规格 -->
+			<section class="spec clearfix">
+				<p class="title">规格：</p>
+				<div class="content">
+					<ul class="spec-list clearfix">
+						<li class="active">1.5磅</li>
+						<li>2.5磅</li>
+						<li>3.5磅</li>
+						<li>4.5磅</li>
+					</ul>
+				</div>
+			</section>
+			<!-- 数量 -->
+			<section class="amount clearfix">
+				<p class="title">数量：</p>
+				<div class="content clearfix">
+					<div class="counter clearfix">
+						<a href="javascript:;" class="btn-minus disabled">-</a>
+						<input type="text" class="count" value="1">
+						<a href="javascript:;" class="btn-add">+</a>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="footer clearfix">
+			<a href="javascript:;" class="btn buy-immediately">立即购买</a>
+			<a href="javascript:;" class="btn join-cart">加入购物篮</a>
+		</div>
 	</div>
-	<!-- common navbar end -->
+	<!-- addToCart end -->
 
 	<!-- scripts begin -->
 	<script src="assets/plugins/LABjs/LAB.min.js"></script>
@@ -263,6 +313,7 @@
 		.script('assets/plugins/artTemplate/dist/template.js').wait()
 		.script('assets/plugins/underscore/underscore-min.js').wait()
 		.script('assets/plugins/zepto.uriAnchor.js').wait()
+		.script('assets/js/common.js').wait()
 		.script('assets/js/list.js');
 	</script>
 	<!-- script end -->
