@@ -34,19 +34,7 @@
 		<!-- all section end -->
 
 		<!-- taste section begin -->
-		<section class="sec sec-taste" id="secTaste" category="taste">
-			<div class="nav-list">
-				<div class="nav-item active" taste="cheese">芝士</div>
-				<div class="nav-item" taste="chocolate">巧克力</div>
-				<div class="nav-item" taste="mousse">慕斯</div>
-				<div class="nav-item" taste="napoleon">拿破仑</div>
-				<div class="nav-item" taste="fruit">水果</div>
-				<div class="nav-item" taste="milk">鲜奶</div>
-				<div class="nav-item" taste="coffee">咖啡</div>
-				<div class="nav-item" taste="sugarfree">无糖</div>
-			</div>
-			<div class="taste-list"></div>
-		</section>
+		<section class="sec sec-taste" id="secTaste" category="taste"></section>
 		<!-- taste section end -->
 
 		<!-- scene section begin -->
@@ -54,26 +42,11 @@
 		<!-- scene section end -->
 
 		<!-- gift section begin -->
-		<section class="sec sec-gift" id="secGift" category="gift">
-			<div class="diy-cake clearfix">
-				<a href="javascript:;" class="img">
-					<img src="assets/imgs/list/diy_img.jpg" alt="">
-				</a>
-				<div class="text">
-					<p class="name">翻糖蛋糕定制 DIY CAKE</p>
-					<p class="desc">定制创意与梦想，定制只属于你的美好时光。</p>
-				</div>
-				<a href="javascript:;" class="btn-diy">立即定制</a>
-				<div class="tag"></div>
-			</div>
-			<div class="gift-list"></div>
-		</section>
+		<section class="sec sec-gift" id="secGift" category="gift"></section>
 		<!-- gift section end -->
 
 		<!-- flower section begin -->
-		<section class="sec sec-flower" id="secFlower" category="flower">
-			<div class="flower-list"></div>
-		</section>		
+		<section class="sec sec-flower" id="secFlower" category="flower"></section>		
 		<!-- flower section end -->
 	</div>
 	<!-- list-page container end -->
@@ -103,6 +76,7 @@
 
 	<!-- all-template begin -->
 	<script id="tplAll" type="text/html">
+	{{if hasData}}
 		<div class="list">
 		{{each list as item i}}
 			{{if item.soldout}}
@@ -127,14 +101,30 @@
 			</div>
 		{{/each}}
 		</div>
+	{{else}}
+		<div class="no-product">
+			<img src="assets/imgs/list/no_product.png" alt="">
+		</div>
+	{{/if}}
 	</script>
 	<!-- all-template end -->
 
 	<!-- taste-template begin -->
 	<script id="tplTaste" type="text/html">
+	{{if hasData}}
+		<div class="nav-list">
+		{{each tastes as taste i}}
+			{{if i === 0}}
+			<div class="nav-item active" taste="{{taste.type}}">{{taste.title}}</div>
+			{{else}}
+			<div class="nav-item" taste="{{taste.type}}">{{taste.title}}</div>
+			{{/if}}
+		{{/each}}
+		</div>		
+		<div class="taste-list">
 		{{each tastes as taste}}
 			<section class="taste-item" taste="{{taste.type}}">
-				<h2>· {{taste.title}} ·</h2>
+				<h2>· {{taste.title}}口味 ·</h2>
 				<div class="list">
 				{{each taste.list as item i}}
 					{{if item.soldout}}
@@ -161,11 +151,18 @@
 				</div>			
 			</section>
 		{{/each}}
+		</div>
+	{{else}}
+		<div class="no-product">
+			<img src="assets/imgs/list/no_product.png" alt="">
+		</div>
+	{{/if}}
 	</script>
 	<!-- taste-template end -->
 	
 	<!-- scene-template begin -->
 	<script id="tplScene" type="text/html">
+	{{if hasData}}
 		<div class="list">
 		{{each list as item i}}
 			<div class="item">
@@ -182,11 +179,29 @@
 			</div>
 		{{/each}}
 		</div>
+	{{else}}
+		<div class="no-product">
+			<img src="assets/imgs/list/no_product.png" alt="">
+		</div>
+	{{/if}}
 	</script>
 	<!-- scene-template end -->
 
 	<!-- gift-template begin -->
 	<script id="tplGift" type="text/html">
+	{{if hasData}}
+		<div class="diy-cake clearfix">
+			<a href="javascript:;" class="img">
+				<img src="assets/imgs/list/diy_img.jpg" alt="">
+			</a>
+			<div class="text">
+				<p class="name">翻糖蛋糕定制 DIY CAKE</p>
+				<p class="desc">定制创意与梦想，定制只属于你的美好时光。</p>
+			</div>
+			<a href="javascript:;" class="btn-diy">立即定制</a>
+			<div class="tag"></div>
+		</div>
+		<div class="gift-list">
 		{{each giftes as gift}}
 			<section class="gift-item" gift="{{gift.type}}">
 				<h2>· {{gift.title}} ·</h2>
@@ -216,11 +231,19 @@
 				</div>			
 			</section>
 		{{/each}}
+		</div>
+	{{else}}
+		<div class="no-product">
+			<img src="assets/imgs/list/no_product.png" alt="">
+		</div>
+	{{/if}}
 	</script>
 	<!-- gift-template begin -->
 	
 	<!-- flower-template begin -->
 	<script id="tplFlower" type="text/html">
+	{{if hasData}}
+		<div class="flower-list">
 		{{each flowers as flower}}
 			<section class="flower-item" gift="{{flower.type}}">
 				<h2>· {{flower.title}} ·</h2>
@@ -250,6 +273,12 @@
 				</div>			
 			</section>
 		{{/each}}
+		</div>
+	{{else}}
+		<div class="no-product">
+			<img src="assets/imgs/list/no_product.png" alt="">
+		</div>
+	{{/if}}
 	</script>
 	<!-- flower-template end -->
 

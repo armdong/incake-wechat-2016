@@ -16,9 +16,6 @@
         // 口味模块各种口味offset().top
         window.tasteTops = {};
 
-        // 发现切换
-        fnChangeCategories();
-
         // 绑定全部模块
         fnBindAll();
 
@@ -33,6 +30,9 @@
 
         // 绑定下午茶/鲜花模块
         fnBindFlower();
+
+        // 发现切换
+        fnChangeCategories();
 
         // 口味模块scroll事件
         var lazyScroll = _.debounce(fnLocateTaste, 300);
@@ -135,7 +135,7 @@
                         type: 'toast',
                         infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
                         infoText: '已加入购物篮',
-                        autoClose: '3000'
+                        autoClose: '1500'
                     });
                 }
             });            
@@ -165,10 +165,10 @@
      * @return {[type]} [description]
      */
     function fnBindFlower() {
-        var $oSecFlower = $('#secFlower'),
-            $oFlowerList = $oSecFlower.find('.flower-list');
+        var $oSecFlower = $('#secFlower');
 
         var _data = {
+            hasData: true,
             flowers: [{
                 type: 'sweets',
                 title: '甜品',
@@ -279,7 +279,7 @@
             }]
         };
         var _html = template('tplFlower', _data);
-        $oFlowerList.html(_html);
+        $oSecFlower.html(_html);
     }
 
     /**
@@ -287,10 +287,10 @@
      * @return {[type]} [description]
      */
     function fnBindGift() {
-        var $oSecGift = $('#secGift'),
-            $oGiftList = $oSecGift.find('.gift-list');
+        var $oSecGift = $('#secGift');
 
         var _data = {
+            hasData: true,
             giftes:[{
                 type: 'gaw',
                 title: 'GAW经典',
@@ -370,7 +370,7 @@
             }]
         };
         var _html = template('tplGift', _data);
-        $oGiftList.html(_html);
+        $oSecGift.html(_html);
     }
 
     /**
@@ -381,6 +381,7 @@
         var $oSecScene = $('#secScene');
 
         var _data = {
+            hasData: false,
             list: [{
                 link: 'javascript:;',
                 img: 'assets/imgs/list/scene_img_02.jpg',
@@ -493,13 +494,13 @@
      * @return {[type]} [description]
      */
     function fnBindTaste() {
-        var $oSecTaste = $('#secTaste'),
-            $oTasteList = $oSecTaste.find('.taste-list');
+        var $oSecTaste = $('#secTaste');
 
         var _data = {
+            hasData: true,
             tastes:[{
                 type: 'cheese',
-                title: '芝士口味',
+                title: '芝士',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -521,7 +522,7 @@
                 }]
             }, {
                 type: 'chocolate',
-                title: '巧克力口味',
+                title: '巧克力',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -544,7 +545,7 @@
                 }]
             }, {
                 type: 'mousse',
-                title: '慕斯口味',
+                title: '慕斯',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -566,7 +567,7 @@
                 }]
             }, {
                 type: 'napoleon',
-                title: '拿破仑口味',
+                title: '拿破仑',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -597,7 +598,7 @@
                 }]
             }, {
                 type: 'fruit',
-                title: '水果口味',
+                title: '水果',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -637,7 +638,7 @@
                 }]
             }, {
                 type: 'milk',
-                title: '鲜奶口味',
+                title: '鲜奶',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -650,7 +651,7 @@
                 }]
             }, {
                 type: 'coffee',
-                title: '咖啡口味',
+                title: '咖啡',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -672,7 +673,7 @@
                 }]
             }, {
                 type: 'sugarfree',
-                title: '无糖口味',
+                title: '无糖',
                 list: [{
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -704,7 +705,7 @@
             }]
         };
         var _html = template('tplTaste', _data);
-        $oTasteList.html(_html);
+        $oSecTaste.html(_html);
 
         // 口味切换
         fnChangeTaste();
@@ -719,6 +720,7 @@
 
         // 渲染 全部 模板
         var _data = {
+            hasData: true, // 当前模块是否有数据，true：有数据 false：无数据
             list: [{
                 link: 'javascript:;',
                 img: 'assets/imgs/list/cake.jpg',
@@ -944,7 +946,7 @@
                 case 'flower':
                     changeCategories('flower');
                     break;
-                default:
+                default:                   
                     changeCategories('all');
                     delete anchor_map_proposed.category;
                     delete anchor_map_proposed.taste;
