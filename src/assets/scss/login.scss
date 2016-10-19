@@ -6,6 +6,7 @@ html, body {
 	width: 750px;
 	height: 100%;
 	margin: 0 auto;
+	overflow-x: hidden;
 
 	.login-form {
 		width: 100%;
@@ -15,7 +16,22 @@ html, body {
 			min-height: 100%;
 		}
 		&.findpwd {
+			position: relative;
+			width: 100%;
 			min-height: 100%;
+
+			.step {
+				position: absolute;
+				top: 0;
+				width: 100%;
+
+				&.step1 {
+					left: 0;
+				}
+				&.step2 {
+					left: 100%;
+				}
+			}
 		}
 
 		.banner {
@@ -172,6 +188,9 @@ html, body {
 
 				img {
 					width: 180px;
+					height: 180px;
+					overflow: hidden;
+					border-radius: 50%;
 				}
 			}
 
