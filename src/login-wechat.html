@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>登录</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+	
+	<!-- login begin -->
+	<div id="loginContainer">
+		
+		<!-- normal login begin -->
+		<div class="login-form wechat-login">
+			<div class="banner"></div>
+			<div class="avator">
+				<div class="img">
+					<img src="assets/imgs/login/wechat_avator.png" alt="">
+				</div>
+				<p class="nick"><i></i>如花123</p>
+			</div>
+			<div class="wrapper">
+				<ul class="form">
+					<li class="clearfix">
+						<input type="text" class="txt-mobile" placeholder="请输入您的手机号码">
+						<a href="javascript:;" class="btn-vcode">获取短信验证码</a>
+					</li>
+					<li>
+						<input type="text" class="txt-vcode" placeholder="请输入验证码">
+					</li>
+				</ul>
+				<p class="info fr">若收不到短信验证码，请尝试使用 <a href="javascript:;">语音验证码</a></p>
+				<div class="btns">
+					<a href="javascript:;" class="btn btn-bind">完成绑定</a>
+				</div>			
+			</div>
+		</div>
+		<!-- normal login end -->
+
+	</div>
+	<!-- login end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/underscore/underscore-min.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/login.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>

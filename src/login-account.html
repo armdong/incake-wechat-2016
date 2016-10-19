@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>登录</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+	
+	<!-- login begin -->
+	<div id="loginContainer">
+		
+		<!-- normal login begin -->
+		<div class="login-form account-login">
+			<div class="banner"></div>
+			<div class="wrapper">
+				<ul class="form">
+					<li>
+						<input type="text" class="txt-username" placeholder="请输入用户名/手机号码">
+					</li>
+					<li>
+						<input type="password" class="txt-password" placeholder="请输入密码">
+					</li>
+				</ul>
+				<p class="info fr"><a href="findpwd-step1.html">找回密码</a></p>
+				<div class="btns">
+					<a href="javascript:;" class="btn btn-login">登录</a>
+				</div>
+				<p class="info fl info-login">还不是会员？<a href="login.html">手机号注册登录</a></p>			
+			</div>
+			<div class="third-login">
+				<div class="wechat">
+					<a href="login-wechat.html" class="img">
+						<img src="assets/imgs/login/wechat.png" alt="">
+					</a>
+					<p>微信</p>
+				</div>
+			</div>
+		</div>
+		<!-- normal login end -->
+
+	</div>
+	<!-- login end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/underscore/underscore-min.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/login.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>
