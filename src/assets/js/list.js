@@ -56,17 +56,50 @@
 
         // 立即购买或添加至购物篮弹层
         var $oAddToCart = $('#addToCart'),
-            $oCartHeader = $oAddToCart.find('.header'),
-            $oCartContainer = $oAddToCart.find('.container'),
-            $oCartFooter = $oAddToCart.find('.footer'),
             tl = new TimelineLite(),
-            $oBtnMinus = $oCartContainer.find('.btn-minus'),
-            $oBtnAdd = $oCartContainer.find('.btn-add'),
-            $oCountDom = $oCartContainer.find('.count'),
             iCurrCount = 1;
+
+        // 用来存储当前商品规格的数组
+        var specArr = [];
 
         // 购买‘+’按钮点击事件
         $('#listContainer').on('click', '.add-icon', function() {   
+
+            // 需要字段：缩略图、中文名、英文名、食用备注、价格、磅数、规格
+            var $oCurr = $(this).closest('.item'),
+                specStr = $oCurr.attr('spec'),
+                specList = specStr.split('|');
+
+            // 清空数组
+            specArr = [];
+            if(_.isArray(specList)) {
+                for(var i = 0, len = specList.length; i < len; i++) {
+                    var spec = specList[i].split(',');
+                    var tmp = {
+                        price: spec[0],
+                        pound: spec[1],
+                        note: spec[2]
+                    };
+                    specArr.push(tmp);
+                }
+            }
+
+            var _data = {
+                img: $oCurr.find('.img').find('img').attr('src'),
+                name: {
+                    cn: $oCurr.find('.text').find('.cn').html(),
+                    en: $oCurr.find('.text').find('.en').html()
+                },
+                price: specArr[0].price,
+                pound: specArr[0].pound,
+                note: specArr[0].note,
+                spec: specArr
+            };
+
+            // 给弹框绑定数据
+            var _html = template('tplAddToCart', _data);
+            $oAddToCart.html(_html);
+
             tl.clear();
             tl.to($oAddToCart, .5, {
                 y: '0%',
@@ -84,14 +117,17 @@
         });
 
         // 规格切换
-        $oCartContainer.find('.spec-list').on('click', 'li', function(){
-
-            // TODO 切换规格后同步 .note 节点
+        $oAddToCart.on('click', '.spec-list li', function(){
+            $oAddToCart.find('.note').html(specArr[$(this).index()].note);
+            $oAddToCart.find('.price').html(specArr[$(this).index()].price);
+            $oAddToCart.find('.pound').html('/' + specArr[$(this).index()].pound + '磅');
             $(this).addClass('active').siblings().removeClass('active');
         });
 
         // 数量减少
-        $oBtnMinus.on('click', function(){
+        $oAddToCart.on('click', '.btn-minus', function(){
+            var $oCountDom = $oAddToCart.find('.count');
+
             iCurrCount = parseInt($oCountDom.val(), 10);
             iCurrCount --;
 
@@ -104,7 +140,10 @@
         });
 
         // 数量增加
-        $oBtnAdd.on('click', function(){
+        $oAddToCart.on('click', '.btn-add', function(){
+            var $oCountDom = $oAddToCart.find('.count'),
+                $oBtnMinus = $oAddToCart.find('.btn-minus');
+
             iCurrCount = parseInt($oCountDom.val(), 10);
             iCurrCount ++;
 
@@ -120,7 +159,7 @@
         });
 
         // 加入购物篮
-        $oCartFooter.on('click', '.join-cart', function(){
+        $oAddToCart.on('click', '.join-cart', function(){
 
             // TODO 处理加入购物车逻辑
 
@@ -142,7 +181,7 @@
         });
 
         // 关闭弹层
-        $oAddToCart.find('.cart-close').on('click', function() {
+        $oAddToCart.on('click', '.cart-close', function() {
             tl.clear();
             tl.to($oAddToCart, .5, {                
                 'opacity': 0,
@@ -180,7 +219,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -190,6 +247,24 @@
                     },
                     price: '189',
                     pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ],
                     soldout: true
                 }]
             }, {
@@ -203,7 +278,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -212,7 +305,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'flowers',
@@ -225,7 +336,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -234,7 +363,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -243,7 +390,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'parts',
@@ -256,7 +421,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -265,7 +448,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -274,7 +475,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }]
         };
@@ -303,6 +522,24 @@
                     },
                     price: '189',
                     pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ],
                     soldout: true
                 }, {
                     link: 'javascript:;',
@@ -312,7 +549,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'diy',
@@ -325,7 +580,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -334,7 +607,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'star',
@@ -347,7 +638,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -356,7 +665,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -365,7 +692,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }]
         };
@@ -509,7 +854,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -518,7 +881,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'chocolate',
@@ -532,6 +913,24 @@
                     },
                     price: '189',
                     pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ],
                     soldout: true
                 }, {
                     link: 'javascript:;',
@@ -541,7 +940,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'mousse',
@@ -554,7 +971,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -563,7 +998,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'napoleon',
@@ -576,7 +1029,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -585,7 +1056,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -594,7 +1083,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'fruit',
@@ -607,7 +1114,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -616,7 +1141,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -625,7 +1168,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -634,7 +1195,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'milk',
@@ -647,7 +1226,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'coffee',
@@ -660,7 +1257,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -669,7 +1284,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }, {
                 type: 'sugarfree',
@@ -682,7 +1315,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -691,7 +1342,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }, {
                     link: 'javascript:;',
                     img: 'assets/imgs/list/cake.jpg',
@@ -700,7 +1369,25 @@
                         en: 'Fresh Mango Napoleon'
                     },
                     price: '189',
-                    pound: '1.5'
+                    pound: '1.5',
+                    spec: [{
+                            price: '189',
+                            pound: '1.5',
+                            note: '4-5人食用'
+                        }, {
+                            price: '279',
+                            pound: '2.5',
+                            note: '7-8人食用'
+                        }, {
+                            price: '429',
+                            pound: '3.5',
+                            note: '11-12人食用'
+                        }, {
+                            price: '709',
+                            pound: '5.5',
+                            note: '15-20人食用'
+                        }
+                    ]
                 }]
             }]
         };
@@ -730,25 +1417,40 @@
                 },
                 price: '189',
                 pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ],
                 soldout: true // 如果售罄，则需返回该字段
             }, {
                 link: 'javascript:;',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
-                    cn: '芒果拿破仑',
-                    en: 'Fresh Mango Napoleon'
+                    cn: '超级蜂巢',
+                    en: 'Super Hive Cake'
                 },
-                price: '189',
-                pound: '1.5'
-            }, {
-                link: 'javascript:;',
-                img: 'assets/imgs/list/cake.jpg',
-                name: {
-                    cn: '芒果拿破仑',
-                    en: 'Fresh Mango Napoleon'
-                },
-                price: '189',
-                pound: '1.5'
+                price: '229',
+                pound: '1.8',
+                spec: [{
+                        price: '229',
+                        pound: '1.8',
+                        note: '4-5人食用'
+                    }
+                ]
             }, {
                 link: 'javascript:;',
                 img: 'assets/imgs/list/cake.jpg',
@@ -758,6 +1460,51 @@
                 },
                 price: '189',
                 pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ]
+            }, {
+                link: 'javascript:;',
+                img: 'assets/imgs/list/cake.jpg',
+                name: {
+                    cn: '芒果拿破仑',
+                    en: 'Fresh Mango Napoleon'
+                },
+                price: '189',
+                pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ],
                 soldout: true
             }, {
                 link: 'javascript:;',
@@ -767,7 +1514,25 @@
                     en: 'Fresh Mango Napoleon'
                 },
                 price: '189',
-                pound: '1.5'
+                pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ]
             }, {
                 link: 'javascript:;',
                 img: 'assets/imgs/list/cake.jpg',
@@ -776,7 +1541,25 @@
                     en: 'Fresh Mango Napoleon'
                 },
                 price: '189',
-                pound: '1.5'
+                pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ]
             }, {
                 link: 'javascript:;',
                 img: 'assets/imgs/list/cake.jpg',
@@ -785,7 +1568,25 @@
                     en: 'Fresh Mango Napoleon'
                 },
                 price: '189',
-                pound: '1.5'
+                pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ]
             }]
         };
         var _html = template('tplAll', _data);
