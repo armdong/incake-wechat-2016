@@ -58,7 +58,7 @@
             build: {
                 root: 'build/',
                 styles: 'build/assets/css/',
-                scripts: 'build/assets/scripts/',
+                scripts: 'build/assets/js/',
                 images: 'build/assets/imgs/',
                 fonts: 'build/assets/fonts/',
                 plugins: 'build/assets/plugins/'

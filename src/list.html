@@ -52,7 +52,7 @@
 	<!-- list-page container end -->
 
 	<!-- common navbar begin -->
-	<div class="navbar clearfix">
+	<div class="navbar clearfix" id="menuNav">
 		<a href="index.html" class="link choiceness">
 			<div class="img"></div>
 			<p>精选</p>
@@ -101,11 +101,36 @@
 			</div>
 		{{/each}}
 		</div>
+		<a href="javascript:;" class="load-more">点击加载更多...</a>
 	{{else}}
 		<div class="no-product">
 			<img src="assets/imgs/list/no_product.png" alt="">
 		</div>
 	{{/if}}
+	</script>
+	<script id="tplLoadMore" type="text/html">
+	{{each list as item i}}
+		{{if item.soldout}}
+		<div class="item soldout" spec="{{item.spec | specFormat}}">
+		{{else}}
+		<div class="item" spec="{{item.spec | specFormat}}">
+		{{/if}}
+			<a href="{{item.link}}" class="img">
+				<img src="{{item.img}}" alt="">
+			</a>
+			<div class="text">
+				<div class="name">
+					<p class="cn">{{item.name.cn}}</p>
+					<p class="en">{{item.name.en}}</p>
+				</div>
+				<p class="ext">
+					<span class="price">￥{{item.price}}</span>
+					<span class="pound">/{{item.pound}}磅</span>
+				</p>
+				<a href="javascript:;" class="add-icon"></a>
+			</div>
+		</div>
+	{{/each}}
 	</script>
 	<!-- all-template end -->
 

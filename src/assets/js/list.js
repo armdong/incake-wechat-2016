@@ -45,8 +45,68 @@
         $(window).bind('hashchange', onHashchange).trigger('hashchange');
 
         // 立即购买或添加到购物篮
-        fnAddToCart();
+        fnAddToCart();        
+
+        // 全部模块scroll事件
+        var loadMore = _.debounce(fnLoadMore, 300);
+        $(window).on('scroll', loadMore);
     });
+
+    /**
+     * 全部模块加载更多
+     * @return {[type]} [description]
+     */
+    function fnLoadMore() {
+
+        // 拿到当前处于选中状态的选项
+        var $oCurrCategory = $('#listHeader').find('.active'),
+            $oMenu = $('#menuNav'),
+            category = $oCurrCategory.attr('category'),
+            scrollTop = $('body').scrollTop(),
+            screenH = $(window).height(),
+            menuH = $oMenu.height();
+
+        if(category === 'all') {      
+            var $oSecAll = $('#secAll'),
+                $oLoadMore = $oSecAll.find('.load-more'),
+                iLoadMoreT = $oLoadMore.offset().top,
+                disT = scrollTop + screenH - iLoadMoreT - menuH;
+
+            if(disT >= 0) {
+
+                // 发送请求加载更多
+                $.ajax({
+                    url: './assets/js/loadMore.json',
+                    type: 'GET',
+                    data: {},
+                    dataType: 'json',
+                    beforeSend: function(xhr, settings) {
+                        $oLoadMore.html('正在加载...');
+                    },
+                    success: function(data, status, xhr) {
+                        var loadMoreText = '';
+                        if(data.isComplete) {
+                            loadMoreText = '已全部加载完成！';
+                        } else {
+                            var _html = template('tplLoadMore', data);
+                            $oSecAll.find('.list').append(_html);
+                            loadMoreText = '加载成功...';
+                        }
+                        $oLoadMore.html(loadMoreText);
+                    },
+                    error: function(xhr, errorType, error) {
+                        var dialog = $(document).dialog({
+                            type: 'toast',
+                            infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
+                            infoText: '网络异常',
+                            autoClose: '1500'
+                        });
+                        $oLoadMore.html('点击加载更多...');
+                    }
+                });
+            }
+        }
+    }
 
     /**
      * [fnAddToCart 购买商品]
@@ -1558,6 +1618,76 @@
                         price: '709',
                         pound: '5.5',
                         note: '15-20人食用'
+                    }
+                ]
+            }, {
+                link: 'javascript:;',
+                img: 'assets/imgs/list/cake.jpg',
+                name: {
+                    cn: '芒果拿破仑',
+                    en: 'Fresh Mango Napoleon'
+                },
+                price: '189',
+                pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ]
+            }, {
+                link: 'javascript:;',
+                img: 'assets/imgs/list/cake.jpg',
+                name: {
+                    cn: '芒果拿破仑',
+                    en: 'Fresh Mango Napoleon'
+                },
+                price: '189',
+                pound: '1.5',
+                spec: [{
+                        price: '189',
+                        pound: '1.5',
+                        note: '4-5人食用'
+                    }, {
+                        price: '279',
+                        pound: '2.5',
+                        note: '7-8人食用'
+                    }, {
+                        price: '429',
+                        pound: '3.5',
+                        note: '11-12人食用'
+                    }, {
+                        price: '709',
+                        pound: '5.5',
+                        note: '15-20人食用'
+                    }
+                ],
+                soldout: true // 如果售罄，则需返回该字段
+            }, {
+                link: 'javascript:;',
+                img: 'assets/imgs/list/cake.jpg',
+                name: {
+                    cn: '超级蜂巢',
+                    en: 'Super Hive Cake'
+                },
+                price: '229',
+                pound: '1.8',
+                spec: [{
+                        price: '229',
+                        pound: '1.8',
+                        note: '4-5人食用'
                     }
                 ]
             }, {
