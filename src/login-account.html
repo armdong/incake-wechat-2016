@@ -52,16 +52,28 @@
 	</div>
 	<!-- login end -->
 
+	<!-- mask-action begin -->
+	<div id="maskAction">
+		<div class="action-container">
+			<div class="slider">
+		        <div class="label">向右滑动验证</div>
+		        <div class="track">
+		            <div class="bg-green"></div>
+		        </div>
+		        <div class="button">
+		            <div class="icon"></div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<!-- mask-action end -->
+
 	<!-- scripts begin -->
 	<script src="assets/plugins/LABjs/LAB.min.js"></script>
 	<script>
 		$LAB
 		.script('assets/plugins/zepto/zepto.min.js').wait()
-		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
-		.script('assets/plugins/artTemplate/dist/template.js').wait()
-		.script('assets/plugins/underscore/underscore-min.js').wait()
 		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
-		.script('assets/js/common.js').wait()
 		.script('assets/js/login.js');
 	</script>
 	<!-- script end -->

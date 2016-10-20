@@ -24,6 +24,8 @@ html, body {
 				position: absolute;
 				top: 0;
 				width: 100%;
+				min-height: 100%;
+				background-color: #fff;
 
 				&.step1 {
 					left: 0;
@@ -217,4 +219,134 @@ html, body {
 			}
 		}
 	}
+}
+
+#maskAction {
+	display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .action-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 710px;
+        height: 360px;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+        overflow: hidden;
+
+        .stage {
+            position: relative;
+            padding: 0 20px;
+            height: 100px;
+        }
+        .slider {
+            position: absolute;
+            height: 98px;
+            box-shadow: 0 0 3px #999;
+            background-color: #ddd;
+            top: 50%;
+            left: 20px;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+        .label {
+            background: -webkit-gradient(linear, left top, right top, color-stop(0, #4d4d4d), color-stop(.4, #4d4d4d), color-stop(.5, white), color-stop(.6, #4d4d4d), color-stop(1, #4d4d4d));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-animation: slidetounlock 3s infinite;
+            -webkit-text-size-adjust: none;
+            line-height: 98px;
+            height: 98px;
+            text-align: center;
+            font-size: 32px; /* px */
+            width: 100%;
+            color: #aaa;
+        }
+        .button {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 98px;
+            height: 98px;
+            background-color: #fff;
+            transition: left 0s;
+            -webkit-transition: left 0s;
+        }
+        .button-on {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 98px;
+            height: 98px;
+            background-color: #fff;
+            transition: left 1s;
+            -webkit-transition: left .5s;
+        }
+        .track {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            overflow: hidden;
+            transition: width 0s;
+            -webkit-transition: width 0s;
+        }
+        .track-on {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            overflow: hidden;
+            transition: width 1s;
+            -webkit-transition: width .5s;
+        }
+        .icon {
+            width: 64px;
+            height: 64px;
+            position: relative;
+            top: 17px;
+            left: 27px;
+            font-family: sans-serif;
+        }
+        .icon:before {
+            content: '>>';
+            color: #ccc;
+            line-height: 64px;
+        }
+        .bg-green {
+            line-height: 98px;
+            height: 98px;
+            text-align: center;
+            font-size: 16px;
+            background-color: #78c430;
+        }
+    }
+}
+
+@keyframes slidetounlock {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+@-webkit-keyframes slidetounlock {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
 }
