@@ -240,7 +240,7 @@
 	        	var dialog = $(document).dialog({
 					type: 'toast',
 					infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
-					infoText: '解锁成功',
+					infoText: '验证成功',
 					autoClose: '1500',
 					onClosed: function(){
 						$oBtn.css({
