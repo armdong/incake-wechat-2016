@@ -4,7 +4,8 @@
 
 		// 正则表达式地图
 		window.regMap = {
-			mobile: reg = /^(?=\d{11}$)^1(?:3\d|4[57]|5[^4\D]|7[^249\D]|8\d)\d{8}$/
+			mobile: /^(?=\d{11}$)^1(?:3\d|4[57]|5[^4\D]|7[^249\D]|8\d)\d{8}$/,
+			password: /^[A-Za-z0-9_]{6,18}$/
 		};
 
 		var $oContainer = $('#loginContainer'),
@@ -12,7 +13,7 @@
 
 		// 初始化对应流程
 		if($oForm.hasClass('normal-login')) {
-			// 手机登录
+			// 手机登录/注册
 			fnInitNormalLogin($oForm);
 		} else if($oForm.hasClass('account-login')) {
 			// 账号登录
@@ -35,13 +36,14 @@
 	 * ==================================================
 	 */
 
-	// 手机登录初始化
+	// 手机登录/注册初始化
 	function fnInitNormalLogin($oForm) {
+
 		var $oTxtMobile = $oForm.find('.txt-mobile'),
 			$oTxtVCode = $oForm.find('.txt-vcode'),
 			$oBtnVCode = $oForm.find('.btn-vcode'),
-			$oBtnLogin = $oForm.find('.btn-login'),
-			$oBtnVoice = $oForm.find('.btn-voice');
+			$oBtnVoice = $oForm.find('.btn-voice'),
+			$oBtnLogin = $oForm.find('.btn-login');
 
 		// 获取短信验证码
 		$oBtnVCode.on('click', function(){
@@ -153,27 +155,353 @@
 
 	// 账号登录初始化
 	function fnInitAccountLogin($oForm) {
-		
+
+		var $oTxtUsername = $oForm.find('.txt-username'),
+			$oTxtPassword = $oForm.find('.txt-password'),
+			$oBtnLogin = $oForm.find('.btn-login');
+
+		// 登录
+		$oBtnLogin.on('click', function(){
+			var txtUsername = $.trim($oTxtUsername.val());
+			var txtPassword = $.trim($oTxtPassword.val());
+
+			// 用户名非空验证
+			if(txtUsername === '') {
+				fnFailDialog('请输入用户名/手机号码');
+	            return false;
+			}
+
+			// 密码非空验证
+			if(txtPassword === '') {
+				fnFailDialog('请输入密码');
+	            return false;
+			}
+
+			// 判断用户名密码正确性
+			// TODO: 这里为了演示使用“硬编码”，后面需要改成后台判断
+			var uname = 'admin';
+			var pwd = '123456';
+			if(txtUsername === uname && txtPassword === pwd) {
+				// 验证通过
+				// TODO 处理登录逻辑
+				
+			} else {
+				fnFailDialog('账号或密码不正确');
+				return false;
+			}
+		});
 	}
 
 	// 微信登录初始化
 	function fnInitWechatLogin($oForm) {
-		
+
+		var $oTxtMobile = $oForm.find('.txt-mobile'),
+			$oTxtVCode = $oForm.find('.txt-vcode'),
+			$oBtnVCode = $oForm.find('.btn-vcode'),
+			$oBtnVoice = $oForm.find('.btn-voice'),
+			$oBtnBind = $oForm.find('.btn-bind');
+
+		// 获取短信验证码
+		$oBtnVCode.on('click', function(){
+			var $oThis = $(this);
+
+			if($oThis.attr('isSend') !== 'send') {				
+				var txtMobile = $.trim($oTxtMobile.val());
+
+				// 手机号非空验证
+				if(txtMobile === '') {
+					fnMobileDialog($oTxtMobile, '请输入手机号码');
+		            return false;
+				}
+				
+				// 手机号合法性验证
+				if(!regMap.mobile.test(txtMobile)) {
+					fnMobileDialog($oTxtMobile, '请输入正确的手机号码');
+					return false;
+				}
+				
+				// 验证是否是30分钟内第三次获取验证码（包括语音验证码）	
+				// 后台验证，每次点击需要发送请求到后台获取状态			
+				handler4ValidateSendTime(function(isThirdTime){
+					if(isThirdTime) { // true表示30分钟内第三次获取验证码，此时需弹出行为验证码
+						handler4ActionValidate(function(){
+							handler4SendCode($oThis, txtMobile);
+						});
+					} else {
+						handler4SendCode($oThis, txtMobile);
+					}
+				});	
+			}	
+		});
+
+		// 获取语音验证码
+		$oBtnVoice.on('click', function(){
+			var isSend = $oBtnVCode.attr('isSend') === 'send' ? true : false,
+				iSeconds = $oBtnVCode.attr('seconds');
+
+			var txtMobile = $.trim($oTxtMobile.val());
+			var $oThis = $oBtnVCode;
+
+			// 手机号非空验证
+			if(txtMobile === '') {
+				fnMobileDialog($oTxtMobile, '请输入手机号码');
+	            return false;
+			}
+			
+			// 手机号合法性验证
+			if(!regMap.mobile.test(txtMobile)) {
+				fnMobileDialog($oTxtMobile, '请输入正确的手机号码');
+				return false;
+			}
+
+			if(isSend) { // 短信验证码正在倒计时
+				fnFailDialog(iSeconds + 's后再获取语音验证码');
+				return false;
+			} else {
+				handler4ValidateSendTime(function(isThirdTime){
+					if(isThirdTime) { // true表示30分钟内第三次获取验证码，此时需弹出行为验证码
+						handler4ActionValidate(function(){
+							// 发送语音验证码
+							handler4SendVoice($oThis, txtMobile);
+						});
+					} else {
+						handler4SendVoice($oThis, txtMobile);
+					}
+				});
+			}
+		});
+
+		// 绑定
+		$oBtnBind.on('click', function(){
+
+			var txtMobile = $.trim($oTxtMobile.val());
+			var txtVCode = $.trim($oTxtVCode.val());
+
+			// 手机号非空验证
+			if(txtMobile === '') {
+				fnMobileDialog($oTxtMobile, '请输入手机号码');
+	            return false;
+			}
+
+			// 手机号合法性验证
+			if(!regMap.mobile.test(txtMobile)) {
+				fnMobileDialog($oTxtMobile, '请输入正确的手机号码');
+				return false;
+			}
+
+			// 验证码非空验证
+			if(txtVCode === '') {
+				fnMobileDialog($oTxtVCode, '请输入验证码');
+	            return false;
+			}
+
+			// 判断验证码正确性
+			// TODO: 这里为了演示使用“硬编码”，后面需要改成后台判断
+			var vcode = '123456';
+			if(txtVCode !== vcode) {
+				fnMobileDialog($oTxtVCode, '验证码不正确');
+				return false;
+			} else {
+				// 验证码正确
+				// TODO 处理绑定逻辑
+				
+			}
+		});
 	}
 
 	// 重置密码初始化
 	function fnInitFindPassword($oForm) {
+
 		var $oStep1 = $oForm.find('.step1'),
-			$oStep2 = $oForm.find('.step2'),
+			$oTxtMobile = $oStep1.find('.txt-mobile'),
+			$oTxtVCode = $oStep1.find('.txt-vcode'),
+			$oBtnVCode = $oStep1.find('.btn-vcode'),
+			$oBtnVoice = $oStep1.find('.btn-voice'),
+			$oBtnDirect = $oStep1.find('.btn-direct'),
 			$oBtnNext = $oStep1.find('.btn-next'),
+			$oStep2 = $oForm.find('.step2'),
+			$oTxtPassword = $oStep2.find('.txt-password'),
+			$oTxtConfirmpwd = $oStep2.find('.txt-confirmpwd'),
+			$oBtnLogin = $oStep2.find('.btn-login'),
 			tl = new TimelineLite();
+
+		// step1获取短信验证码
+		$oBtnVCode.on('click', function(){
+			var $oThis = $(this);
+
+			if($oThis.attr('isSend') !== 'send') {				
+				var txtMobile = $.trim($oTxtMobile.val());
+
+				// 手机号非空验证
+				if(txtMobile === '') {
+					fnMobileDialog($oTxtMobile, '请输入手机号码');
+		            return false;
+				}
+				
+				// 手机号合法性验证
+				if(!regMap.mobile.test(txtMobile)) {
+					fnMobileDialog($oTxtMobile, '请输入正确的手机号码');
+					return false;
+				}
+				
+				// 验证是否是30分钟内第三次获取验证码（包括语音验证码）	
+				// 后台验证，每次点击需要发送请求到后台获取状态			
+				handler4ValidateSendTime(function(isThirdTime){
+					if(isThirdTime) { // true表示30分钟内第三次获取验证码，此时需弹出行为验证码
+						handler4ActionValidate(function(){
+							handler4SendCode($oThis, txtMobile);
+						});
+					} else {
+						handler4SendCode($oThis, txtMobile);
+					}
+				});	
+			}	
+		});
+
+		// step1获取语音验证码
+		$oBtnVoice.on('click', function(){
+			var isSend = $oBtnVCode.attr('isSend') === 'send' ? true : false,
+				iSeconds = $oBtnVCode.attr('seconds');
+
+			var txtMobile = $.trim($oTxtMobile.val());
+			var $oThis = $oBtnVCode;
+
+			// 手机号非空验证
+			if(txtMobile === '') {
+				fnMobileDialog($oTxtMobile, '请输入手机号码');
+	            return false;
+			}
+			
+			// 手机号合法性验证
+			if(!regMap.mobile.test(txtMobile)) {
+				fnMobileDialog($oTxtMobile, '请输入正确的手机号码');
+				return false;
+			}
+
+			if(isSend) { // 短信验证码正在倒计时
+				fnFailDialog(iSeconds + 's后再获取语音验证码');
+				return false;
+			} else {
+				handler4ValidateSendTime(function(isThirdTime){
+					if(isThirdTime) { // true表示30分钟内第三次获取验证码，此时需弹出行为验证码
+						handler4ActionValidate(function(){
+							// 发送语音验证码
+							handler4SendVoice($oThis, txtMobile);
+						});
+					} else {
+						handler4SendVoice($oThis, txtMobile);
+					}
+				});
+			}
+		});
 
 		// 下一步
 		$oBtnNext.on('click', function(){
-			tl.clear();
-			tl.to($oForm, 0.5, {
-				x: '-100%'
-			});
+
+			var txtMobile = $.trim($oTxtMobile.val());
+			var txtVCode = $.trim($oTxtVCode.val());
+
+			// 手机号非空验证
+			if(txtMobile === '') {
+				fnMobileDialog($oTxtMobile, '请输入手机号码');
+	            return false;
+			}
+
+			// 手机号合法性验证
+			if(!regMap.mobile.test(txtMobile)) {
+				fnMobileDialog($oTxtMobile, '请输入正确的手机号码');
+				return false;
+			}
+
+			// 验证码非空验证
+			if(txtVCode === '') {
+				fnMobileDialog($oTxtVCode, '请输入验证码');
+	            return false;
+			}
+
+			// 判断验证码正确性
+			// TODO: 这里为了演示使用“硬编码”，后面需要改成后台判断
+			var vcode = '123456';
+			if(txtVCode !== vcode) {
+				fnMobileDialog($oTxtVCode, '验证码不正确');
+				return false;
+			} else {
+				// 验证码正确
+				tl.clear();
+				tl.to($oForm, 0.5, {
+					x: '-100%'
+				});
+			}
+		});
+
+		// step1直接登录
+		$oBtnDirect.on('click', function(){
+
+			var txtMobile = $.trim($oTxtMobile.val());
+			var txtVCode = $.trim($oTxtVCode.val());
+
+			// 手机号非空验证
+			if(txtMobile === '') {
+				fnMobileDialog($oTxtMobile, '请输入手机号码');
+	            return false;
+			}
+
+			// 手机号合法性验证
+			if(!regMap.mobile.test(txtMobile)) {
+				fnMobileDialog($oTxtMobile, '请输入正确的手机号码');
+				return false;
+			}
+
+			// 验证码非空验证
+			if(txtVCode === '') {
+				fnMobileDialog($oTxtVCode, '请输入验证码');
+	            return false;
+			}
+
+			// 判断验证码正确性
+			// TODO: 这里为了演示使用“硬编码”，后面需要改成后台判断
+			var vcode = '123456';
+			if(txtVCode !== vcode) {
+				fnMobileDialog($oTxtVCode, '验证码不正确');
+				return false;
+			} else {
+				// 验证码正确
+				// TODO 处理登录逻辑
+				
+			}
+		});
+
+		// step2登录
+		$oBtnLogin.on('click', function(){
+
+			var txtPassword = $.trim($oTxtPassword.val());
+			var txtConfirmpwd = $.trim($oTxtConfirmpwd.val());
+
+			// 新密码非空验证
+			if(txtPassword === '') {
+				fnMobileDialog($oTxtPassword, '请输入新密码');
+	            return false;
+			}
+
+			// 新密码合法性验证
+			if(!regMap.password.test(txtPassword)) {
+				fnMobileDialog($oTxtPassword, '格式错误，输入6-18位数字字母下划线');
+	            return false;
+			}
+
+			// 确认密码非空验证
+			if(txtConfirmpwd === '') {
+				fnMobileDialog($oTxtConfirmpwd, '请再次输入新密码');
+	            return false;
+			}
+
+			// 两次密码一致性验证
+			if(txtPassword !== txtConfirmpwd) {
+				fnFailDialog('两次输入的密码不一致');
+	            return false;
+			}
+
+			// TODO 处理修改密码逻辑
 		});
 	}
 
