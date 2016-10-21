@@ -180,12 +180,12 @@ template.helper('specFormat', function(spec) {
             $oAddToCart.html(_html);
 
             tl.clear();
-            tl.to($oAddToCart, .5, {
+            tl.to($oAddToCart, 0.5, {
                 y: '0%',
                 onStart: function() {
                     Mask.show();
                     $('#mask').css({
-                        'background-color': 'rgba(0, 0, 0, .8)'
+                        'background-color': 'rgba(0, 0, 0, 0.8)'
                     });
                     $oAddToCart.show();
                     $oAddToCart.css({
@@ -244,7 +244,7 @@ template.helper('specFormat', function(spec) {
 
             // 收缩弹层
             tl.clear();
-            tl.to($oAddToCart, .2, {
+            tl.to($oAddToCart, 0.2, {
                 y: '110%',
                 onComplete: function() {
                     Mask.hide();
@@ -262,7 +262,7 @@ template.helper('specFormat', function(spec) {
         // 关闭弹层
         $oAddToCart.on('click', '.cart-close', function() {
             tl.clear();
-            tl.to($oAddToCart, .5, {                
+            tl.to($oAddToCart, 0.5, {                
                 'opacity': 0,
                 onComplete: function() {
                     Mask.hide();
@@ -272,7 +272,7 @@ template.helper('specFormat', function(spec) {
                     });
                 }
             });
-            tl.to('#mask', .5, {
+            tl.to('#mask', 0.5, {
                 'background-color': 'rgba(0, 0, 0, 0)'
             }, 0);
         });
@@ -291,7 +291,7 @@ template.helper('specFormat', function(spec) {
                 type: 'sweets',
                 title: '甜品',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -318,7 +318,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -350,7 +350,7 @@ template.helper('specFormat', function(spec) {
                 type: 'drinks',
                 title: '饮品',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -377,7 +377,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -408,7 +408,7 @@ template.helper('specFormat', function(spec) {
                 type: 'flowers',
                 title: '鲜花',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -435,7 +435,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -462,7 +462,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -493,7 +493,7 @@ template.helper('specFormat', function(spec) {
                 type: 'parts',
                 title: '配件',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -520,7 +520,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -547,7 +547,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -593,7 +593,7 @@ template.helper('specFormat', function(spec) {
                 type: 'gaw',
                 title: 'GAW经典',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -621,7 +621,7 @@ template.helper('specFormat', function(spec) {
                     ],
                     soldout: true
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -652,7 +652,7 @@ template.helper('specFormat', function(spec) {
                 type: 'diy',
                 title: '选拼系列',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -679,7 +679,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -710,7 +710,7 @@ template.helper('specFormat', function(spec) {
                 type: 'star',
                 title: '星座系列',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -737,7 +737,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -764,7 +764,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -807,35 +807,35 @@ template.helper('specFormat', function(spec) {
         var _data = {
             hasData: false,
             list: [{
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/scene_img_02.jpg',
                 name: {
                     en: 'BIRTHDAY PARTY',
                     cn: '生日聚会'
                 }
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/scene_img_01.jpg',
                 name: {
                     en: 'WEDDING CEREMONY',
                     cn: '婚庆典礼'
                 }
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/scene_img_02.jpg',
                 name: {
                     en: 'BIRTHDAY',
                     cn: '祝寿'
                 }
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/scene_img_03.jpg',
                 name: {
                     en: 'HUNDRED DAYS',
                     cn: '百天'
                 }
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/scene_img_01.jpg',
                 name: {
                     en: 'MEMORIAL DAY',
@@ -926,7 +926,7 @@ template.helper('specFormat', function(spec) {
                 type: 'cheese',
                 title: '芝士',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -953,7 +953,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -984,7 +984,7 @@ template.helper('specFormat', function(spec) {
                 type: 'chocolate',
                 title: '巧克力',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1012,7 +1012,7 @@ template.helper('specFormat', function(spec) {
                     ],
                     soldout: true
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1043,7 +1043,7 @@ template.helper('specFormat', function(spec) {
                 type: 'mousse',
                 title: '慕斯',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1070,7 +1070,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1101,7 +1101,7 @@ template.helper('specFormat', function(spec) {
                 type: 'napoleon',
                 title: '拿破仑',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1128,7 +1128,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1155,7 +1155,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1186,7 +1186,7 @@ template.helper('specFormat', function(spec) {
                 type: 'fruit',
                 title: '水果',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1213,7 +1213,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1240,7 +1240,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1267,7 +1267,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1298,7 +1298,7 @@ template.helper('specFormat', function(spec) {
                 type: 'milk',
                 title: '鲜奶',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1329,7 +1329,7 @@ template.helper('specFormat', function(spec) {
                 type: 'coffee',
                 title: '咖啡',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1356,7 +1356,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1387,7 +1387,7 @@ template.helper('specFormat', function(spec) {
                 type: 'sugarfree',
                 title: '无糖',
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1414,7 +1414,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1441,7 +1441,7 @@ template.helper('specFormat', function(spec) {
                         }
                     ]
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/list/cake.jpg',
                     name: {
                         cn: '芒果拿破仑',
@@ -1488,7 +1488,7 @@ template.helper('specFormat', function(spec) {
         var _data = {
             hasData: true, // 当前模块是否有数据，true：有数据 false：无数据
             list: [{
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',
@@ -1516,7 +1516,7 @@ template.helper('specFormat', function(spec) {
                 ],
                 soldout: true // 如果售罄，则需返回该字段
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '超级蜂巢',
@@ -1531,7 +1531,7 @@ template.helper('specFormat', function(spec) {
                     }
                 ]
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',
@@ -1558,7 +1558,7 @@ template.helper('specFormat', function(spec) {
                     }
                 ]
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',
@@ -1586,7 +1586,7 @@ template.helper('specFormat', function(spec) {
                 ],
                 soldout: true
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',
@@ -1613,7 +1613,7 @@ template.helper('specFormat', function(spec) {
                     }
                 ]
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',
@@ -1640,7 +1640,7 @@ template.helper('specFormat', function(spec) {
                     }
                 ]
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',
@@ -1667,7 +1667,7 @@ template.helper('specFormat', function(spec) {
                     }
                 ]
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',
@@ -1695,7 +1695,7 @@ template.helper('specFormat', function(spec) {
                 ],
                 soldout: true // 如果售罄，则需返回该字段
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '超级蜂巢',
@@ -1710,7 +1710,7 @@ template.helper('specFormat', function(spec) {
                     }
                 ]
             }, {
-                link: 'javascript:;',
+                link: '#',
                 img: 'assets/imgs/list/cake.jpg',
                 name: {
                     cn: '芒果拿破仑',

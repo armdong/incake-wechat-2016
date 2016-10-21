@@ -75,13 +75,13 @@
             // 渲染swiper模板
             var _data = {
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/slides/01.jpg'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/slides/02.jpg'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/slides/03.jpg'
                 }]
             };
@@ -119,7 +119,7 @@
             var _data = {
                 list: [
                     [{
-                        link: 'javascript:;',
+                        link: '#',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -133,7 +133,7 @@
                             num2: '.5'
                         }
                     }, {
-                        link: 'javascript:;',
+                        link: '#',
                         img: 'assets/imgs/index/recommend_img_02.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -148,7 +148,7 @@
                         }
                     }],
                     [{
-                        link: 'javascript:;',
+                        link: '#',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -162,7 +162,7 @@
                             num2: '.5'
                         }
                     }, {
-                        link: 'javascript:;',
+                        link: '#',
                         img: 'assets/imgs/index/recommend_img_02.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -177,7 +177,7 @@
                         }
                     }],
                     [{
-                        link: 'javascript:;',
+                        link: '#',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -191,7 +191,7 @@
                             num2: '.5'
                         }
                     }, {
-                        link: 'javascript:;',
+                        link: '#',
                         img: 'assets/imgs/index/recommend_img_02.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -235,7 +235,7 @@
             var _data = {
                 single: false,
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -245,7 +245,7 @@
                     price: '189',
                     pound: '1.5'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -255,7 +255,7 @@
                     price: '189',
                     pound: '1.5'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -265,7 +265,7 @@
                     price: '189',
                     pound: '1.5'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -394,19 +394,19 @@
             // 渲染模板 TODO 通过ajax调用对应api获取data
             var _data = {
                 list: [{
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: '生日Party'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: '生日Party'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: '生日Party'
                 }, {
-                    link: 'javascript:;',
+                    link: '#',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: '生日Party'
                 }]
@@ -473,7 +473,7 @@
                 }
             }, {
                 category: 'diy',
-                link: 'javascript:;',
+                link: '#',
                 title: {
                     cn: '蛋糕定制',
                     en: 'DIY cake'
