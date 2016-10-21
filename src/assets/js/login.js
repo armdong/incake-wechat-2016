@@ -158,7 +158,8 @@
 
 		var $oTxtUsername = $oForm.find('.txt-username'),
 			$oTxtPassword = $oForm.find('.txt-password'),
-			$oBtnLogin = $oForm.find('.btn-login');
+			$oBtnLogin = $oForm.find('.btn-login'),
+			errorTimes = 0;
 
 		// 登录
 		$oBtnLogin.on('click', function(){
@@ -177,19 +178,34 @@
 	            return false;
 			}
 
+			// 登录错误次数验证
+			if(errorTimes >= 3) {
+				handler4ActionValidate(function(){
+					doLogin(txtUsername, txtPassword);
+				});
+				return false;
+			}
+
+			// 登录
+			doLogin(txtUsername, txtPassword);			
+		});
+
+		function doLogin(username, password) {
+
 			// 判断用户名密码正确性
 			// TODO: 这里为了演示使用“硬编码”，后面需要改成后台判断
 			var uname = 'admin';
 			var pwd = '123456';
-			if(txtUsername === uname && txtPassword === pwd) {
+			if(username === uname && password === pwd) {
 				// 验证通过
 				// TODO 处理登录逻辑
 				
 			} else {
+				errorTimes ++; // TODO 登录错误次数需要后台验证
 				fnFailDialog('账号或密码不正确');
 				return false;
 			}
-		});
+		}
 	}
 
 	// 微信登录初始化
@@ -526,6 +542,18 @@
 	    	$oSlider = $oMaskAction.find('.slider'),
 	    	$oTrack = $oMaskAction.find('.track'),
 	    	iW,iLeft;
+
+		// 移除上一次绑定的click事件
+		$oMaskAction.off('.action');
+
+		// 绑定遮罩层click事件
+		$oMaskAction.on('click.action', function(e){
+			var $oTarget = $(e.target);
+			var $oClosest = $oTarget.closest('.action-container');
+			if($oClosest.length === 0) {
+				$oMaskAction.hide();
+			}
+		});
 
 	    // 显示行为验证码弹框
 	    $oMaskAction.show();
