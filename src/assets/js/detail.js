@@ -51,7 +51,23 @@
 
         // 规格切换
         fnInitSpec();
+
+        // 组合套餐
+        fnSwitchCombination();
 	});
+
+	/**
+	 * 组合套餐选择
+	 * @return {[type]} [description]
+	 */
+	function fnSwitchCombination() {
+		var $oCombination = $('#combinationInfo');
+
+		$oCombination.find('.item-select').on('tap', '.btn-radio', function(){
+			var $oItem = $(this).closest('.item-select');
+			$oItem.addClass('active').siblings('.item-select').removeClass('active');
+		});
+	}
 
 	/**
 	 * 规格切换
