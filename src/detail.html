@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>商品详情</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/plugins/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/detail.css">
+</head>
+<body>
+	
+	<div id="pageWrapper">
+
+		<!-- detail-page slide begin -->
+		<div id="detailSlide" class="swiper-container">
+			<div class="swiper-wrapper"></div>
+			<div class="swiper-pagination"></div>
+		</div>
+		<script id="tplDetailSlide" type="text/html">
+			{{each list as value i}}
+			<div class="swiper-slide">
+				<img src="{{value.img}}" alt="">
+			</div>
+			{{/each}}
+		</script>
+		<!-- detail-page slide end -->
+		
+		<!-- product info begin -->
+		<div id="productInfo">
+
+			<!-- basic info begin -->
+			<div class="basic-info">
+				<div class="title">
+					<p class="cn">芒果拿破仑</p>
+					<p class="en">Fresh Mango Napoleon</p>
+				</div>
+				<p class="ext clearfix">
+					<span class="dollar">￥</span>
+					<span class="price">189</span>
+					<span>/</span>
+					<span class="pound">1.5</span>
+					<span>磅</span>
+				</p>
+			</div>
+			<!-- basic info end -->
+
+			<!-- tag info begin -->
+			<div class="tag-info">
+				<p>
+					<span><i class="arrow"></i>首单5折</span>
+					<span><i class="arrow"></i>下单即送券</span>
+					<span><i class="arrow"></i>微信支付95折</span>
+				</p>
+			</div>
+			<!-- tag info end -->
+			
+			<!-- spec info begin -->
+			<div class="spec-info" id="specInfo">
+				<div class="container">
+					<p>请选择磅数：</p>
+					<a href="javascript:;" class="more-pound"></a>
+					<ul class="pounds clearfix">
+						<li class="active">1.5磅</li>
+						<li>2.5磅</li>
+						<li>3.5磅</li>
+						<li>5.5磅</li>
+						<li>7.5磅</li>
+						<li>10磅</li>
+					</ul>
+					<ul class="notes clearfix">
+						<li>14cm×14cm</li>
+						<li>餐具5套 <span class="gift">赠品</span></li>
+						<li>适合3-4人分享</li>
+						<li>生日牌1张 <span class="gift">赠品</span></li>
+						<li>甜度 <i class="sweet"></i><i class="sweet"></i><i class="sweet"></i></li>
+						<li>当日21点前订购次日可达</li>
+						<li>适合生日、派对、常规场合</li>
+					</ul>
+				</div>
+			</div>
+			<!-- spec info end -->
+		</div>
+		<!-- product info end -->
+
+	</div>
+
+	<!-- footer-bar begin -->
+	<footer id="footerBar" class="clearfix">
+		<div class="icons clearfix">
+			<a href="javascript:;" class="icon btn-favor"><div class="img"></div></a>
+			<a href="javascript:;" class="icon btn-basket">
+				<div class="img"><span class="num">0</span></div>
+			</a>
+		</div>
+		<div class="btns clearfix">
+			<a href="javascript:;" class="btn btn-join-basket">加入购物篮</a>
+			<a href="javascript:;" class="btn btn-buy-immediately">立即购买</a>
+		</div>
+	</footer>
+	<!-- footer-bar end -->	
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/swiper/js/swiper.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/js/detail.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>

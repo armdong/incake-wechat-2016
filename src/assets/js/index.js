@@ -75,13 +75,13 @@
             // 渲染swiper模板
             var _data = {
                 list: [{
-                    link: '#',
+                    link: 'detail.html',
                     img: 'assets/imgs/slides/01.jpg'
                 }, {
-                    link: '#',
+                    link: 'detail.html',
                     img: 'assets/imgs/slides/02.jpg'
                 }, {
-                    link: '#',
+                    link: 'detail.html',
                     img: 'assets/imgs/slides/03.jpg'
                 }]
             };
@@ -119,7 +119,7 @@
             var _data = {
                 list: [
                     [{
-                        link: '#',
+                        link: 'detail.html',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -133,7 +133,7 @@
                             num2: '.5'
                         }
                     }, {
-                        link: '#',
+                        link: 'detail.html',
                         img: 'assets/imgs/index/recommend_img_02.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -148,7 +148,7 @@
                         }
                     }],
                     [{
-                        link: '#',
+                        link: 'detail.html',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -162,7 +162,7 @@
                             num2: '.5'
                         }
                     }, {
-                        link: '#',
+                        link: 'detail.html',
                         img: 'assets/imgs/index/recommend_img_02.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -177,7 +177,7 @@
                         }
                     }],
                     [{
-                        link: '#',
+                        link: 'detail.html',
                         img: 'assets/imgs/index/recommend_img_01.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -191,7 +191,7 @@
                             num2: '.5'
                         }
                     }, {
-                        link: '#',
+                        link: 'detail.html',
                         img: 'assets/imgs/index/recommend_img_02.jpg',
                         name: {
                             cn: '芒果拿破仑',
@@ -235,7 +235,7 @@
             var _data = {
                 single: false,
                 list: [{
-                    link: '#',
+                    link: 'detail.html',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -245,7 +245,7 @@
                     price: '189',
                     pound: '1.5'
                 }, {
-                    link: '#',
+                    link: 'detail.html',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -255,7 +255,7 @@
                     price: '189',
                     pound: '1.5'
                 }, {
-                    link: '#',
+                    link: 'detail.html',
                     img: 'assets/imgs/index/new_img_01.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -265,7 +265,7 @@
                     price: '189',
                     pound: '1.5'
                 }, {
-                    link: '#',
+                    link: 'detail.html',
                     img: 'assets/imgs/index/new_img_02.jpg',
                     name: {
                         cn: '超级蜂巢',
@@ -502,7 +502,7 @@
             tl = new TimelineLite();
 
         // 关闭公告
-        $oNoticeClose.on('click', function() {
+        $oNoticeClose.on('tap', function() {
             tl.clear();
             tl.to($oNotice, 0.5, {
                 opacity: 0,
@@ -530,7 +530,7 @@
     function fnFavor() {
         var $oContainer = $('#idxSection');
 
-        $oContainer.on('click', '.favor', function() {
+        $oContainer.on('tap', '.favor', function() {
             $(this).toggleClass('followed');
         });
     }

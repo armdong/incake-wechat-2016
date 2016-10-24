@@ -46,7 +46,7 @@
 			$oBtnLogin = $oForm.find('.btn-login');
 
 		// 获取短信验证码
-		$oBtnVCode.on('click', function(){
+		$oBtnVCode.on('tap', function(){
 			var $oThis = $(this);
 
 			if($oThis.attr('isSend') !== 'send') {				
@@ -79,7 +79,7 @@
 		});
 
 		// 获取语音验证码
-		$oBtnVoice.on('click', function(){
+		$oBtnVoice.on('tap', function(){
 			var isSend = $oBtnVCode.attr('isSend') === 'send' ? true : false,
 				iSeconds = $oBtnVCode.attr('seconds');
 
@@ -116,7 +116,7 @@
 		});
 
 		// 登录
-		$oBtnLogin.on('click', function(){
+		$oBtnLogin.on('tap', function(){
 
 			var txtMobile = $.trim($oTxtMobile.val());
 			var txtVCode = $.trim($oTxtVCode.val());
@@ -162,7 +162,7 @@
 			errorTimes = 0;
 
 		// 登录
-		$oBtnLogin.on('click', function(){
+		$oBtnLogin.on('tap', function(){
 			var txtUsername = $.trim($oTxtUsername.val());
 			var txtPassword = $.trim($oTxtPassword.val());
 
@@ -218,7 +218,7 @@
 			$oBtnBind = $oForm.find('.btn-bind');
 
 		// 获取短信验证码
-		$oBtnVCode.on('click', function(){
+		$oBtnVCode.on('tap', function(){
 			var $oThis = $(this);
 
 			if($oThis.attr('isSend') !== 'send') {				
@@ -251,7 +251,7 @@
 		});
 
 		// 获取语音验证码
-		$oBtnVoice.on('click', function(){
+		$oBtnVoice.on('tap', function(){
 			var isSend = $oBtnVCode.attr('isSend') === 'send' ? true : false,
 				iSeconds = $oBtnVCode.attr('seconds');
 
@@ -288,7 +288,7 @@
 		});
 
 		// 绑定
-		$oBtnBind.on('click', function(){
+		$oBtnBind.on('tap', function(){
 
 			var txtMobile = $.trim($oTxtMobile.val());
 			var txtVCode = $.trim($oTxtVCode.val());
@@ -342,7 +342,7 @@
 			tl = new TimelineLite();
 
 		// step1获取短信验证码
-		$oBtnVCode.on('click', function(){
+		$oBtnVCode.on('tap', function(){
 			var $oThis = $(this);
 
 			if($oThis.attr('isSend') !== 'send') {				
@@ -375,7 +375,7 @@
 		});
 
 		// step1获取语音验证码
-		$oBtnVoice.on('click', function(){
+		$oBtnVoice.on('tap', function(){
 			var isSend = $oBtnVCode.attr('isSend') === 'send' ? true : false,
 				iSeconds = $oBtnVCode.attr('seconds');
 
@@ -412,7 +412,7 @@
 		});
 
 		// 下一步
-		$oBtnNext.on('click', function(){
+		$oBtnNext.on('tap', function(){
 
 			var txtMobile = $.trim($oTxtMobile.val());
 			var txtVCode = $.trim($oTxtVCode.val());
@@ -451,7 +451,7 @@
 		});
 
 		// step1直接登录
-		$oBtnDirect.on('click', function(){
+		$oBtnDirect.on('tap', function(){
 
 			var txtMobile = $.trim($oTxtMobile.val());
 			var txtVCode = $.trim($oTxtVCode.val());
@@ -488,7 +488,7 @@
 		});
 
 		// step2登录
-		$oBtnLogin.on('click', function(){
+		$oBtnLogin.on('tap', function(){
 
 			var txtPassword = $.trim($oTxtPassword.val());
 			var txtConfirmpwd = $.trim($oTxtConfirmpwd.val());
