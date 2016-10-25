@@ -214,7 +214,8 @@ $loc-triangle-bgcolor: #f0f0f0;
 }
 
 #idxSection {
-	width: 100%;
+	width: 750px;
+	overflow-x: hidden;
 
 	section {
 		width: 100%;
@@ -247,7 +248,9 @@ $loc-triangle-bgcolor: #f0f0f0;
 		}
 
 		.ad-container {
-			width: 100%;
+			width: 750px;
+			height: 240px;
+			margin: 0 auto;
 
 			> img {
 				width: 100%;
