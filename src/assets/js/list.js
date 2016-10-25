@@ -32,6 +32,9 @@ template.helper('specFormat', function(spec) {
 
     $(function() {
 
+        // 解决Zepto点透bug
+        FastClick.attach(document.body);
+
         // 口味模块各种口味offset().top
         window.tasteTops = {};
 

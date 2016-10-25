@@ -2,6 +2,9 @@
 
 	$(function(){
 
+		// 解决Zepto点透bug
+		FastClick.attach(document.body);
+
 		// 正则表达式地图
 		window.regMap = {
 			mobile: /^(?=\d{11}$)^1(?:3\d|4[57]|5[^4\D]|7[^249\D]|8\d)\d{8}$/,

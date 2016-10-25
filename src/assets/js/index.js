@@ -8,6 +8,9 @@
 
     $(function() {
 
+        // 解决Zepto点透bug
+        FastClick.attach(document.body);
+
         /**
          * ========================
          * =      声明变量
