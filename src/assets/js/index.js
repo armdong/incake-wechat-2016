@@ -442,12 +442,44 @@
      * @return {[type]} [description]
      */
     function fnInitCity(){
-        $('#selCity').on('change', function(){
-            var val = $(this).val(),
-                text = $('#selCity option').not(function(){
-                    return !this.selected;
-                }).text();
-            $('#showCity').text(text).attr('city_id', val);
+
+        window['adaptive'].desinWidth = 750;
+        window['adaptive'].init();
+
+        var showCityDom = document.querySelector('#showCity');
+        var cityIdDom = document.querySelector('#cityId');
+
+        var data = [
+            {'id': '021', 'value': '上海'},
+            {'id': '0591', 'value': '福州'},
+            {'id': '0512', 'value': '苏州'},
+            {'id': '0999', 'value': '昆山'},
+            {'id': '0592', 'value': '厦门'},
+            {'id': '214000', 'value': '无锡'},
+            {'id': '010', 'value': '北京'},
+            {'id': '025', 'value': '南京'},
+            {'id': '0571', 'value': '杭州'}
+        ];
+
+        showCityDom.addEventListener('click', function () {
+            var cityId = showCityDom.dataset['id'];
+            var cityName = showCityDom.dataset['value'];
+
+            var citySelect = new IosSelect(1, 
+                [data],
+                {
+                    title: '城市选择',
+                    oneLevelId: cityId,
+                    itemHeight: 0.933333,
+                    headerHeight: 1.18,
+                    callback: function (selectOneObj) {
+                        cityIdDom.value = selectOneObj.id;
+                        showCityDom.innerHTML = selectOneObj.value;
+                        showCityDom.dataset['id'] = selectOneObj.id;
+                        showCityDom.dataset['value'] = selectOneObj.value;
+                    }
+                }
+            );
         });
     }
 
@@ -534,7 +566,32 @@
         var $oContainer = $('#idxSection');
 
         $oContainer.on('tap', '.favor', function() {
-            $(this).toggleClass('followed');
+
+            var $oThis = $(this),
+                hasFollowed = $oThis.hasClass('followed');
+
+            if(!hasFollowed) { // 设置喜欢
+                var dialog = $(document).dialog({
+                    type: 'toast',
+                    infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
+                    infoText: '成功加入收藏夹',
+                    autoClose: '1500',
+                    onShow: function() {
+                        $oThis.addClass('followed');
+                    }
+                });
+            } else { // 取消喜欢
+                var dialog = $(document).dialog({
+                    type: 'toast',
+                    infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
+                    infoText: '已从收藏夹移除',
+                    autoClose: '1500',
+                    onShow: function() {
+                        $oThis.removeClass('followed');
+                    }
+                });
+            }
+            //$(this).toggleClass('followed');
         });
     }
 

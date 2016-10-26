@@ -12,6 +12,8 @@
 	<title>INCAKE | 首页</title>
 	<link rel="stylesheet" href="assets/css/normalize.css">
 	<link rel="stylesheet" href="assets/plugins/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="assets/plugins/iosselect/iosSelect.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
 	<link rel="stylesheet" href="assets/css/global.css">
 	<link rel="stylesheet" href="assets/css/index.css">
 </head>
@@ -19,8 +21,9 @@
 	
 	<!-- index-page header begin -->
 	<header id="idxHeader">
+		<input type="hidden" name="city_id" id="cityId" value=""> 
 		<div class="location" id="showCity" city_id='021'>上海</div>
-		<select class="sel-city" name="selCity" id="selCity">
+		<!-- <select class="sel-city" name="selCity" id="selCity">
 			<option value="021">上海</option>
 			<option value="0591">福州</option>
 			<option value="0512">苏州</option>
@@ -30,7 +33,7 @@
 			<option value="010">北京</option>
 			<option value="025">南京</option>
 			<option value="0571">杭州</option>
-		</select>
+		</select> -->
 		<div class="logo"></div>
 	</header>
 	<!-- index-page header end -->
@@ -312,7 +315,11 @@
 		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
 		.script('assets/plugins/zepto.marquee.js').wait()
 		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
 		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/plugins/iosselect/adaptive.js').wait()
+		.script('assets/plugins/iosselect/iscroll.js').wait()
+		.script('assets/plugins/iosselect/iosSelect_rem.js').wait()
 		.script('assets/js/index.js');
 	</script>
 	<!-- script end -->
