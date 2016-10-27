@@ -443,8 +443,8 @@
      */
     function fnInitCity(){
 
-        window['adaptive'].desinWidth = 750;
-        window['adaptive'].init();
+        window.adaptive.desinWidth = 750;
+        window.adaptive.init();
 
         var showCityDom = document.querySelector('#showCity');
         var cityIdDom = document.querySelector('#cityId');
@@ -462,8 +462,8 @@
         ];
 
         showCityDom.addEventListener('click', function () {
-            var cityId = showCityDom.dataset['id'];
-            var cityName = showCityDom.dataset['value'];
+            var cityId = showCityDom.dataset.id;
+            var cityName = showCityDom.dataset.value;
 
             var citySelect = new IosSelect(1, 
                 [data],
@@ -475,8 +475,8 @@
                     callback: function (selectOneObj) {
                         cityIdDom.value = selectOneObj.id;
                         showCityDom.innerHTML = selectOneObj.value;
-                        showCityDom.dataset['id'] = selectOneObj.id;
-                        showCityDom.dataset['value'] = selectOneObj.value;
+                        showCityDom.dataset.id = selectOneObj.id;
+                        showCityDom.dataset.value = selectOneObj.value;
                     }
                 }
             );
@@ -566,10 +566,11 @@
         $oContainer.on('tap', '.favor', function() {
 
             var $oThis = $(this),
-                hasFollowed = $oThis.hasClass('followed');
+                hasFollowed = $oThis.hasClass('followed'),
+                dialog = null;
 
             if(!hasFollowed) { // 设置喜欢
-                var dialog = $(document).dialog({
+                dialog = $(document).dialog({
                     type: 'toast',
                     infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
                     infoText: '成功加入收藏夹',
@@ -579,7 +580,7 @@
                     }
                 });
             } else { // 取消喜欢
-                var dialog = $(document).dialog({
+                dialog = $(document).dialog({
                     type: 'toast',
                     infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
                     infoText: '已从收藏夹移除',

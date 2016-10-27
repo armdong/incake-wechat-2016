@@ -606,7 +606,10 @@
 			        		left: '0'
 			        	});
 			        	$oTrack.width(0);
-						callback && callback();
+			        	if(callback) {
+			        		callback();
+			        	}
+						//callback && callback();
 					}
 				});
 	        }else{
@@ -741,7 +744,10 @@
 			data: {},
 			success: function(data) {
 				//data.state 为布尔类型，true表示是30分钟内第三次获取验证码
-				callback && callback(data.isThirdTime); 
+				if(callback) {
+					callback(data.isThirdTime);
+				}
+				//callback && callback(data.isThirdTime); 
 			},
 			error: function() { // 网络错误				
 				fnFailDialog('网络不稳定，请重试');
