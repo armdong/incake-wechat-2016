@@ -78,10 +78,11 @@
 		$oFooterBar.on('tap', '.btn-favor', function(){
 
 			var $oThis = $(this),
-				hasFollowed = $oThis.hasClass('followed');
+				hasFollowed = $oThis.hasClass('followed'),
+				dialog = null;
 
 			if(!hasFollowed) { // 设置喜欢
-				var dialog = $(document).dialog({
+				dialog = $(document).dialog({
 			        type: 'toast',
 			        infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
 			        infoText: '成功加入收藏夹',
@@ -91,7 +92,7 @@
 			        }
 			    });
 			} else { // 取消喜欢
-				var dialog = $(document).dialog({
+				dialog = $(document).dialog({
 			        type: 'toast',
 			        infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
 			        infoText: '已从收藏夹移除',
