@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>购物篮</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/basket.css">
+</head>
+<body>
+	
+	<!-- basket container begin -->
+	<div id="basketContainer">
+	
+		<!-- basket-page notice begin -->
+		<div class="basket-notice" id="basketNotice">
+			<div class="notice-icon"></div>
+			<p class="notice-msg"></p>
+			<a href="javascript:;" class="notice-close"></a>
+		</div>
+		<!-- basket-page notice end -->
+		
+		<div class="basket-wrapper">		
+			<!-- empty basket begin -->
+			<div class="basket empty">
+				<div class="img">
+					<img src="assets/imgs/basket/empty_basket.png" alt="">
+					<a href="index.html" class="btn-go">现在去逛逛吧</a>
+				</div>
+			</div>
+			<!-- empty basket end -->	
+
+			<!-- normal basket begin -->
+			<div class="basket normal">
+				<!-- basket list begin -->
+				<section class="list"></section>
+				<!-- basket list end -->
+
+				<!-- basket subtotal begin -->
+				<section class="subtotal"></section>
+				<!-- basket subtotal end -->
+
+				<!-- basket parts begin -->
+				<section class="parts"></section>
+				<!-- basket parts end -->
+			</div>
+			<!-- normal basket end -->		
+		</div>
+
+	</div>
+	<!-- basket container end -->
+
+	<!-- common navbar begin -->
+	<div class="navbar clearfix" id="menuNav">
+		<a href="index.html" class="link choiceness">
+			<div class="img"></div>
+			<p>精选</p>
+		</a>
+		<a href="list.html" class="link discovery">
+			<div class="img"></div>
+			<p>发现</p>
+		</a>
+		<a href="basket.html" class="link shopping-basket active">
+			<div class="img">
+				<span class="num">9</span>
+			</div>
+			<p>购物篮</p>
+		</a>
+		<a href="login.html" class="link mine">
+			<div class="img"></div>
+			<p>我的</p>
+		</a>
+	</div>
+	<!-- common navbar end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/basket.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>
