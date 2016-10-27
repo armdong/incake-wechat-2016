@@ -98,9 +98,25 @@ $loc-triangle-bgcolor: #f0f0f0;
 		left: 80px;
 		width: 610px;
 		margin: 0 auto;
+		height: 60px;
 		line-height: 60px;
 		color: #edf0f0;
 	}
+    .str_wrap {
+        overflow:hidden;
+        font-size:24px; /* px */
+        white-space:nowrap;
+        user-select: none;  
+        -webkit-user-select: none;
+        
+        .str_move { 
+            white-space:nowrap;
+            position:absolute; 
+            top:0; 
+            left:0;
+        }
+    }
+
 
 	.notice-close {
 		display: block;
