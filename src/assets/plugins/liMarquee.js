@@ -11,11 +11,11 @@
 				strWrap.wrapInner($('<div>').addClass('str_move'));
 				
 				var strMove = $('.str_move', strWrap),
+					leftPos = -strMove.width(),
 					time = 0;
 
-				var leftPos = -strMove.width(),
-					//单次动画所需时间
-					timeFunc = function () {
+				//单次动画所需时间
+				var timeFunc = function () {
 						var fullS = Math.abs(leftPos),
 							time = (fullS / strWrap.data('scrollamount')) * 1000;
 						if (parseFloat(strMove.css('left')) != 0) {
@@ -24,6 +24,7 @@
 						}
 						return time;
 					},
+					//轮播效果具体实现
 					moveFunc = function () {
 						strMove.animate({
 							left: leftPos
@@ -31,7 +32,7 @@
 							$(this).css({
 								left: strWrap.width()
 							});
-							
+							//定时调取动画
 							setTimeout(moveFunc, p.scrolldelay);
 						});
 					};
