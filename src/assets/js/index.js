@@ -550,12 +550,10 @@
         });
 
         // 公告轮播
-        var marqueeText = '非真正内容非真正内容，非真正内容非真正内容非真正内容。非真正内容非真正内容，非真正内容非真正内容非真正内容。';
-        $oNoticeMsg.marquee({
-            text: marqueeText,
-            timer: 200,
-            direction: 'left'
-        });
+        var marqueeText = '非真正内容';
+        $oNoticeMsg.text(marqueeText);
+
+    	$oNoticeMsg.liMarquee();
     }
 
     /**
