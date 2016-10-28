@@ -188,7 +188,7 @@ template.helper('specFormat', function(spec) {
                 onStart: function() {
                     Mask.show();
                     $('#mask').css({
-                        'background-color': 'rgba(0, 0, 0, 0.8)'
+                        'background-color': 'rgba(0, 0, 0, 0.75)'
                     });
                     $oAddToCart.show();
                     $oAddToCart.css({

@@ -979,14 +979,14 @@
 		position: absolute;
 		top: 0;
 		right: 0;
-		width: 26px;
-		height: 26px;
-		padding: 20px;
+		z-index: 99999;
+		width: 80px;
+		height: 80px;
 		background: {
 			image: url('../imgs/list/cart_close_bg.png');
 			repeat: no-repeat;
 			size: 26px 26px;
-			position: center center;
+			position: top 20px right 20px;
 		}
 	}
 }
