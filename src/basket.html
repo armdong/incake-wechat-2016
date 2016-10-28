@@ -72,13 +72,12 @@
 										<li>不可单独购买</li>
 										<li>仅支持在线支付</li>
 									</ul>
-									<div class="operate clearfix">
+									<div class="operate">
 										<div class="counter clearfix">
-											<a href="javascript:;" class="btn-minus disabled">-</a>
+											<a href="javascript:;" class="btn-minus">-</a>
 											<input type="text" class="count" value="1">
 											<a href="javascript:;" class="btn-add">+</a>
 										</div>
-										<a href="javascript:;" class="btn-del"></a>
 									</div>									
 								</div>
 							</div>
@@ -102,13 +101,12 @@
 									</div>
 								</div>
 								<div class="footer clearfix">
-									<div class="operate clearfix">
+									<div class="operate">
 										<div class="counter clearfix">
-											<a href="javascript:;" class="btn-minus disabled">-</a>
+											<a href="javascript:;" class="btn-minus">-</a>
 											<input type="text" class="count" value="1">
 											<a href="javascript:;" class="btn-add">+</a>
 										</div>
-										<a href="javascript:;" class="btn-del"></a>
 									</div>									
 								</div>
 							</div>
@@ -135,14 +133,13 @@
 									<ul class="tags clearfix">
 										<li>附送5套餐具</li>
 									</ul>
-									<div class="operate clearfix">
+									<div class="operate">
 										<div class="counter clearfix">
-											<a href="javascript:;" class="btn-minus disabled">-</a>
+											<a href="javascript:;" class="btn-minus">-</a>
 											<input type="text" class="count" value="1">
 											<a href="javascript:;" class="btn-add">+</a>
 										</div>
-										<a href="javascript:;" class="btn-del"></a>
-									</div>									
+									</div>								
 								</div>
 							</div>
 						</li>
@@ -202,13 +199,12 @@
 								<span class="cnb-original-price">原价：<i>￥189</i></span>
 								<span class="cnb-price">活动价：￥169</span>
 							</p>
-							<div class="operate clearfix">
+							<div class="operate">
 								<div class="counter clearfix">
-									<a href="javascript:;" class="btn-minus disabled">-</a>
+									<a href="javascript:;" class="btn-minus">-</a>
 									<input type="text" class="count" value="1">
 									<a href="javascript:;" class="btn-add">+</a>
 								</div>
-								<a href="javascript:;" class="btn-del"></a>
 							</div>
 						</li>
 						<li class="item">
@@ -234,13 +230,12 @@
 										<li>附送5套餐具</li>
 										<li>下单即送券</li>
 									</ul>
-									<div class="operate clearfix">
+									<div class="operate">
 										<div class="counter clearfix">
-											<a href="javascript:;" class="btn-minus disabled">-</a>
+											<a href="javascript:;" class="btn-minus">-</a>
 											<input type="text" class="count" value="1">
 											<a href="javascript:;" class="btn-add">+</a>
 										</div>
-										<a href="javascript:;" class="btn-del"></a>
 									</div>									
 								</div>
 							</div>
@@ -267,18 +262,20 @@
 									<ul class="tags clearfix">
 										<li>附送5套餐具</li>
 									</ul>
-									<div class="operate clearfix">
+									<div class="operate">
 										<div class="counter clearfix">
-											<a href="javascript:;" class="btn-minus disabled">-</a>
+											<a href="javascript:;" class="btn-minus">-</a>
 											<input type="text" class="count" value="1">
 											<a href="javascript:;" class="btn-add">+</a>
 										</div>
-										<a href="javascript:;" class="btn-del"></a>
 									</div>									
 								</div>
 							</div>
 						</li>
 					</ul>
+					<div class="footer">
+						<a href="javascript:;" class="btn-clear">清除失效商品</a>
+					</div>
 				</section>
 				<!-- basket products end -->
 
@@ -325,8 +322,11 @@
 		$LAB
 		.script('assets/plugins/zepto/zepto.min.js').wait()
 		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/zepto/fx.js').wait()
 		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/liMarquee.js').wait()
 		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
 		.script('assets/plugins/fastclick.js').wait()
 		.script('assets/js/basket.js');
 	</script>
