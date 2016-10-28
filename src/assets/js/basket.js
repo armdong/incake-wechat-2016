@@ -13,7 +13,69 @@
 
 		// 绑定配件列表
 		fnBindPartsList();
+
+		// 购物篮商品列表初始化
+		fnInitBasketList();
 	});
+
+	/**
+	 * 购物篮商品列表初始化
+	 * @return {[type]} [description]
+	 */
+	function fnInitBasketList() {
+		var $oProductList = $('#basketList');
+
+		/**
+		 * 普通商品选择切换
+		 * 过滤已下架、已售罄和组合商品
+		 */
+		$oProductList.children('.list')
+			.children('.item')
+			.not('.unshelve')
+			.not('.soldout')
+			.not('.combination')
+			.on('tap', '.select', function() {
+				$(this).toggleClass('selected');
+			});
+
+		// 组合商品选择切换
+		$oProductList.find('.combination')
+			.find('.item')
+			.on('tap', '.select', function() {
+				$(this).toggleClass('selected');
+
+				var $oCombination = $(this).closest('.combination')
+					$oSelectAll = $oCombination.children('.header').find('.select-all'),
+					$oUl = $oCombination.children('.list'),
+					$aLi = $oUl.children('.item'),
+					$aSelected = $oUl.find('.selected');
+
+				// 如果选中的个数等于所有选项的个数，则设置全部选中
+				if($aLi.length === $aSelected.length) {
+					$oSelectAll.addClass('selected');
+				} else {
+					$oSelectAll.removeClass('selected');
+				}
+			});
+
+		// 组合商品全部选中
+		$oProductList.find('.combination')
+			.children('.header')
+			.on('tap', '.select-all', function() {
+				var isSelected = $(this).hasClass('selected'),				
+					$oCombination = $(this).closest('.combination'),
+					$oUl = $oCombination.children('.list'),
+					$aSelect = $oUl.find('.select');
+
+				if(!isSelected) {
+					$(this).addClass('selected');
+					$aSelect.addClass('selected');
+				} else {
+					$(this).removeClass('selected');
+					$aSelect.removeClass('selected');
+				}
+			});
+	}
 
 	/**
 	 * 绑定配件列表
