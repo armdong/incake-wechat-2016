@@ -364,7 +364,8 @@ $loc-triangle-bgcolor: #f0f0f0;
 					left: 0;
 					width: 100%;
 
-					> div {						
+					> div {		
+						position: relative;				
 						width: 100%;
 						height: 34px;
 
@@ -384,14 +385,17 @@ $loc-triangle-bgcolor: #f0f0f0;
 						}
 						a {
 							display: block;
-							float: right;
-							width: 36px;
-							height: 34px;
-							margin-right: 10px;
+							position: absolute;
+							top: 50%;
+							right: 0;
+							width: 80px;
+							height: 80px;
+							transform: translateY(-50%);
 							background: {
 								image: url('../imgs/icons/icon_unfollow.png');
 								repeat: no-repeat;
-								size: cover;
+								size: 36px 34px;
+								position: center center;
 							}
 
 							&.followed {
