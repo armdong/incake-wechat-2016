@@ -71,7 +71,7 @@
 	.basket-wrapper {
 		width: 750px;
 		margin: 0 auto;
-		padding-bottom: 176px;
+		padding-bottom: 186px;
 
 		.basket {
 			width: 100%;
@@ -571,6 +571,89 @@
 								}
 							}
 						}
+					}
+				}
+				.basket-bar {
+					position: fixed;
+					bottom: 95px;
+					left: 0;
+					z-index: 99;
+					width: 100%;
+					height: 90px;
+					background-color: #fff;
+					border-top: 1px solid #303242;
+					overflow: hidden;
+
+					.selector {
+						float: left;
+						width: 160px;
+						height: 100%;
+
+						.select {
+							display: block;
+							float: left;
+							width: 78px;
+							height: 100%;
+							background: {
+								image: url('../imgs/icons/icon_circle_unselect.png');
+								repeat: no-repeat;
+								size: 42px 42px;
+								position: center center;
+							}
+
+							&.selected {
+								background-image: url('../imgs/icons/icon_circle_selected.png');
+							}
+						}
+						> p {
+							float: right;
+							width: 80px;
+							height: 100%;
+							line-height: 90px;
+							font-size: 28px; /* px */
+							color: #323232;
+						}
+					}
+					.text {
+						float: left;
+						width: 360px;
+						height: 100%;
+
+						p {
+							line-height: 90px;
+							font-size: 24px; /* px */
+							color: #323232;
+						}
+						.discount {
+							float: left;
+						}
+						.total {
+							float: right;
+							margin-right: 10px;
+
+							span {
+								display: inline-block;
+								float: right;
+								font-size: 32px; /* px */
+								color: #e84e55;
+
+								i {
+									font-size: 24px; /* px */
+									font-style: normal;
+								}
+							}
+						}
+					}
+					.btn-pay {
+						display: block;
+						float: right;
+						width: 230px;
+						height: 100%;
+						line-height: 90px;
+						font-size: 30px; /* px */
+						color: #fff;
+						text-align: center;
+						background-color: #41466e;
 					}
 				}
 			}
