@@ -6,7 +6,7 @@
 			};
 			
 			return this.each(function () {
-				var strWrap = $(this).addClass('str_wrap').data({scrollamount:p.scrollamount});
+				var strWrap = $(this).addClass('str_wrap');
 					
 				strWrap.wrapInner($('<div>').addClass('str_move'));
 				
@@ -17,10 +17,10 @@
 				//单次动画所需时间
 				var timeFunc = function () {
 						var fullS = Math.abs(leftPos),
-							time = (fullS / strWrap.data('scrollamount')) * 1000;
+							time = (fullS / p.scrollamount) * 1000;
 						if (parseFloat(strMove.css('left')) != 0) {
 							fullS = (fullS + strWrap.width());
-							time = (fullS - (strWrap.width() - parseFloat(strMove.css('left')))) / strWrap.data('scrollamount') * 1000;
+							time = (fullS - (strWrap.width() - parseFloat(strMove.css('left')))) / p.scrollamount * 1000;
 						}
 						return time;
 					},
