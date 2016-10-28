@@ -143,6 +143,8 @@ $loc-triangle-bgcolor: #f0f0f0;
 	}
 	
 	.swiper-pagination-bullet {
+		width: 10px;
+		height: 10px;
 		background: #ffffff;
 		border: 1px solid #b4b4b4; /* no */
 
@@ -433,6 +435,8 @@ $loc-triangle-bgcolor: #f0f0f0;
 			bottom: 5px;
 
 			.swiper-pagination-bullet {
+				width: 10px;
+				height: 10px;
 				background: #ffffff;
 				border: 1px solid #b4b4b4; /* no */
 
