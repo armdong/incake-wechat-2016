@@ -77,7 +77,7 @@ template.helper('specFormat', function(spec) {
                 for(var i = 0, len = specList.length; i < len; i++) {
                     var spec = specList[i];
                     var tmp = {
-                        pound: spec[0]
+                        pound: spec
                     };
                     specArr.push(tmp);
                 }
@@ -427,13 +427,11 @@ template.helper('specFormat', function(spec) {
 				name: '字母蜡烛',
 				price: 2,
                 spec: [{
-                        pound: 'L'
+                        pound: 'I'
                     }, {
-                        pound: 'O'
+                        pound: 'Love'
                     }, {
-                        pound: 'V'
-                    }, {
-                        pound: 'E'
+                        pound: 'U'
                     }
                 ]
 			}, {
