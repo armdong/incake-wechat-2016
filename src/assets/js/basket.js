@@ -62,8 +62,7 @@
 				});
 			}
 
-			// TODO 处理结算逻辑
-			
+			// TODO 处理结算逻辑			
 		});
 	}
 
@@ -396,5 +395,4 @@
 
     	$oNoticeMsg.liMarquee();
     }
-
 })(Zepto, window, document);

@@ -121,15 +121,15 @@ $loc-triangle-bgcolor: #f0f0f0;
 	.notice-close {
 		display: block;
 		position: absolute;
-		right: 20px;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 26px;
-		height: 26px;
+		right: 0;
+		top: 0;
+		width: 60px;
+		height: 60px;
 		background: {
 			image: url('../imgs/index/notice_close.png');
 			repeat: no-repeat;
-			size: cover;
+			size: 26px 26px;
+			position: center center;
 		}
 	}
 }
