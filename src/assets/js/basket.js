@@ -26,30 +26,45 @@
 		var $oProductList = $('#basketList');
 
 		/**
-		 * 普通商品选择切换
-		 * 过滤已下架、已售罄和组合商品
+		 * 普通商品单择切换
+		 * 过滤已下架、已售罄商品
 		 */
 		$oProductList.children('.list')
 			.children('.item')
 			.not('.unshelve')
 			.not('.soldout')
-			.not('.combination')
 			.on('tap', '.select', function() {
-				$(this).toggleClass('selected');
-			});
 
-		// 组合商品选择切换
-		$oProductList.find('.combination')
-			.find('.item')
-			.on('tap', '.select', function() {
 				$(this).toggleClass('selected');
 
-				var $oCombination = $(this).closest('.combination')
-					$oSelectAll = $oCombination.children('.header').find('.select-all'),
-					$oUl = $oCombination.children('.list'),
-					$aLi = $oUl.children('.item'),
-					$aSelected = $oUl.find('.selected');
+				var $oCombinationSelectAll,
+					$oCombinationUl,
+					$aCombinationLi,
+					$aCombinationSelected,
+					$oSelectAll = $oProductList.children('.header').children('.select-all'),
+					$oUl = $oProductList.children('.list'),
+					$aLi = $oUl.find('.item').not('.unshelve').not('.soldout').not('.combination'),
+					$aSelected;
 
+				// 是否是组合商品
+				var $oCombination = $(this).closest('.combination');
+				if($oCombination && $oCombination.length > 0) {
+					$oCombinationSelectAll = $oCombination.children('.header').find('.select-all'),
+					$oCombinationUl = $oCombination.children('.list'),
+					$aCombinationLi = $oCombinationUl.children('.item'),
+					$aCombinationSelected = $oCombinationUl.find('.selected');
+
+					// 如果选中的个数等于所有选项的个数，则设置全部选中
+					if($aCombinationLi.length === $aCombinationSelected.length) {
+						$oCombinationSelectAll.addClass('selected');
+					} else {
+						$oCombinationSelectAll.removeClass('selected');
+					}
+				}
+
+				// 所有选中的商品
+				$aSelected = $oUl.find('.item').not('.unshelve').not('.soldout').not('.combination').find('.selected');
+				
 				// 如果选中的个数等于所有选项的个数，则设置全部选中
 				if($aLi.length === $aSelected.length) {
 					$oSelectAll.addClass('selected');
@@ -58,7 +73,7 @@
 				}
 			});
 
-		// 组合商品全部选中
+		// 组合商品全选切换
 		$oProductList.find('.combination')
 			.children('.header')
 			.on('tap', '.select-all', function() {
@@ -74,6 +89,23 @@
 					$(this).removeClass('selected');
 					$aSelect.removeClass('selected');
 				}
+			});
+
+		// 所有商品全选切换
+		$oProductList.children('.header')
+			.on('tap', '.select', function() {
+
+				var isSelected = $(this).hasClass('selected'),
+					$oUl = $(this).closest('.header').next('.list'),
+					$aSelect = $oUl.find('.select').not('.unshelve').not('.soldout');
+
+				if(!isSelected) {
+					$(this).addClass('selected');
+					$aSelect.addClass('selected');
+				} else {
+					$(this).removeClass('selected');
+					$aSelect.removeClass('selected');
+				}					
 			});
 	}
 
