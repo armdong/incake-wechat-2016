@@ -16,7 +16,37 @@
 
 		// 购物篮商品列表初始化
 		fnInitBasketList();
+
+		// 结算状态栏初始化
+		fnInitBasketBar();
 	});
+
+	/**
+	 * 结算状态栏初始化
+	 * @return {[type]} [description]
+	 */
+	function fnInitBasketBar() {
+		var $oBasketBar = $('#basketBar'),
+			$oProductList = $('#basketList');
+
+		// 全选切换
+		$oBasketBar.children('.selector')
+			.on('tap', '.select', function() {
+				var isSelected = $(this).hasClass('selected'),
+					$oUl = $oProductList.children('.list'),
+					$aSelect = $oUl.find('.select').not('.unshelve').not('.soldout');
+
+				if(!isSelected) {
+					$(this).addClass('selected');
+					$oProductList.children('.header').children('.select').addClass('selected');
+					$aSelect.addClass('selected');
+				} else {
+					$(this).removeClass('selected');
+					$oProductList.children('.header').children('.select').removeClass('selected');
+					$aSelect.removeClass('selected');
+				}
+			});
+	}
 
 	/**
 	 * 购物篮商品列表初始化
@@ -24,6 +54,7 @@
 	 */
 	function fnInitBasketList() {
 		var $oProductList = $('#basketList'),
+			$oBasketBar = $('#basketBar'),
 			$oMaskDel = $('#maskDel'),
 			$oDelItem;
 
@@ -70,8 +101,10 @@
 				// 如果选中的个数等于所有选项的个数，则设置全部选中
 				if($aLi.length === $aSelected.length) {
 					$oSelectAll.addClass('selected');
+					$oBasketBar.children('.selector').children('.select').addClass('selected');
 				} else {
 					$oSelectAll.removeClass('selected');
+					$oBasketBar.children('.selector').children('.select').removeClass('selected');
 				}
 			});
 
@@ -103,9 +136,11 @@
 
 				if(!isSelected) {
 					$(this).addClass('selected');
+					$oBasketBar.children('.selector').children('.select').addClass('selected');
 					$aSelect.addClass('selected');
 				} else {
 					$(this).removeClass('selected');
+					$oBasketBar.children('.selector').children('.select').removeClass('selected');
 					$aSelect.removeClass('selected');
 				}					
 			});
@@ -171,8 +206,7 @@
 				$oProductList.children('.list')
 					.children('.unshelve,.soldout')
 					.remove();
-			});
-		
+			});		
 	}
 
 	/**
