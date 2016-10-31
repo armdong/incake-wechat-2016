@@ -64,7 +64,7 @@
 
 				// 所有选中的商品
 				$aSelected = $oUl.find('.item').not('.unshelve').not('.soldout').not('.combination').find('.selected');
-				
+
 				// 如果选中的个数等于所有选项的个数，则设置全部选中
 				if($aLi.length === $aSelected.length) {
 					$oSelectAll.addClass('selected');
@@ -107,6 +107,47 @@
 					$aSelect.removeClass('selected');
 				}					
 			});
+		
+		// 增加商品数量
+		$oProductList.on('tap', '.btn-add', function() {
+			var $oCount = $(this).siblings('.count'),
+				iCount = parseInt($oCount.val(), 10);
+
+			iCount++;
+			if(iCount > 99) {
+				iCount = 99;
+			}
+			$oCount.val(iCount);
+
+			// 组合商品
+			var $oCombination = $(this).closest('.combination');
+			if($oCombination && $oCombination.length > 0) {
+				var $aNum = $oCombination.find('.item').find('.num');
+				$aNum.html('x' + iCount);
+			}
+		});
+
+		// 减少商品数量
+		$oProductList.on('tap', '.btn-minus', function() {
+			var $oCount = $(this).siblings('.count'),
+				iCount = parseInt($oCount.val(), 10);
+
+			iCount--;
+			if(iCount < 1) {
+				// 删除商品
+				var $oItem = $(this).closest('.item');
+				
+			} else {
+				$oCount.val(iCount);
+
+				// 组合商品
+				var $oCombination = $(this).closest('.combination');
+				if($oCombination && $oCombination.length > 0) {
+					var $aNum = $oCombination.find('.item').find('.num');
+					$aNum.html('x' + iCount);
+				}
+			}		
+		});
 	}
 
 	/**
