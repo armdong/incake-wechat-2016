@@ -46,6 +46,25 @@
 					$aSelect.removeClass('selected');
 				}
 			});
+
+		// 结算
+		$oBasketBar.on('tap', '.btn-pay', function() {
+			var $aUnshelve = $oProductList.find('.unshelve'),
+				$aSoldout = $oProductList.find('.soldout');
+
+			// 商品列表有已下架或已售罄商品
+			if(($aUnshelve && $aUnshelve.length > 0) || ($aSoldout && $aSoldout.length > 0)) {
+				var dialog = $(document).dialog({
+					type: 'toast',
+					infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
+					infoText: '请先清空失效商品！',
+					autoClose: '1500'
+				});
+			}
+
+			// TODO 处理结算逻辑
+			
+		});
 	}
 
 	/**
