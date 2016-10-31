@@ -23,7 +23,9 @@
 	 * @return {[type]} [description]
 	 */
 	function fnInitBasketList() {
-		var $oProductList = $('#basketList');
+		var $oProductList = $('#basketList'),
+			$oMaskDel = $('#maskDel'),
+			$oDelItem;
 
 		/**
 		 * 普通商品单择切换
@@ -136,7 +138,8 @@
 			if(iCount < 1) {
 				// 删除商品
 				var $oItem = $(this).closest('.item');
-				
+				$oDelItem = $oItem;
+				$oMaskDel.show();
 			} else {
 				$oCount.val(iCount);
 
@@ -148,6 +151,28 @@
 				}
 			}		
 		});
+
+		// 确认删除商品
+		$oMaskDel.on('tap', '.btn-del-ok', function() {
+			if(!!$oDelItem) {
+				$oDelItem.remove();
+				$oMaskDel.hide();
+			}
+		});
+
+		// 取消删除商品
+		$oMaskDel.on('tap', '.btn-del-cancel', function() {
+			$oMaskDel.hide();
+		});
+
+		// 清除无效商品
+		$oProductList.children('.footer')
+			.on('tap', '.btn-clear', function() {
+				$oProductList.children('.list')
+					.children('.unshelve,.soldout')
+					.remove();
+			});
+		
 	}
 
 	/**

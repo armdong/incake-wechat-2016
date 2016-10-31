@@ -660,3 +660,66 @@
 		}
 	}
 }
+
+#maskDel {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.mask-wrapper {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 510px;
+		transform: translate(-50%, -50%);
+		background-color: #fff;
+		border-radius: 10px;
+		overflow: hidden;
+
+		.container {
+			position: relative;
+			width: 100%;
+			height: 190px;
+		
+			> p {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 100%;
+				transform: translateY(-50%);
+				text-align: center;
+				font-size: 24px; /* px */
+				color: #000;
+			}
+		}
+		.footer {
+			width: 100%;
+			height: 70px;
+
+			a {
+				display: block;
+				height: 70px;
+				line-height: 70px;
+				font-size: 24px; /* px */
+				text-align: center;
+				color: #fff;
+			}
+			.btn-del-cancel {
+				float: left;
+				width: 254px;
+				border-right: 1px solid #fff;
+				background-color: #41466e;
+			}
+			.btn-del-ok {
+				float: right;
+				width: 255px;	
+				background-color: #303242;			
+			}
+		}
+	}
+}
