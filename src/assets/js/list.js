@@ -12,7 +12,7 @@
  */
 template.helper('specFormat', function(spec) {
     var str = '';
-    if(!!spec && _.isArray(spec)){
+    if(!!spec && $.isArray(spec)){
         for(var i = 0, len = spec.length; i < len; i++) {
             str += spec[i].price + ',' + spec[i].pound + ',' + spec[i].note;
             if( i !== len - 1) {

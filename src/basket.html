@@ -242,13 +242,13 @@
 		<h2>· 精美配件 ·</h2>
 		<div class="list">
 			{{each list as item i}}
-			<div class="item">
+			<div class="item" spec="{{item.spec | specFormat}}">
 				<div class="img">
 					<img src="{{item.img}}" alt="">
 				</div>
 				<div class="text">
 					<p class="name">{{item.name}}</p>
-					<p class="price">￥{{item.price}}</p>
+					<p class="price">￥<span>{{item.price}}</span></p>
 					<a href="javascript:;" class="add-icon"></a>
 				</div>
 			</div>
@@ -256,6 +256,61 @@
 		</div>
 	</script>
 	<!-- parts list template end -->
+
+	<!-- addToCart begin -->
+	<div id="addToCart"></div>
+	<script id="tplAddToCart" type="text/html">
+		<a href="javascript:;" class="cart-close"></a>
+		<div class="header">
+			<div class="img">
+				<img src="{{img}}" alt="">
+			</div>
+			<div class="text">
+				<div class="name clearfix">
+					<p class="cn">{{name}}</p>
+				</div>
+			</div>
+			<p class="ext clearfix">
+				<span class="dollar">￥</span>
+				<span class="price">{{price}}</span>
+				<span class="pound">/个</span>
+			</p>
+		</div>
+		<div class="container">
+			<!-- 规格 -->
+			{{if spec !== ''}}
+			<section class="spec clearfix">
+				<p class="title">规格：</p>
+				<div class="content">
+					<ul class="spec-list clearfix">
+					{{each spec as item i}}
+						{{if i === 0}}
+						<li class="active">{{item.pound}}</li>
+						{{else}}
+						<li>{{item.pound}}</li>
+						{{/if}}
+					{{/each}}
+					</ul>
+				</div>
+			</section>
+			{{/if}}
+			<!-- 数量 -->
+			<section class="amount clearfix">
+				<p class="title">数量：</p>
+				<div class="content clearfix">
+					<div class="counter clearfix">
+						<a href="javascript:;" class="btn-minus disabled">-</a>
+						<input type="text" class="count" value="1">
+						<a href="javascript:;" class="btn-add">+</a>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="footer">
+			<a href="javascript:;" class="btn join-cart">加入购物篮</a>
+		</div>
+	</script>
+	<!-- addToCart end -->
 
 	<!-- scripts begin -->
 	<script src="assets/plugins/LABjs/LAB.min.js"></script>
@@ -267,8 +322,10 @@
 		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
 		.script('assets/plugins/liMarquee.js').wait()
 		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/underscore/underscore-min.js').wait()
 		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
 		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
 		.script('assets/js/basket.js');
 	</script>
 	<!-- script end -->
