@@ -211,6 +211,15 @@
 			if(!!$oDelItem) {
 				$oDelItem.remove();
 				$oMaskDel.hide();
+
+				// TODO 处理删除逻辑
+				// 删除成功提示
+				var dialog = $(document).dialog({
+					type: 'toast',
+					infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
+					infoText: '删除成功！',
+					autoClose: '1500'
+				});
 			}
 		});
 
@@ -222,9 +231,19 @@
 		// 清除无效商品
 		$oProductList.children('.footer')
 			.on('tap', '.btn-clear', function() {
+				// 移除dom节点
 				$oProductList.children('.list')
 					.children('.unshelve,.soldout')
 					.remove();
+
+				// TODO 处理清除无效商品逻辑
+				// 清除成功提示
+				var dialog = $(document).dialog({
+					type: 'toast',
+					infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
+					infoText: '无效商品清除成功！',
+					autoClose: '1500'
+				});
 			});		
 	}
 
