@@ -14,7 +14,7 @@ template.helper('specFormat', function(spec) {
     var str = '';
     if(!!spec && _.isArray(spec)){
         for(var i = 0, len = spec.length; i < len; i++) {
-            str += spec[i].pound;
+            str += spec[i];
             if( i !== len - 1) {
                 str += '|';
             }
@@ -76,10 +76,7 @@ template.helper('specFormat', function(spec) {
             if(_.isArray(specList)) {
                 for(var i = 0, len = specList.length; i < len; i++) {
                     var spec = specList[i];
-                    var tmp = {
-                        pound: spec
-                    };
-                    specArr.push(tmp);
+                    specArr.push(spec);
                 }
             }
 
@@ -426,44 +423,17 @@ template.helper('specFormat', function(spec) {
 				img: 'assets/imgs/basket/parts_img_candle.jpg',
 				name: '字母蜡烛',
 				price: 2,
-                spec: [{
-                        pound: 'I'
-                    }, {
-                        pound: 'Love'
-                    }, {
-                        pound: 'U'
-                    }
-                ]
+                spec: ['I', 'Love', 'U']
 			}, {
 				img: 'assets/imgs/basket/parts_img_plate.jpg',
 				name: '盘叉(5份)',
-				price: 10
+				price: 10,
+				spec: []
 			}, {
 				img: 'assets/imgs/basket/parts_img_candle.jpg',
 				name: '数字蜡烛',
 				price: 2,
-                spec: [{
-                        pound: '1'
-                    }, {
-                        pound: '2'
-                    }, {
-                        pound: '3'
-                    }, {
-                        pound: '4'
-                    }, {
-                        pound: '5'
-                    }, {
-                        pound: '6'
-                    }, {
-                        pound: '7'
-                    }, {
-                        pound: '8'
-                    }, {
-                        pound: '9'
-                    }, {
-                        pound: '0'
-                    }
-                ]
+                spec: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 			}]
 		};
 		var _html = template('tplPartsList', _data);
