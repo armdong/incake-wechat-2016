@@ -100,9 +100,9 @@
 				// 是否是组合商品
 				var $oCombination = $(this).closest('.combination');
 				if($oCombination && $oCombination.length > 0) {
-					$oCombinationSelectAll = $oCombination.children('.header').find('.select-all'),
-					$oCombinationUl = $oCombination.children('.list'),
-					$aCombinationLi = $oCombinationUl.children('.item'),
+					$oCombinationSelectAll = $oCombination.children('.header').find('.select-all');
+					$oCombinationUl = $oCombination.children('.list');
+					$aCombinationLi = $oCombinationUl.children('.item');
 					$aCombinationSelected = $oCombinationUl.find('.selected');
 
 					// 如果选中的个数等于所有选项的个数，则设置全部选中
