@@ -561,7 +561,7 @@
 	    // 显示行为验证码弹框
 	    $oMaskAction.show();
 	 
-	    $oBtn.on('touchstart',function(e){
+	    $oBtn.on('touchstart.action',function(e){
 	        var touches = e.touches[0];
 	        iW = touches.clientX - $oBtn.offset().left;
 	        $oBtn.removeClass('button-on');
@@ -569,7 +569,7 @@
 	        document.addEventListener("touchmove",defaultEvent,false);//阻止页面的滑动默认事件
 	    });
 	 
-	    $oBtn.on("touchmove", function(e) {
+	    $oBtn.on("touchmove.action", function(e) {
 	        var touches = e.touches[0];
 	        iLeft = touches.clientX - iW;
 	        var disW = $oSlider.width() - $oBtn.width();
@@ -586,7 +586,7 @@
 	        });
 	    });
 	 
-	    $oBtn.on("touchend",function() {
+	    $oBtn.on("touchend.action",function() {
 	    	var disW = $oSlider.width()-$oBtn.width();	    	
 	        if(iLeft >= disW) {
 	        	$oBtn.css({
@@ -612,6 +612,9 @@
 						//callback && callback();
 					}
 				});
+
+				// 成功解锁后卸载dom绑定的事件
+				$oBtn.off('.action'); // 每次滑动解锁成功后卸载之前的事件
 	        }else{
 	        	$oBtn.css({
 	        		left: '0'
@@ -622,7 +625,7 @@
 	        }
 	        $oBtn.addClass('button-on');
 	        $oTrack.addClass('track-on');
-	        document.removeEventListener("touchmove",defaultEvent,false);//阻止页面的滑动默认事件
+	        document.removeEventListener("touchmove",defaultEvent,false);//阻止页面的滑动默认事件	        
 	    });
 	 
 	    function defaultEvent(e) {
