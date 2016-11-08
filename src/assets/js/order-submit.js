@@ -2,9 +2,36 @@
 
 	$(function() {
 
+		// 解决Zepto点透bug
+		FastClick.attach(document.body);
+
 		// 送达时间选择
 		fnChangeRecieveTime();
+
+		// 查看全部商品
+		fnViewAllProduct();
 	});
+
+	/**
+	 * 查看全部商品
+	 * @return {[type]} [description]
+	 */
+	function fnViewAllProduct() {
+		var $oAllList = $('#allList'),
+			$oBtnViewAll = $('#btnViewAll');
+
+		// 查看全部
+		$oBtnViewAll.on('tap', function() {
+			Mask.show();
+			$oAllList.show();
+		});
+
+		// 关闭全部商品
+		$oAllList.on('tap', '.btn-close', function() {
+			Mask.hide();
+			$oAllList.hide();
+		});
+	}
 
 	/**
 	 * 送达时间选择
