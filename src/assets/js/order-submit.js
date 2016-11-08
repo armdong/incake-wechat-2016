@@ -10,7 +10,31 @@
 
 		// 查看全部商品
 		fnViewAllProduct();
+
+		// 优惠商品
+		fnViewPrivilegeProduct();
 	});
+
+	/**
+	 * 优惠商品
+	 * @return {[type]} [description]
+	 */
+	function fnViewPrivilegeProduct() {
+		var $oPrivilegeList = $('#privilegeList'),
+			$oBtnViewPrivilege = $('#btnViewPrivilege');
+
+		// 优惠商品
+		$oBtnViewPrivilege.on('tap', function() {
+			Mask.show();
+			$oPrivilegeList.show();
+		});
+
+		// 关闭优惠商品
+		$oPrivilegeList.on('tap', '.btn-close', function() {
+			Mask.hide();
+			$oPrivilegeList.hide();
+		});
+	}
 
 	/**
 	 * 查看全部商品

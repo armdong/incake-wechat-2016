@@ -278,7 +278,7 @@ html, body {
 	}
 }
 
-.all-list {
+.all-list, .privilege-list {
 	display: none;
 	position: fixed;
 	top: 50%;
@@ -356,11 +356,15 @@ html, body {
 					span {
 						display: inline-block;
 
-						&.pound {
+						&.name, &.pound {
 							float: left;
 						}
-						&.price {
+						&.price, &.discount {
 							float: right;
+						}
+						&.discount {
+							font-size: 20px; /* px */
+							color: #e84e55;
 						}
 					}
 					i {
