@@ -11,6 +11,7 @@
 	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
 	<title>填写订单</title>
 	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/plugins/iosselect/iosSelect.css">
 	<link rel="stylesheet" href="assets/css/dialog.css">
 	<link rel="stylesheet" href="assets/css/global.css">
 	<link rel="stylesheet" href="assets/css/order-submit.css">
@@ -29,13 +30,13 @@
 						<div class="item-container new-addr">
 							<a href="javascript:;" class="add-addr">请填写新的收获地址</a>
 						</div>
-						<!-- <div class="item-container default-addr">
+						<div class="item-container default-addr">
 							<p>
 								<span class="name">张三</span>
 								<span class="mobile">13888888888</span>
 							</p>
 							<p class="txt-addr">上海市 静安区 广中西路777弄99号506室</p>
-						</div> -->
+						</div>
 					</div>
 				</div>
 				<!-- 收获地址 end -->
@@ -43,8 +44,10 @@
 				<div class="section-item section-time">
 					<div class="item-wrapper navigator clearfix">
 						<div class="item-container">
-							<span class="title">送达时间</span>
-							<a href="javascript:;" class="btn btn-time">请选择</a>
+							<span class="title">送达时间</span>                     
+					        <input type="hidden" name="day_id" id="dayId" value=""> 
+					        <input type="hidden" name="time_id" id="timeId" value=""> 
+							<a href="javascript:;" class="btn btn-time" id="showTime">请选择</a>
 						</div>
 					</div>
 				</div>
@@ -209,6 +212,9 @@
 		.script('assets/plugins/artTemplate/dist/template.js').wait()
 		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
 		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/plugins/iosselect/adaptive.js').wait()
+		.script('assets/plugins/iosselect/iscroll.js').wait()
+		.script('assets/plugins/iosselect/iosSelect_rem.js').wait()
 		.script('assets/js/order-submit.js');
 	</script>
 	<!-- script end -->
