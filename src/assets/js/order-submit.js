@@ -13,7 +13,34 @@
 
 		// 优惠商品
 		fnViewPrivilegeProduct();
+
+		// 订单备注
+		fnOrderComment();
 	});
+
+	/**
+	 * 订单备注
+	 * @return {[type]} [description]
+	 */
+	function fnOrderComment() {
+		var $oOrderComment = $('#orderComment'),
+			$oBtnComment = $('#btnComment');
+
+		// 订单备注
+		$oBtnComment.on('tap', function() {
+			Mask.show();
+			$oOrderComment.show();
+		});
+
+		// 关闭订单备注
+		$oOrderComment.on('tap', '.btn-ok', function() {
+
+			// TODO 处理添加备注逻辑
+
+			Mask.hide();
+			$oOrderComment.hide();
+		});
+	}
 
 	/**
 	 * 优惠商品

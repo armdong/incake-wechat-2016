@@ -278,7 +278,7 @@ html, body {
 	}
 }
 
-.all-list, .privilege-list {
+.mask {
 	display: none;
 	position: fixed;
 	top: 50%;
@@ -290,7 +290,7 @@ html, body {
 	border-radius: 10px;
 	overflow: hidden;
 
-	.list-header {
+	.mask-header {
 		width: 100%;
 
 		.title {
@@ -314,7 +314,7 @@ html, body {
 		}
 	}
 
-	.list-container {
+	.mask-container {
 		width: 100%;
 
 		.list {
@@ -374,9 +374,24 @@ html, body {
 				}
 			}
 		}
+
+		.txt-comment {
+			display: block;
+			width: 530px;
+			height: 250px;
+			padding: 20px;
+			margin: 20px auto;
+			font-size: 30px; /* px */
+			color: #323232;
+			line-height: 48px;
+			background-color: #fff;
+			border: none;
+			outline: none;
+			-webkit-appearance: none;
+		}
 	}
 
-	.list-footer {
+	.mask-footer {
 		width: 100%;
 		height: 80px;
 		border-radius: 0 0 10px 10px;

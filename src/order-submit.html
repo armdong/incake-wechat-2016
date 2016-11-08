@@ -157,7 +157,7 @@
 					<div class="item-wrapper navigator">
 						<div class="item-container clearfix">
 							<span class="title">订单备注</span>
-							<a href="javascript:;" class="btn btn-comment">无</a>
+							<a href="javascript:;" class="btn btn-comment" id="btnComment">无</a>
 						</div>
 					</div>
 				</div>
@@ -200,13 +200,13 @@
 		<!-- submit bar end -->
 
 		<!-- 全部商品列表 begin -->
-		<div class="all-list" id="allList">
-			<div class="list-header">
+		<div class="mask mask-all" id="allList">
+			<div class="mask-header">
 				<div class="title">
 					<p>商品列表 (6)</p>
 				</div>
 			</div>
-			<div class="list-container">
+			<div class="mask-container">
 				<ul class="list">
 					<li class="clearfix">
 						<div class="img">
@@ -252,20 +252,20 @@
 					</li>
 				</ul>
 			</div>
-			<div class="list-footer">
+			<div class="mask-footer">
 				<a href="javascript:;" class="btn-close">关闭</a>
 			</div>
 		</div>
 		<!-- 全部商品列表 end -->
 
 		<!-- 优惠列表 begin -->
-		<div class="privilege-list" id="privilegeList">
-			<div class="list-header">
+		<div class="mask mask-privilege" id="privilegeList">
+			<div class="mask-header">
 				<div class="title">
 					<p>优惠列表</p>
 				</div>
 			</div>
-			<div class="list-container">
+			<div class="mask-container">
 				<ul class="list">
 					<li class="clearfix">
 						<div class="img">
@@ -314,11 +314,27 @@
 					</li>
 				</ul>
 			</div>
-			<div class="list-footer">
+			<div class="mask-footer">
 				<a href="javascript:;" class="btn-close">关闭</a>
 			</div>
 		</div>
 		<!-- 优惠列表 end -->
+
+		<!-- 订单备注 begin -->
+		<div class="mask mask-comment" id="orderComment">
+			<div class="mask-header">
+				<div class="title">
+					<p>订单备注</p>
+				</div>
+			</div>
+			<div class="mask-container">
+				<textarea class="txt-comment" placeholder="您还要跟INCAKE叮嘱什么呢~"></textarea>
+			</div>
+			<div class="mask-footer">
+				<a href="javascript:;" class="btn-ok">确认</a>
+			</div>
+		</div>
+		<!-- 订单备注 end -->
 
 	</div>
 	<!-- 订单提交页 end -->
