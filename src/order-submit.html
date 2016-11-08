@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>填写订单</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/plugins/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/order-submit.css">
+</head>
+<body>
+	
+	<!-- 订单提交页 begin -->
+	<div class="page-container">
+		
+		<!-- section group begin -->
+		<div class="section-group">
+			<div class="section">
+				<!-- 收获地址 begin -->
+				<div class="section-item section-addr">
+					<div class="item-wrapper navigator">
+						<div class="item-container new-addr">
+							<a href="javascript:;" class="add-addr">请填写新的收获地址</a>
+						</div>
+					</div>
+				</div>
+				<!-- 收获地址 end -->
+				<!-- 送达时间 begin -->
+				<div class="section-item section-time">
+					<div class="item-wrapper navigator clearfix">
+						<div class="item-container">
+							<span class="title">送达时间</span>
+							<a href="javascript:;" class="btn btn-time">请选择</a>
+						</div>
+					</div>
+				</div>
+				<!-- 送达时间 end -->
+			</div>
+			<div class="section">
+				<!-- 查看全部商品 begin -->
+				<div class="section-item section-viewall">
+					<div class="item-wrapper navigator">
+						<div class="item-container clearfix">
+							<span class="title">总共5件商品</span>
+							<a href="javascript:;" class="btn btn-viewall">查看全部商品</a>
+						</div>
+					</div>
+				</div>
+				<!-- 查看全部商品 end -->
+				<!-- 商品列表 begin -->
+				<div class="section-item section-list">
+					<div class="item-wrapper">
+						<ul class="list">
+							<li class="clearfix">
+								<div class="img">
+									<img src="assets/imgs/order/list_img.jpg" alt="">
+								</div>
+								<div class="text">
+									<p class="name">女王芝士</p>
+									<p class="ext clearfix">
+										<span class="pound">1.5磅 <i>x1</i></span>
+										<span class="price">￥189</span>
+									</p>
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="img">
+									<img src="assets/imgs/order/list_img.jpg" alt="">
+								</div>
+								<div class="text">
+									<p class="name">女王芝士</p>
+									<p class="ext clearfix">
+										<span class="pound">1.5磅 <i>x1</i></span>
+										<span class="price">￥189</span>
+									</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 商品列表 end -->
+				<!-- 合计 begin -->
+				<div class="section-item section-total">
+					<div class="item-wrapper">
+						<div class="item-container">
+							<span class="content">合计：￥333</span>
+						</div>
+					</div>
+				</div>
+				<!-- 合计 end -->
+			</div>
+			<div class="section">
+				<!-- 运费 begin -->
+				<div class="section-item section-freight">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<span class="title">运费(订单未满99元)</span>
+							<span class="content">￥10</span>
+						</div>
+					</div>
+				</div>
+				<!-- 运费 end -->
+			</div>
+			<div class="section">
+				<!-- 支付方式 begin -->
+				<div class="section-item section-payment">
+					<div class="item-wrapper navigator">
+						<div class="item-container clearfix">
+							<span class="title">支付方式</span>
+							<a href="javascript:;" class="btn btn-payment">微信支付</a>
+						</div>
+					</div>
+				</div>
+				<!-- 支付方式 end -->
+				<!-- 卡券 begin -->
+				<div class="section-item section-ticket">
+					<div class="item-wrapper navigator">
+						<div class="item-container clearfix">
+							<span class="title">卡券</span>
+							<a href="javascript:;" class="btn btn-ticket">已优惠55元</a>
+						</div>
+					</div>
+					<p class="item-notice clearfix"><span>抵扣券超出金额 ￥33，超出部分不返还。</span></p>
+				</div>
+				<!-- 卡券 end -->
+			</div>
+			<div class="section">
+				<!-- 发票 begin -->
+				<div class="section-item section-invoice">
+					<div class="item-wrapper navigator">
+						<div class="item-container clearfix">
+							<span class="title">发票</span>
+							<a href="javascript:;" class="btn btn-invoice">无</a>
+						</div>
+					</div>
+				</div>
+				<!-- 发票 end -->
+				<!-- 订单备注 begin -->
+				<div class="section-item section-comment">
+					<div class="item-wrapper navigator">
+						<div class="item-container clearfix">
+							<span class="title">订单备注</span>
+							<a href="javascript:;" class="btn btn-comment">无</a>
+						</div>
+					</div>
+				</div>
+				<!-- 订单备注 end -->
+			</div>
+			<div class="section">
+				<!-- 赠品 begin -->
+				<div class="section-item section-gift">
+					<div class="item-wrapper navigator">
+						<div class="item-container clearfix">
+							<span class="title">赠品</span>
+							<a href="javascript:;" class="btn btn-gift">可选1个</a>
+						</div>
+					</div>
+					<div class="item-wrapper gift-list">
+						<ul class="clearfix">
+							<li>餐具×5</li>
+							<li>蜡烛×1</li>
+							<li>生日牌×1</li>
+							<li>餐具×5</li>
+							<li>蜡烛×1</li>
+							<li>生日牌×1</li>
+							<li>餐具×5</li>
+							<li>蜡烛×1</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 赠品 end -->
+			</div>
+		</div>
+		<!-- section group end -->
+
+		<!-- submit bar begin -->
+		<div class="submit-bar clearfix">
+			<div class="text">
+				<p>合计：<span class="total-price"><i>￥</i>338</span><span class="privilege">(已优惠￥68)</span></p>
+			</div>
+			<a href="javascript:;" class="btn-submit">提交订单</a>
+		</div>
+		<!-- submit bar end -->
+
+	</div>
+	<!-- 订单提交页 end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/swiper/js/swiper.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/order-submit.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>
