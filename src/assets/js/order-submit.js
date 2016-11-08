@@ -16,7 +16,67 @@
 
 		// 订单备注
 		fnOrderComment();
+
+		// 支付方式
+		fnInitPayment();
 	});
+
+	/**
+	 * 支付方式选择
+	 * @return {[type]} [description]
+	 */
+	function fnInitPayment() {
+		var $oPaymentAction = $('#paymentAction'),
+			$oBtnPayment = $('#btnPayment'),
+			tl = new TimelineLite();
+
+		// 切换支付方式
+		$oBtnPayment.on('tap', function() {
+			tl.clear();
+			tl.to($oPaymentAction, 0.3, {
+				y: '0%',
+				ease: Linear.easeIn,
+				onStart: function() {
+					Mask.show();
+				}
+			});
+		});
+
+		// 支付方式切换
+		$oPaymentAction.on('tap', 'li', function() {
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+
+		// 关闭支付方式
+		$oPaymentAction.on('tap', '.btn-cancel', function() {
+			tl.clear();
+			tl.to($oPaymentAction, 0.3, {
+				y: '100%',
+				ease: Linear.easeOut,
+				onComplete: function() {
+					Mask.hide();
+				}
+			});
+		});
+
+		// 确定支付方式
+		$oPaymentAction.on('tap', '.btn-ok', function() {
+
+			var $oCurrPayment = $oPaymentAction.find('.list').children('.active'),
+				txtPayment = $oCurrPayment.children('.name').text();
+
+			$oBtnPayment.text(txtPayment);
+
+			tl.clear();
+			tl.to($oPaymentAction, 0.3, {
+				y: '100%',
+				ease: Linear.easeOut,
+				onComplete: function() {
+					Mask.hide();
+				}
+			});
+		});
+	}
 
 	/**
 	 * 订单备注
