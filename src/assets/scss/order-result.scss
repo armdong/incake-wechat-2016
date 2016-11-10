@@ -14,29 +14,25 @@ html, body {
 	display: none;
 	width: 100%;
 	margin-top: 40px;
-}
-.success-container {
-	padding: 130px 0 139px;
-	background-color: #fff;
-	border-bottom: 1px solid #dcdcdc; /* no */
 
 	.msg {
 		width: 670px;
 		margin: 0 auto;
+		padding: 130px 40px 139px;
+		background-color: #fff;
+		border-bottom: 1px solid #dcdcdc; /* no */
 
 		p {
 			height: 100px;
 			line-height: 100px;
 			text-align: center;
 			font-size: 36px; /* px */
-			color: #288c23;
 			
 			i {
 				display: inline-block;
 				width: 100px;
 				height: 100px;
-				background: {
-					image: url('../imgs/icons/icon_order_success.png');
+				background: {					
 					repeat: no-repeat;
 					size: 100px 100px;
 					position: center center;
@@ -54,11 +50,104 @@ html, body {
 			width: 666px;
 			height: 66px;
 			margin: 70px auto 0;
-			border: 2px solid #303242;
 			font-size: 26px; /* px */
-			color: #303242;
 			line-height: 66px;
 			text-align: center;
 		}
 	}
+
+	.payment {
+		width: 100%;
+		margin-top: 50px;
+
+		.payment-header {
+			width: 100%;
+			border-bottom: 1px solid #303242;
+
+			p {
+				width: 690px;
+				height: 70px;
+				margin: 0 auto;
+				line-height: 70px;
+				font-size: 30px; /* px */
+				color: #303242;
+
+				span {
+					color: #e84e55;
+				}
+			}
+		}
+
+		.payment-container {
+			width: 690px;
+			padding: 40px 30px 30px;
+			background-color: #fff;
+
+			ul {
+				width: 100%;
+
+				li {
+					display: block;
+					float: left;
+					width: 220px;
+					height: 80px;
+					margin: 0 15px 15px 0;
+					overflow: hidden;
+
+					&:nth-of-type(3n) {
+						margin-right: 0;
+					}
+					
+					a {
+						display: block;
+						width: 216px;
+						height: 76px;
+						border: 2px solid #d2d2d2;
+
+						img {
+							width: 100%;
+							border: none;
+							vertical-align: top;
+						}
+					}
+
+					&.active a {
+						border-color: #ef1b47;
+					}
+				}
+			}
+		}
+	}
+}
+
+.success-container {
+	.msg {
+		p {			
+			color: #288c23;
+
+			i {
+				background-image: url('../imgs/icons/icon_order_success.png');
+			}
+		}
+		a {
+			border: 2px solid #303242;
+			color: #303242;
+		}
+	}	
+}
+
+.fail-container {
+	.msg {
+		p {			
+			color: #e84e55;
+
+			i {
+				background-image: url('../imgs/icons/icon_order_fail.png');
+			}
+		}
+		a {
+			border: 2px solid #e1965f;
+			color: #e1965f;
+		}
+	}	
 }
