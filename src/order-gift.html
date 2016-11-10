@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>赠品</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/order-gift.css">
+</head>
+<body>
+	
+	<!-- 订单提交页 begin -->
+	<div class="page-container">
+		
+		<!-- section group begin -->
+		<div class="section-group" id="sectionGroup">
+			<!-- 不需要赠品 begin -->
+			<div class="section no-gift">
+				<div class="section-item radio selected">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<span>不需要赠品</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 不需要赠品 end -->
+			<!-- 贺卡 begin -->
+			<div class="section greeting-card">
+				<div class="section-header">
+					<p>贺卡(每单只配送一张)</p>
+				</div>
+				<div class="section-item radio">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<span>贺卡</span>
+							<input type="text" class="txt-card" placeholder="最多可输入50字">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 贺卡 end -->
+			<!-- 生日牌 begin -->
+			<div class="section birth-card">
+				<div class="section-header">
+					<p>生日牌(可多选)</p>
+				</div>
+				<div class="section-item checkbox">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<div class="info">
+								<p class="name">女王芝士</p>
+								<p>
+									<span class="pound">1.5磅</span>
+									<span class="num">x1</span>
+								</p>
+							</div>
+							<p class="txt">生日快乐</p>
+						</div>
+					</div>
+				</div>
+				<div class="section-item checkbox">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<div class="info">
+								<p class="name">女王芝士</p>
+								<p>
+									<span class="pound">1.5磅</span>
+									<span class="num">x1</span>
+								</p>
+							</div>
+							<p class="txt">生日快乐</p>
+						</div>
+					</div>
+				</div>
+				<div class="section-item checkbox">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<div class="info">
+								<p class="name">女王芝士</p>
+								<p>
+									<span class="pound">1.5磅</span>
+									<span class="num">x1</span>
+								</p>
+							</div>
+							<p class="txt">生日快乐</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 生日牌 end -->
+			<!-- 蜡烛 begin -->
+			<div class="section candle">
+				<div class="section-header">
+					<p>蜡烛(可多选)</p>
+				</div>
+				<div class="section-item checkbox">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<div class="info">
+								<p class="name">女王芝士</p>
+								<p>
+									<span class="pound">1.5磅</span>
+									<span class="num">x1</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="section-item checkbox">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<div class="info">
+								<p class="name">女王芝士</p>
+								<p>
+									<span class="pound">1.5磅</span>
+									<span class="num">x1</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="section-item checkbox">
+					<div class="item-wrapper">
+						<div class="item-container clearfix">
+							<div class="info">
+								<p class="name">女王芝士</p>
+								<p>
+									<span class="pound">1.5磅</span>
+									<span class="num">x1</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 蜡烛 end -->
+		</div>
+		<!-- section group end -->
+
+		<!-- footer bar begin -->
+		<div class="footer-bar clearfix" id="footerBar">
+			<a href="javascript:;" class="btn-save">保存</a>
+		</div>
+		<!-- footer bar end -->
+	</div>
+	<!-- 订单提交页 end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/order-gift.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>

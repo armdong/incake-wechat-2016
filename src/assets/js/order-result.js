@@ -62,45 +62,45 @@
                 update();
             }, 50);
 
-            function update() {
-                var nextShowTimeSeconds = getCurrentShowTimeSeconds();
-                var nextMinutes = parseInt(nextShowTimeSeconds / 60);
-                var nextSeconds = nextShowTimeSeconds % 60;
-                var curMinutes = parseInt(curShowTimeSeconds / 60);
-                var curSeconds = curShowTimeSeconds % 60;
-                if (nextSeconds != curSeconds) {
-                    curShowTimeSeconds = nextShowTimeSeconds;
-                }
-            }
-
-            function render() {
-                var minutes = parseInt(curShowTimeSeconds / 60);
-                var seconds = curShowTimeSeconds % 60;
-                if (minutes == 0 && seconds == 0) {
-                    // 订单支付超时
-                    clearInterval(timer);
-                    // 超时回调函数
-                    fnTimeoutCallback();
-                }
-                $oMinute.html(minutes < 10 ? '0' + minutes : minutes);
-                $oSecond.html(seconds < 10 ? '0' + seconds : seconds);
-            }
-
-            function getCurrentShowTimeSeconds() {
-                var curTime = new Date().getTime();
-                var ret = endTime - curTime;
-                ret = Math.round(ret / 1000);
-                return ret >= 0 ? ret : 0;
-            }
-
-            // 支付超时回调函数
-            function fnTimeoutCallback() {
-            	$oFailMsg.find('.order-detail').html('交易已关闭，请重新下单！');
-            	$oFailPayment.hide();
-            }
-
 			$oFail.show();
 		}
+
+        function update() {
+            var nextShowTimeSeconds = getCurrentShowTimeSeconds();
+            var nextMinutes = parseInt(nextShowTimeSeconds / 60);
+            var nextSeconds = nextShowTimeSeconds % 60;
+            var curMinutes = parseInt(curShowTimeSeconds / 60);
+            var curSeconds = curShowTimeSeconds % 60;
+            if (nextSeconds != curSeconds) {
+                curShowTimeSeconds = nextShowTimeSeconds;
+            }
+        }
+
+        function render() {
+            var minutes = parseInt(curShowTimeSeconds / 60);
+            var seconds = curShowTimeSeconds % 60;
+            if (minutes === 0 && seconds === 0) {
+                // 订单支付超时
+                clearInterval(timer);
+                // 超时回调函数
+                fnTimeoutCallback();
+            }
+            $oMinute.html(minutes < 10 ? '0' + minutes : minutes);
+            $oSecond.html(seconds < 10 ? '0' + seconds : seconds);
+        }
+
+        function getCurrentShowTimeSeconds() {
+            var curTime = new Date().getTime();
+            var ret = endTime - curTime;
+            ret = Math.round(ret / 1000);
+            return ret >= 0 ? ret : 0;
+        }
+
+        // 支付超时回调函数
+        function fnTimeoutCallback() {
+        	$oFailMsg.find('.order-detail').html('交易已关闭，请重新下单！');
+        	$oFailPayment.hide();
+        }
 	}
 
 })(Zepto, window, document);
