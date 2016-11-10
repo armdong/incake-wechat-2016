@@ -234,6 +234,10 @@ html, body {
 
 			i {
 				font-style: normal;
+
+				&.red {
+					color: #e84e55;
+				}
 			}
 		}
 	}

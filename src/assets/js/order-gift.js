@@ -52,11 +52,14 @@
             var text = $(this).val(),
                 iLen = text.length;
 
-            if (iLen > iMaxLen) {
+            if (iLen >= iMaxLen) {
                 $oMaskGreeting.find('.txt-greeting').val(text.substring(0, iMaxLen));
                 iLen = iMaxLen;
+                $oCurrWords.addClass('red');
+            } else {
+            	$oCurrWords.removeClass('red');
             }
-            $oCurrWords.text(iMaxLen - iLen);
+            $oCurrWords.text(iLen);
         });
 
 		// 关闭编辑贺卡内容

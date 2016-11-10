@@ -99,11 +99,14 @@
             var text = $(this).val(),
                 iLen = text.length;
 
-            if (iLen > iMaxLen) {
+            if (iLen >= iMaxLen) {
                 $oOrderComment.find('.txt-comment').val(text.substring(0, iMaxLen));
                 iLen = iMaxLen;
+                $oCurrWords.addClass('red');
+            } else {
+            	$oCurrWords.removeClass('red');
             }
-            $oCurrWords.text(iMaxLen - iLen);
+            $oCurrWords.text(iLen);
         });
 
 		// 关闭订单备注
