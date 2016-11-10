@@ -32,6 +32,12 @@
 
 		// 切换支付方式
 		$oBtnPayment.on('tap', function() {
+
+			var paytype = $(this).attr('paytype');
+			$oPaymentAction.find('.list').children('li')
+				.filter('li[paytype=' + paytype + ']')
+				.addClass('active').siblings().removeClass('active');
+
 			tl.clear();
 			tl.to($oPaymentAction, 0.3, {
 				y: '0%',
@@ -63,9 +69,10 @@
 		$oPaymentAction.on('tap', '.btn-ok', function() {
 
 			var $oCurrPayment = $oPaymentAction.find('.list').children('.active'),
-				txtPayment = $oCurrPayment.children('.name').text();
+				txtPayment = $oCurrPayment.children('.name').text(),
+				paytype = $oCurrPayment.attr('paytype');
 
-			$oBtnPayment.text(txtPayment);
+			$oBtnPayment.attr('paytype', paytype).text(txtPayment);
 
 			tl.clear();
 			tl.to($oPaymentAction, 0.3, {
