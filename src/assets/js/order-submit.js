@@ -35,7 +35,7 @@
 
 			var paytype = $(this).attr('paytype');
 			$oPaymentAction.find('.list').children('li')
-				.filter('li[paytype=' + paytype + ']')
+				.filter('li[paytype="' + paytype + '"]')
 				.addClass('active').siblings().removeClass('active');
 
 			tl.clear();
