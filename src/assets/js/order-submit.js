@@ -84,13 +84,27 @@
 	 */
 	function fnOrderComment() {
 		var $oOrderComment = $('#orderComment'),
-			$oBtnComment = $('#btnComment');
+			$oBtnComment = $('#btnComment'),
+			$oCurrWords = $oOrderComment.find('.words-calculator').find('i'),
+			iMaxLen = 50;
 
 		// 订单备注
 		$oBtnComment.on('tap', function() {
 			Mask.show();
 			$oOrderComment.show();
 		});
+
+		// 字数限制
+		$oOrderComment.find('.txt-comment').bind('input propertychange', function(e) {
+            var text = $(this).val(),
+                iLen = text.length;
+
+            if (iLen > iMaxLen) {
+                $oOrderComment.find('.txt-comment').val(text.substring(0, iMaxLen));
+                iLen = iMaxLen;
+            }
+            $oCurrWords.text(iMaxLen - iLen);
+        });
 
 		// 关闭订单备注
 		$oOrderComment.on('tap', '.btn-ok', function() {
