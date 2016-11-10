@@ -19,7 +19,14 @@
 			$oSuccess = $oContainer.find('.success-container'),
 			$oSucMsg = $oSuccess.find('.msg'),
 			paytype = 'online',
-			$oFail = $oContainer.find('.fail-container');
+			$oFail = $oContainer.find('.fail-container'),
+			$oFailMsg = $oFail.find('.msg'),
+			$oFailPayment = $oFail.find('.payment'),
+			$oMinute = $oFailMsg.find('.countdown').find('.minutes'),
+            $oSecond = $oFailMsg.find('.countdown').find('.seconds'),
+			beginTime, endTime, curShowTimeSeconds,
+			timer = null,
+			timeout = 30 * 60 * 1000; // 超时时间
 
 		// TODO 判断订单是否成功支付 true:支付成功/提交成功  false:支付失败
 		var result = false;
@@ -42,7 +49,55 @@
 			$oSuccess.show();
 		} else { // 支付失败
 
+			// TODO:下单时间需要到数据库查询
+            //beginTime = new Date(2016, 10, 10, 11, 0, 0).getTime();
+            beginTime = new Date().getTime();
+            endTime = beginTime + timeout; // 下单30分钟内需要完成支付
+            curShowTimeSeconds = 0;
 
+            curShowTimeSeconds = getCurrentShowTimeSeconds();
+
+            timer = setInterval(function() {
+                render();
+                update();
+            }, 50);
+
+            function update() {
+                var nextShowTimeSeconds = getCurrentShowTimeSeconds();
+                var nextMinutes = parseInt(nextShowTimeSeconds / 60);
+                var nextSeconds = nextShowTimeSeconds % 60;
+                var curMinutes = parseInt(curShowTimeSeconds / 60);
+                var curSeconds = curShowTimeSeconds % 60;
+                if (nextSeconds != curSeconds) {
+                    curShowTimeSeconds = nextShowTimeSeconds;
+                }
+            }
+
+            function render() {
+                var minutes = parseInt(curShowTimeSeconds / 60);
+                var seconds = curShowTimeSeconds % 60;
+                if (minutes == 0 && seconds == 0) {
+                    // 订单支付超时
+                    clearInterval(timer);
+                    // 超时回调函数
+                    fnTimeoutCallback();
+                }
+                $oMinute.html(minutes < 10 ? '0' + minutes : minutes);
+                $oSecond.html(seconds < 10 ? '0' + seconds : seconds);
+            }
+
+            function getCurrentShowTimeSeconds() {
+                var curTime = new Date().getTime();
+                var ret = endTime - curTime;
+                ret = Math.round(ret / 1000);
+                return ret >= 0 ? ret : 0;
+            }
+
+            // 支付超时回调函数
+            function fnTimeoutCallback() {
+            	$oFailMsg.find('.order-detail').html('交易已关闭，请重新下单！');
+            	$oFailPayment.hide();
+            }
 
 			$oFail.show();
 		}
