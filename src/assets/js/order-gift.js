@@ -6,7 +6,7 @@
 		FastClick.attach(document.body);
 
 		// 初始化
-		fnInit();		
+		fnInit();	
 	});
 
 	/**
@@ -19,7 +19,9 @@
 			$oGreetingCard = $oGroup.find('.greeting-card'),
 			$oBirthCard = $oGroup.find('.birth-card'),
 			$oCandle = $oGroup.find('.candle'),
-			$oBtnSave = $('#footerBar').children('.btn-save');
+			$oBtnSave = $('#footerBar').children('.btn-save'),
+			$oMaskGreeting = $('#maskGreeting'),
+			$oMaskOk = $oMaskGreeting.find('.btn-ok');
 
 		// 不需要赠品
 		$oNoGift.on('tap', '.radio', function() {
@@ -31,8 +33,25 @@
 
 		// 贺卡
 		$oGreetingCard.on('tap', '.radio', function() {
-			$(this).addClass('selected');
+			$(this).addClass('selected').siblings().removeClass('selected');
 			$oNoGift.children('.radio').removeClass('selected');
+		});
+
+		// 编辑贺卡内容
+		$oGreetingCard.on('tap', '.content', function() {
+
+			// 弹出编辑层
+			Mask.show();
+			$oMaskGreeting.show();			
+		});
+
+		// 关闭编辑贺卡内容
+		$oMaskGreeting.on('tap', '.btn-ok', function() {
+
+			// TODO 处理添加备注逻辑
+
+			Mask.hide();
+			$oMaskGreeting.hide();
 		});
 
 		// 生日牌
@@ -49,9 +68,9 @@
 
 		// 保存
 		$oBtnSave.on('tap', function() {
-			var card4Order = $oGreetingCard.find('.txt-card').closest('.radio').hasClass('selected');
-			if(card4Order) {
-				var txtCard = $oGreetingCard.find('.txt-card').val();
+			var $oGreeting = $oGreetingCard.find('.selected');
+			if($oGreeting.length > 0) {
+				var txtCard = $oGreeting.find('.content').text();
 
 				// 贺卡非空验证
 				if(txtCard === '') {

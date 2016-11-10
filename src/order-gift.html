@@ -27,7 +27,7 @@
 				<div class="section-item radio selected">
 					<div class="item-wrapper">
 						<div class="item-container clearfix">
-							<span>不需要赠品</span>
+							<span class="title">不需要赠品</span>
 						</div>
 					</div>
 				</div>
@@ -39,10 +39,18 @@
 					<p>贺卡(每单只配送一张)</p>
 				</div>
 				<div class="section-item radio">
-					<div class="item-wrapper">
+					<div class="item-wrapper navigator">
 						<div class="item-container clearfix">
-							<span>贺卡</span>
-							<input type="text" class="txt-card" placeholder="最多可输入50字">
+							<span class="title">商务</span>
+							<span class="content"></span>
+						</div>
+					</div>
+				</div>
+				<div class="section-item radio">
+					<div class="item-wrapper navigator">
+						<div class="item-container clearfix">
+							<span class="title">生日</span>
+							<span class="content"></span>
 						</div>
 					</div>
 				</div>
@@ -151,6 +159,22 @@
 			<a href="javascript:;" class="btn-save">保存</a>
 		</div>
 		<!-- footer bar end -->
+
+		<!-- 贺卡内容 begin -->
+		<div class="mask mask-greeting" id="maskGreeting">
+			<div class="mask-header">
+				<div class="title">
+					<p>贺卡内容</p>
+				</div>
+			</div>
+			<div class="mask-container">
+				<textarea class="txt-greeting" placeholder="最多可输入50个字"></textarea>
+			</div>
+			<div class="mask-footer">
+				<a href="javascript:;" class="btn-ok">确认</a>
+			</div>
+		</div>
+		<!-- 贺卡内容 end -->
 	</div>
 	<!-- 订单提交页 end -->
 
@@ -162,6 +186,7 @@
 		.script('assets/plugins/zepto/touch.js').wait()
 		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
 		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
 		.script('assets/js/order-gift.js');
 	</script>
 	<!-- script end -->
