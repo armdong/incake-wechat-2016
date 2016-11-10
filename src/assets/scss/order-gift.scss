@@ -87,6 +87,9 @@ html, body {
 				padding-right: 30px;
 				text-align: right;
 				color: #b5b5b5;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
 			}
 
 			.txt {

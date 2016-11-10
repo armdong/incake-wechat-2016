@@ -74,8 +74,14 @@ html, body {
 				float: right;
 			}
 			.btn {
+				display: inline-block;
 				float: right;
-				margin-right: 30px;			
+				width: 370px;
+				text-align: right;
+				margin-right: 30px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;		
 			}
 		}
 
