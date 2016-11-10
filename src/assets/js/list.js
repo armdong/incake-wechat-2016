@@ -876,7 +876,7 @@ template.helper('specFormat', function(spec) {
             currLocate = 'sugarfree';
         }
         $('#secTaste').find('.nav-list').find('.nav-item')
-            .filter('div[taste=' + currLocate + ']')
+            .filter('div[taste="' + currLocate + '"]')
             .addClass('active')
             .siblings()
             .removeClass('active');
@@ -902,7 +902,7 @@ template.helper('specFormat', function(spec) {
         });
     }
     function changeTaste(taste) {
-        var $oTaste = $('#secTaste').find('.nav-item').filter('[taste=' + taste + ']'),
+        var $oTaste = $('#secTaste').find('.nav-item').filter('[taste="' + taste + '"]'),
             currTaste = $oTaste.attr('taste'),
             tl = new TimelineLite();
 
@@ -1759,7 +1759,7 @@ template.helper('specFormat', function(spec) {
             $(this).addClass('active').siblings().removeClass('active');
 
             $oListContainer.find('.sec')
-                .filter('.sec[category=' + category + ']')
+                .filter('.sec[category="' + category + '"]')
                 .addClass('active')
                 .siblings()
                 .removeClass('active');
@@ -1781,7 +1781,7 @@ template.helper('specFormat', function(spec) {
         });
     }
     function changeCategories(category) {
-        $('#listHeader').find('.c-item').filter('[category=' + category + ']').trigger('tap');
+        $('#listHeader').find('.c-item').filter('[category="' + category + '"]').trigger('tap');
     }
 
     /**
