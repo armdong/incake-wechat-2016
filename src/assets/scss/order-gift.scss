@@ -202,65 +202,8 @@ html, body {
 	}
 
 	.mask-container {
+		position: relative;
 		width: 100%;
-
-		.list {
-			width: 570px;
-			margin: 0 auto;
-
-			li {
-				width: 100%;
-				padding: 30px 0;
-				border-bottom: 1px dashed #dcdcdc; /* no */
-
-				&:last-of-type {
-					border-bottom: none;
-				}
-			}
-
-			.img {
-				float: left;
-				width: 120px;
-				height: 90px;
-				border: 1px solid #f0f0f0;
-				overflow: hidden;
-
-				img {
-					width: 100%;
-				}
-			}
-			.text {
-				float: right;
-				width: 430px;
-				padding: 6px 0;
-
-				p {
-					width: 100%;
-					font-size: 30px; /* px */
-					line-height: 40px;
-					color: #323232;
-
-					span {
-						display: inline-block;
-
-						&.name, &.pound {
-							float: left;
-						}
-						&.price, &.discount {
-							float: right;
-						}
-						&.discount {
-							font-size: 20px; /* px */
-							color: #e84e55;
-						}
-					}
-					i {
-						font-style: normal;
-						color: #b5b5b5;
-					}
-				}
-			}
-		}
 
 		.txt-greeting {
 			display: block;
@@ -276,6 +219,19 @@ html, body {
 			outline: none;
 			-webkit-appearance: none;
 			border-radius: 10px;
+		}
+
+		.words-calculator {
+			display: inline-block;
+			position: absolute;
+			bottom: 12px;
+			right: 45px;
+			font-size: 26px; /* px */
+			color: #313131;
+
+			i {
+				font-style: normal;
+			}
 		}
 	}
 

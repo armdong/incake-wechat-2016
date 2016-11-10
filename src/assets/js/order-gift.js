@@ -21,7 +21,9 @@
 			$oCandle = $oGroup.find('.candle'),
 			$oBtnSave = $('#footerBar').children('.btn-save'),
 			$oMaskGreeting = $('#maskGreeting'),
-			$oMaskOk = $oMaskGreeting.find('.btn-ok');
+			$oMaskOk = $oMaskGreeting.find('.btn-ok'),
+			$oCurrWords = $oMaskGreeting.find('.words-calculator').find('i'),
+			iMaxLen = 50; // 贺卡字数限制最多为50个字符
 
 		// 不需要赠品
 		$oNoGift.on('tap', '.radio', function() {
@@ -44,6 +46,18 @@
 			Mask.show();
 			$oMaskGreeting.show();			
 		});
+
+		// 字数限制
+		$oMaskGreeting.find('.txt-greeting').bind('input propertychange', function(e) {
+            var text = $(this).val(),
+                iLen = text.length;
+
+            if (iLen > iMaxLen) {
+                $oMaskGreeting.find('.txt-greeting').val(text.substring(0, iMaxLen));
+                iLen = iMaxLen;
+            }
+            $oCurrWords.text(iMaxLen - iLen);
+        });
 
 		// 关闭编辑贺卡内容
 		$oMaskGreeting.on('tap', '.btn-ok', function() {
