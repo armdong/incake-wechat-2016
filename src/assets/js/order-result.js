@@ -101,6 +101,11 @@
         	$oFailMsg.find('.order-detail').html('交易已关闭，请重新下单！');
         	$oFailPayment.hide();
         }
+
+        // 支付方式切换
+        $oFailPayment.find('.payment-container').on('tap', 'li', function() {
+        	$(this).addClass('active').siblings().removeClass('active');
+        });
 	}
 
 })(Zepto, window, document);
