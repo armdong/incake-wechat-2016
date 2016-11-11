@@ -96,11 +96,14 @@ html, body {
 				display: inline-block;
 				float: right;
 				width: 400px;
-				height: 80px;
-				line-height: 80px;
+				height: 40px;
+				padding: 20px 0;
+				line-height: 40px;
 				font-size: 30px; /* px */
 				text-align: right;
-				color: #b5b5b5;
+				color: #323232;
+				border: none;
+				outline: none;
 			}
 		}
 	}

@@ -72,8 +72,8 @@
 		});
 
 		// 生日牌
-		$oBirthCard.on('tap', '.checkbox', function() {
-			$(this).toggleClass('selected');
+		$oBirthCard.on('tap', '.info', function() {
+			$(this).closest('.checkbox').toggleClass('selected');
 			$oNoGift.children('.radio').removeClass('selected');
 		});
 
