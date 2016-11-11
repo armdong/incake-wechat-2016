@@ -153,7 +153,9 @@
     gulp.task('buildStyles', function(){
     	return gulp.src(paths.source.styles + '**/*.css')
     		.pipe(sourcemaps.init())
-    		.pipe(cssnano())
+    		.pipe(cssnano({
+                zindex: false
+            }))
     		.pipe(sourcemaps.write(paths.root))
     		.pipe(gulp.dest(paths.build.styles));
     });
