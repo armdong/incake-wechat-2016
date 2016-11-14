@@ -61,7 +61,35 @@
 			</script>
 			<!-- 地址列表 end -->
 			<!-- 新增地址 begin -->
-			<div class="new-address" id="newAddress"></div>
+			<div class="new-address" id="newAddress">
+				<ul class="form">
+					<li class="clearfix">
+						<span class="title">收货人</span>
+						<span class="content navigator">姓名</span>
+					</li>
+					<li class="clearfix">
+						<span class="title">联系电话</span>
+						<span class="content navigator">手机号码</span>
+					</li>
+					<li class="clearfix">
+						<span class="title">选择城市</span>
+						<span class="content navigator">请选择</span>
+					</li>
+					<li class="clearfix">
+						<span class="title">选择区域</span>
+						<span class="content navigator">请选择</span>
+					</li>
+					<li class="clearfix">
+						<span class="title">详细地址</span>
+						<span class="content navigator">街道/小区/写字楼</span>
+					</li>
+					<li class="clearfix">
+						<span class="title">&nbsp;</span>
+						<span class="content" contenteditable="true">楼号/单元/门牌号</span>
+					</li>
+				</ul>
+				<a href="javascript:;" class="btn-save">保存</a>
+			</div>
 			<!-- 新增地址 end -->
 		</div>
 	</div>
@@ -73,6 +101,7 @@
 		$LAB
 		.script('assets/plugins/zepto/zepto.min.js').wait()
 		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
 		.script('assets/plugins/artTemplate/dist/template.js').wait()
 		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
 		.script('assets/plugins/fastclick.js').wait()
