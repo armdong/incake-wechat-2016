@@ -185,10 +185,16 @@ html, body {
 			padding: 30px;
 			border-bottom: 1px solid #dcdcdc;
 
-			span {
+			span, input {
 				display: inline-block;
 				line-height: 40px;
 				font-size: 30px; /* px */
+			}
+
+			input {
+				border: none;
+				outline: none;
+				-webkit-appearance: none;
 			}
 
 			.title {

@@ -178,10 +178,7 @@
         $oAddressList.on('tap', '.btn-edit', function() {
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
-        		x: '-50%',
-        		onComplete: function() {
-        			$oAddressList.hide();
-        		}
+        		x: '-50%'
         	});
         });
 
