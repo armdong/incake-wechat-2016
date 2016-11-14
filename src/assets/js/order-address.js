@@ -16,9 +16,6 @@
 
 		// 区域切换
 		fnInitArea();
-
-		// 街道切换
-		fnInitStreet();
 	});
 
 	/**
@@ -122,8 +119,7 @@
         	$('#cityId').attr('id', '').attr('value', '');
         	$oArea.text('请选择').attr('data-id', '').attr('data-value', '');
         	$('#areaId').attr('id', '').attr('value', '');
-        	$oStreet.text('街道/小区/写字楼').attr('data-id', '').attr('data-value', '');
-        	$('#streetId').attr('id', '').attr('value', '');
+        	$oStreet.text('街道/小区/写字楼');
         	$oDetail.text('楼号/单元/门牌号');
         }
 	}
@@ -215,42 +211,6 @@
                         showAreaDom.innerHTML = selectOneObj.value;
                         showAreaDom.dataset.id = selectOneObj.id;
                         showAreaDom.dataset.value = selectOneObj.value;
-                    }
-                }
-            );
-        });
-    }
-
-    /**
-     * 街道切换
-     * @return {[type]} [description]
-     */
-    function fnInitStreet(){
-
-        var showStreetDom = document.querySelector('#showStreet');
-        var streetIdDom = document.querySelector('#streetId');
-
-        var data = [
-            {'id': 'inner', 'value': '外环线以内'},
-            {'id': 'outer', 'value': '外环线以外'}
-        ];
-
-        showStreetDom.addEventListener('click', function () {
-            var streetId = showStreetDom.dataset.id;
-            var streetName = showStreetDom.dataset.value;
-
-            var streetSelect = new IosSelect(1, 
-                [data],
-                {
-                    title: '详细地址',
-                    oneLevelId: streetId,
-                    itemHeight: 0.933333,
-                    headerHeight: 1.18,
-                    callback: function (selectOneObj) {
-                        streetIdDom.value = selectOneObj.id;
-                        showStreetDom.innerHTML = selectOneObj.value;
-                        showStreetDom.dataset.id = selectOneObj.id;
-                        showStreetDom.dataset.value = selectOneObj.value;
                     }
                 }
             );
