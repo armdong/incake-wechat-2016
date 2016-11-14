@@ -73,15 +73,32 @@ html, body {
 
 		li {
 			width: 100%;
-			height: 69px;
-			padding: 40px 0;
+			height: 70px;
+			padding: 35px 0;
 			border-bottom: 1px solid #dcdcdc;
 			background-color: #fff;
+
+			&.disabled {
+				position: relative;
+				z-index: 9;
+			}
+
+			&.disabled:after {
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 99;
+				width: 100%;
+				height: 100%;
+				content: '';
+				background-color: rgba(255, 255, 255, 0.5);
+			}
 
 			.btn-radio, .btn-edit {
 				display: block;
 				width: 90px;
-				height: 69px;
+				height: 80px;
 				background: {
 					repeat: no-repeat;
 					position: center center;
@@ -114,12 +131,12 @@ html, body {
 				}
 				.info {
 					font-size: 30px; /* px */
-					line-height: 30px;
+					line-height: 40px;
 				}
 				.addr {
-					padding-top: 15px;
+					margin-top: 10px;
 					font-size: 24px; /* px */
-					line-height: 24px;
+					line-height: 30px;
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					overflow: hidden;

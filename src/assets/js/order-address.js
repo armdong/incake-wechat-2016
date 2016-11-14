@@ -20,32 +20,88 @@
 			hasAddress: true, // 地址列表是否有数据
 			list: [{
 				isDefault: true, // 默认地址
-				info: '张三 13322222222',
-				addr: '上海市 静安区 广中西路777弄99号506室'
+				isDisabled: false,
+				info: {
+					name: '张三',
+					mobile: '13322222222'
+				},
+				addr: {
+					city: '上海市',
+					area: '静安区',
+					street: '广中西路777弄99号506室'
+				}
 			}, {
 				isDefault: false,
-				info: '张三 13322222222',
-				addr: '上海市 静安区 广中西路777弄99号506室'
+				isDisabled: false,
+				info: {
+					name: '张三',
+					mobile: '13322222222'
+				},
+				addr: {
+					city: '上海市',
+					area: '静安区',
+					street: '广中西路777弄99号506室印克时光'
+				}
 			}, {
 				isDefault: false,
-				info: '张三 13322222222',
-				addr: '上海市 静安区 广中西路777弄99号506室'
+				isDisabled: true,
+				info: {
+					name: '张三',
+					mobile: '13322222222'
+				},
+				addr: {
+					city: '上海市',
+					area: '静安区',
+					street: '广中西路777弄99号506室'
+				}
 			}, {
 				isDefault: false,
-				info: '张三 13322222222',
-				addr: '上海市 静安区 广中西路777弄99号506室'
+				isDisabled: false,
+				info: {
+					name: '张三',
+					mobile: '13322222222'
+				},
+				addr: {
+					city: '上海市',
+					area: '静安区',
+					street: '广中西路777弄99号506室'
+				}
 			}, {
 				isDefault: false,
-				info: '张三 13322222222',
-				addr: '上海市 静安区 广中西路777弄99号506室'
+				isDisabled: false,
+				info: {
+					name: '张三',
+					mobile: '13322222222'
+				},
+				addr: {
+					city: '上海市',
+					area: '静安区',
+					street: '广中西路777弄99号506室'
+				}
 			}, {
 				isDefault: false,
-				info: '张三 13322222222',
-				addr: '上海市 静安区 广中西路777弄99号506室'
+				isDisabled: false,
+				info: {
+					name: '张三',
+					mobile: '13322222222'
+				},
+				addr: {
+					city: '上海市',
+					area: '静安区',
+					street: '广中西路777弄99号506室'
+				}
 			}, {
 				isDefault: false,
-				info: '张三 13322222222',
-				addr: '上海市 静安区 广中西路777弄99号506室'
+				isDisabled: false,
+				info: {
+					name: '张三',
+					mobile: '13322222222'
+				},
+				addr: {
+					city: '上海市',
+					area: '静安区',
+					street: '广中西路777弄99号506室'
+				}
 			}]
 		};
 		var _html = template('tplAddressList', _data);

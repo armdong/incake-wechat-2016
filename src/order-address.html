@@ -26,15 +26,26 @@
 				{{if hasAddress}}
 				<ul class="list">
 					{{each list as item i}}
+					{{if item.isDisabled}}
+					<li class="disabled clearfix">
+					{{else}}
 					<li class="clearfix">
+					{{/if}}
 						{{if item.isDefault}}
 						<a href="javascript:;" class="btn-radio selected"></a>
 						{{else}}
 						<a href="javascript:;" class="btn-radio"></a>
 						{{/if}}
 						<div class="text">
-							<p class="info">{{item.info}}</p>
-							<p class="addr">{{item.addr}}</p>
+							<p class="info">
+								<span>{{item.info.name}}</span>
+								<span>{{item.info.mobile}}</span>
+							</p>
+							<p class="addr">
+								<span>{{item.addr.city}}</span>
+								<span>{{item.addr.area}}</span>
+								<span>{{item.addr.street}}</span>
+							</p>
 						</div>
 						<a href="javascript:;" class="btn-edit"></a>
 					</li>
