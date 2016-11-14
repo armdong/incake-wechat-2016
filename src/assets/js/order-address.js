@@ -32,7 +32,8 @@
 			$oArea = $oNewAddress.find('.txt-area'),
 			$oStreet = $oNewAddress.find('.txt-street'),
 			$oDetail = $oNewAddress.find('.txt-detail'),
-			tl = new TimelineLite();
+			tl = new TimelineLite(),
+			action = ''; // 动作：first:首次新增地址，new:普通新增地址,edit:修改地址
 
 		// 绑定数据
 		var _data = {
@@ -87,7 +88,11 @@
         });
 
         // 新增收货地址 事件处理函数
-        $oAddressList.on('tap', '.btn-new', function() {        	
+        $oAddressList.on('tap', '.btn-new', function() {   
+
+        	// 拿到当前新增动作，首次还是普通
+        	action = $(this).attr('action');
+
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
         		x: '-50%',
@@ -105,11 +110,38 @@
 
         // 保存新增/编辑地址 事件处理函数
         $oNewAddress.on('tap', '.btn-save', function() {
+
+        	if(typeof action === 'string' && action !== '') {
+        		switch(action) {
+        			case 'first': 	// 首次新增地址
+        				handler4FirstAdd();
+        				break;
+        			case 'new': 	// 普通新增地址
+        				handler4Add();
+        				break;
+        			case 'edit': 	// 修改地址
+        				handler4Edit();
+        				break;
+        			default: 		// 普通新增地址
+        				handler4Add();
+        				break;
+        		}
+        	}
+
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
         		x: '0%'
         	});
         });
+
+        // 普通新增地址
+        function handler4Add() {
+        	var name = $oName.val(),
+        		mobile = $oMobile.val(),
+        		city = $oCity.text(),
+        		area = $oArea.text(),
+        		street = $oStreet.text();
+        }
 
         // 清空form
         function handler4EmptyForm() {

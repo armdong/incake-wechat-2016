@@ -48,15 +48,15 @@
 								<span>{{item.addr.street}}</span>
 							</p>
 						</div>
-						<a href="javascript:;" class="btn-edit"></a>
+						<a href="javascript:;" class="btn-edit" action="edit"></a>
 					</li>
 				{{/each}}
-					<a href="javascript:;" class="btn-new"><span>新增收货地址</span></a>
+					<a href="javascript:;" class="btn-new" action="new"><span>新增收货地址</span></a>
 				</ul>
 				{{else}}
 				<div class="no-address">
 					<p>还没有设置收货地址~</p>
-					<a href="javascript:;" class="btn-new"><span>新增收货地址</span></a>
+					<a href="javascript:;" class="btn-new" action="first"><span>新增收货地址</span></a>
 				</div>
 				{{/if}}
 			</script>
