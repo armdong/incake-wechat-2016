@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>收货地址</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/order-address.css">
+</head>
+<body>
+	
+	<!-- 收获地址 begin -->
+	<div class="page-container">		
+		<div class="address-wrapper">
+			<!-- 地址列表 begin -->
+			<div class="address-list" id="addressList"></div>
+			<script type="text/html" id="tplAddressList">
+				{{if hasAddress}}
+				<ul class="list">
+					{{each list as item i}}
+					<li class="clearfix">
+						{{if item.isDefault}}
+						<a href="javascript:;" class="btn-radio selected"></a>
+						{{else}}
+						<a href="javascript:;" class="btn-radio"></a>
+						{{/if}}
+						<div class="text">
+							<p class="info">{{item.info}}</p>
+							<p class="addr">{{item.addr}}</p>
+						</div>
+						<a href="javascript:;" class="btn-edit"></a>
+					</li>
+					{{/each}}
+					<a href="javascript:;" class="btn-new"><span>新增收货地址</span></a>
+				</ul>
+				{{else}}
+				<div class="no-address">
+					<p>还没有设置收货地址~</p>
+					<a href="javascript:;" class="btn-new"><span>新增收货地址</span></a>
+				</div>
+				{{/if}}
+			</script>
+			<!-- 地址列表 end -->
+			<!-- 新增地址 begin -->
+			<div class="new-address" id="newAddress"></div>
+			<!-- 新增地址 end -->
+		</div>
+	</div>
+	<!-- 收获地址 end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/order-address.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>

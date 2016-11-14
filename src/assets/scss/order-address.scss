@@ -1,0 +1,162 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.page-container {
+	width: 100%;
+	height: 100%;
+	background: #f0f0f0;
+	overflow: hidden;
+}
+
+.address-wrapper {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 1500px;
+	height: 100%;
+}
+
+.address-list, .new-address {
+	position: absolute;
+	top: 0;
+	width: 750px;
+	height: 100%;
+}
+
+/* 收货地址列表 */
+.address-list {
+	left: 0;
+	height: 100%;
+	overflow-y: auto;
+
+	.no-address {
+		display: none;
+		width: 100%;
+		padding-top: 226px;
+
+		> p {
+			padding-bottom: 44px;
+			font-size: 30px; /* px */
+			color: #323232;
+			text-align: center;
+		}
+
+		.btn-new {
+			display: block;
+			width: 666px;
+			height: 66px;
+			margin: 0 auto;
+			border: 2px solid #303242;
+			font-size: 26px; /* px */
+			line-height: 66px;
+			color: #303242;
+			text-align: center;
+
+			span {
+				display: inline-block;
+				padding-left: 52px;
+				background: {
+					image: url('../imgs/icons/icon_new.png');
+					repeat: no-repeat;
+					size: 37px 37px;
+					position: left center;
+				}
+			}
+		}
+	}
+
+	.list {
+		width: 100%;
+		margin-bottom: 100px;
+
+		li {
+			width: 100%;
+			height: 69px;
+			padding: 40px 0;
+			border-bottom: 1px solid #dcdcdc;
+			background-color: #fff;
+
+			.btn-radio, .btn-edit {
+				display: block;
+				width: 90px;
+				height: 69px;
+				background: {
+					repeat: no-repeat;
+					position: center center;
+				}
+			}
+			.btn-radio {
+				float: left;
+				background: {
+					image: url('../imgs/icons/icon_circle_unselect.png');
+					size: 42px 42px;
+				}
+
+				&.selected {
+					background-image: url('../imgs/icons/icon_circle_selected.png');
+				}
+			}
+			.btn-edit {
+				float: right;
+				background: {
+					image: url('../imgs/icons/icon_edit.png');
+					size: 42px 42px;
+				}
+			}
+			.text {
+				float: left;
+				width: 568px;
+				
+				p {
+					color: #323232;
+				}
+				.info {
+					font-size: 30px; /* px */
+					line-height: 30px;
+				}
+				.addr {
+					padding-top: 15px;
+					font-size: 24px; /* px */
+					line-height: 24px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+			}
+		}
+
+		.btn-new {
+			display: block;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 94px;
+			font-size: 30px; /* px */
+			line-height: 94px;
+			color: #fff;
+			text-align: center;
+			background-color: #e84e55;
+
+			span {
+				display: inline-block;
+				padding-left: 52px;
+				background: {
+					image: url('../imgs/icons/icon_new_white.png');
+					repeat: no-repeat;
+					size: 37px 37px;
+					position: left center;
+				}
+			}
+		}
+	}
+}
+
+
+
+/* 新增收货地址 */
+.new-address {
+	left: 750px;
+}
