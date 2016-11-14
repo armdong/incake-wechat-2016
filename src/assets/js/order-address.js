@@ -106,6 +106,14 @@
 		};
 		var _html = template('tplAddressList', _data);
         $oAddressList.html(_html);
+
+        // 收货地址切换
+        $oAddressList.on('tap', '.btn-radio', function() {
+        	$(this).addClass('selected')
+        		.parent().siblings()
+        		.children('.btn-radio')
+        		.removeClass('selected');
+        });
 	}
 
 })(Zepto, window, document);

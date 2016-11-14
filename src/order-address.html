@@ -25,7 +25,7 @@
 			<script type="text/html" id="tplAddressList">
 				{{if hasAddress}}
 				<ul class="list">
-					{{each list as item i}}
+				{{each list as item i}}
 					{{if item.isDisabled}}
 					<li class="disabled clearfix">
 					{{else}}
@@ -49,7 +49,7 @@
 						</div>
 						<a href="javascript:;" class="btn-edit"></a>
 					</li>
-					{{/each}}
+				{{/each}}
 					<a href="javascript:;" class="btn-new"><span>新增收货地址</span></a>
 				</ul>
 				{{else}}
