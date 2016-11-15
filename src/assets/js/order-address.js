@@ -123,6 +123,24 @@
         	});
         });
 
+        // 详细地址获取光标
+        $oNewAddress.on('tap', '.li-detail', function() {
+        	var editor = $oDetail[0], 
+        		range;
+        		
+        	if(window.getSelection) {
+        		editor.focus();
+        		range = window.getSelection();
+        		range.selectAllChildren(editor);
+        		range.collapseToEnd();
+        	} else if(document.selection) {
+        		range = document.selection.createRange();
+        		range.moveToElementText(editor);
+        		range.collapse(true);
+        		range.select();
+        	}
+        });
+
         // 清空form
         function handler4EmptyFormData() {
         	$oName.val('');

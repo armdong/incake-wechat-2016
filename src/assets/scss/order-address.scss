@@ -223,7 +223,7 @@ html, body {
 			padding: 30px;
 			border-bottom: 1px solid #dcdcdc;
 
-			span, input {
+			span, input, div {
 				display: inline-block;
 				line-height: 40px;
 				font-size: 30px; /* px */
@@ -267,6 +267,10 @@ html, body {
 						position: center center;
 					}
 					transform: translateY(-50%);
+				}
+
+				&.txt-detail {
+					-webkit-user-modify: read-write-plaintext-only;
 				}
 			}
 		}
