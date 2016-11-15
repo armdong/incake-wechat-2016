@@ -32,8 +32,7 @@
 			$oArea = $oNewAddress.find('.txt-area'),
 			$oStreet = $oNewAddress.find('.txt-street'),
 			$oDetail = $oNewAddress.find('.txt-detail'),
-			tl = new TimelineLite(),
-			action = ''; // 动作：first:首次新增地址，new:普通新增地址,edit:修改地址
+			tl = new TimelineLite();
 
 		// 绑定数据
 		var _data = {
@@ -79,10 +78,10 @@
         $oAddressList.html(_html);
 
         // 新增收货地址 事件处理函数
-        $oAddressList.on('tap', '.btn-new', function() {   
+        $oAddressList.on('tap', '.btn-new', function() {  
 
-        	// 拿到当前新增动作，首次还是普通
-        	action = $(this).attr('action');
+        	// 隐藏删除按钮
+        	$oNewAddress.find('.btn-del').hide(); 
 
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
@@ -93,6 +92,9 @@
 
         // 编辑收货地址 事件处理函数
         $oAddressList.on('tap', '.btn-edit', function() {
+
+        	// 显示删除按钮
+        	$oNewAddress.find('.btn-del').show().css('display', 'block');
 
         	var $oText = $(this).prev('.text');
         	var opt = {

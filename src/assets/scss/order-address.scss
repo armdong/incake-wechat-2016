@@ -272,29 +272,21 @@ html, body {
 		}
 	}
 
-	.btn-save {
+	.btn-save, .btn-del {
 		display: block;
-		position: absolute;
-		bottom: 0;
-		right: left;
 		z-index: 999;
-		width: 750px;
-		height: 94px;
+		width: 690px;
+		height: 80px;
+		margin: 40px auto 0;
 		font-size: 30px; /* px */
-		line-height: 94px;
+		line-height: 80px;
 		color: #fff;
 		text-align: center;
 		background-color: #303242;
+	}
 
-		span {
-			display: inline-block;
-			padding-left: 52px;
-			background: {
-				image: url('../imgs/icons/icon_new_white.png');
-				repeat: no-repeat;
-				size: 37px 37px;
-				position: left center;
-			}
-		}
+	.btn-del {
+		display: none;
+		background-color: #e84e55;
 	}
 }
