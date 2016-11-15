@@ -32,22 +32,26 @@
 					{{else}}
 					<li class="clearfix">
 					{{/if}}
-						{{if item.isDefault}}
+						{{if item.isSelected}}
 						<a href="javascript:;" class="btn-radio selected"></a>
 						{{else}}
 						<a href="javascript:;" class="btn-radio"></a>
 						{{/if}}
-						<div class="text">
+						<a href="order-submit.html" class="text">
 							<p class="info">
 								<span>{{item.info.name}}</span>
 								<span>{{item.info.mobile}}</span>
 							</p>
 							<p class="addr">
+								{{if item.isDefault}}
+								<span class="default">[默认地址]</span>
+								{{/if}}
 								<span>{{item.addr.city}}</span>
 								<span>{{item.addr.area}}</span>
 								<span>{{item.addr.street}}</span>
+								<span>{{item.addr.detail}}</span>
 							</p>
-						</div>
+						</a>
 						<a href="javascript:;" class="btn-edit" action="edit"></a>
 					</li>
 				{{/each}}
@@ -63,6 +67,10 @@
 			<!-- 地址列表 end -->
 			<!-- 新增地址 begin -->
 			<div class="new-address" id="newAddress">
+				<div class="header">
+					<p>新增收获地址</p>
+					<a href="javascript:;" class="btn-back"></a>
+				</div>
 				<ul class="form">
 					<li class="clearfix">
 						<span class="title">收货人</span>
@@ -91,7 +99,7 @@
 						<span class="content txt-detail" contenteditable="true">楼号/单元/门牌号</span>
 					</li>
 				</ul>
-				<a href="javascript:;" class="btn-save">保存</a>
+				<a href="javascript:;" class="btn-save">保存并使用</a>
 			</div>
 			<!-- 新增地址 end -->
 		</div>

@@ -41,6 +41,7 @@
 			list: [{
 				isDefault: true, // 默认地址
 				isDisabled: false,
+				isSelected: true,
 				info: {
 					name: '张三',
 					mobile: '13322222222'
@@ -48,11 +49,13 @@
 				addr: {
 					city: '上海市',
 					area: '静安区',
-					street: '广中西路777弄99号506室'
+					street: '广中西路777弄99号506室',
+					detail: '上海印克电子商务股份有限公司'
 				}
 			}, {
 				isDefault: false,
 				isDisabled: false,
+				isSelected: false,
 				info: {
 					name: '张三',
 					mobile: '13322222222'
@@ -60,11 +63,13 @@
 				addr: {
 					city: '上海市',
 					area: '静安区',
-					street: '广中西路777弄99号506室印克时光'
+					street: '广中西路777弄99号506室印克时光',
+					detail: '上海印克电子商务股份有限公司IT技术部Web前端组'
 				}
 			}, {
 				isDefault: false,
 				isDisabled: true,
+				isSelected: false,
 				info: {
 					name: '张三',
 					mobile: '13322222222'
@@ -72,7 +77,8 @@
 				addr: {
 					city: '上海市',
 					area: '静安区',
-					street: '广中西路777弄99号506室'
+					street: '广中西路777弄99号506室',
+					detail: '上海印克电子商务股份有限公司'
 				}
 			}]
 		};
@@ -128,6 +134,14 @@
         		}
         	}
 
+        	tl.clear();
+        	tl.to($oAddressWrapper, 0.5, {
+        		x: '0%'
+        	});
+        });
+
+        // 返回列表
+        $oNewAddress.on('tap', '.btn-back', function() {
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
         		x: '0%'
