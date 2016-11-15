@@ -127,7 +127,7 @@
         $oNewAddress.on('tap', '.li-detail', function() {
         	var editor = $oDetail[0], 
         		range;
-        		
+
         	if(window.getSelection) {
         		editor.focus();
         		range = window.getSelection();

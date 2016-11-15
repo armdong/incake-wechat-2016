@@ -270,6 +270,8 @@ html, body {
 				}
 
 				&.txt-detail {
+					outline: none;
+					-webkit-appearance: none;
 					-webkit-user-modify: read-write-plaintext-only;
 				}
 			}
