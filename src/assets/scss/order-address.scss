@@ -108,13 +108,12 @@ html, body {
 			}
 			.btn-radio {
 				left: 0;
-				background: {
-					image: url('../imgs/icons/icon_circle_unselect.png');
-					size: 42px 42px;
-				}
 
-				&.selected {
-					background-image: url('../imgs/icons/icon_circle_selected.png');
+				&.selected {					
+					background: {
+						image: url('../imgs/icons/icon_selected.png');
+						size: 42px 42px;
+					}
 				}
 			}
 			.btn-edit {

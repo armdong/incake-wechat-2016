@@ -39,17 +39,14 @@
 						{{/if}}
 						<a href="order-submit.html" class="text">
 							<p class="info">
-								<span>{{item.info.name}}</span>
-								<span>{{item.info.mobile}}</span>
+								<span class="name">{{item.info.name}}</span>
+								<span class="mobile">{{item.info.mobile}}</span>
 							</p>
 							<p class="addr">
-								{{if item.isDefault}}
-								<span class="default">[默认地址]</span>
-								{{/if}}
-								<span>{{item.addr.city}}</span>
-								<span>{{item.addr.area}}</span>
-								<span>{{item.addr.street}}</span>
-								<span>{{item.addr.detail}}</span>
+								<span class="city">{{item.addr.city}}</span>
+								<span class="area">{{item.addr.area}}</span>
+								<span class="street">{{item.addr.street}}</span>
+								<span class="detail">{{item.addr.detail}}</span>
 							</p>
 						</a>
 						<a href="javascript:;" class="btn-edit" action="edit"></a>
@@ -99,7 +96,7 @@
 						<span class="content txt-detail" contenteditable="true">楼号/单元/门牌号</span>
 					</li>
 				</ul>
-				<a href="javascript:;" class="btn-save">保存并使用</a>
+				<a href="order-submit.html" class="btn-save">保存并使用</a>
 			</div>
 			<!-- 新增地址 end -->
 		</div>

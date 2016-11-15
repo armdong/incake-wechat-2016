@@ -39,9 +39,7 @@
 		var _data = {
 			hasAddress: true, // 地址列表是否有数据
 			list: [{
-				isDefault: true, // 默认地址
-				isDisabled: false,
-				isSelected: true,
+				isSelected: true, // 是否选中
 				info: {
 					name: '张三',
 					mobile: '13322222222'
@@ -53,9 +51,6 @@
 					detail: '上海印克电子商务股份有限公司'
 				}
 			}, {
-				isDefault: false,
-				isDisabled: false,
-				isSelected: false,
 				info: {
 					name: '张三',
 					mobile: '13322222222'
@@ -67,9 +62,7 @@
 					detail: '上海印克电子商务股份有限公司IT技术部Web前端组'
 				}
 			}, {
-				isDefault: false,
-				isDisabled: true,
-				isSelected: false,
+				isDisabled: true, // 是否禁用
 				info: {
 					name: '张三',
 					mobile: '13322222222'
@@ -85,14 +78,6 @@
 		var _html = template('tplAddressList', _data);
         $oAddressList.html(_html);
 
-        // 收货地址切换 事件处理函数
-        $oAddressList.on('tap', '.btn-radio', function() {
-        	$(this).addClass('selected')
-        		.parent().siblings()
-        		.children('.btn-radio')
-        		.removeClass('selected');
-        });
-
         // 新增收货地址 事件处理函数
         $oAddressList.on('tap', '.btn-new', function() {   
 
@@ -102,41 +87,29 @@
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
         		x: '-50%',
-        		onStart: handler4EmptyForm
+        		onStart: handler4EmptyFormData
         	});
         });
 
         // 编辑收货地址 事件处理函数
         $oAddressList.on('tap', '.btn-edit', function() {
+
+        	var $oText = $(this).prev('.text');
+        	var opt = {
+        		name: $oText.find('.name').text(),
+        		mobile: $oText.find('.mobile').text(),
+        		city: $oText.find('.city').text(),
+        		area: $oText.find('.area').text(),
+        		street: $oText.find('.street').text(),
+        		detail: $oText.find('.detail').text()
+        	};
+
+        	// 绑定数据
+        	handler4BindFormData(opt);
+
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
         		x: '-50%'
-        	});
-        });
-
-        // 保存新增/编辑地址 事件处理函数
-        $oNewAddress.on('tap', '.btn-save', function() {
-
-        	if(typeof action === 'string' && action !== '') {
-        		switch(action) {
-        			case 'first': 	// 首次新增地址
-        				handler4FirstAdd();
-        				break;
-        			case 'new': 	// 普通新增地址
-        				handler4Add();
-        				break;
-        			case 'edit': 	// 修改地址
-        				handler4Edit();
-        				break;
-        			default: 		// 普通新增地址
-        				handler4Add();
-        				break;
-        		}
-        	}
-
-        	tl.clear();
-        	tl.to($oAddressWrapper, 0.5, {
-        		x: '0%'
         	});
         });
 
@@ -148,17 +121,8 @@
         	});
         });
 
-        // 普通新增地址
-        function handler4Add() {
-        	var name = $oName.val(),
-        		mobile = $oMobile.val(),
-        		city = $oCity.text(),
-        		area = $oArea.text(),
-        		street = $oStreet.text();
-        }
-
         // 清空form
-        function handler4EmptyForm() {
+        function handler4EmptyFormData() {
         	$oName.val('');
         	$oMobile.val('');
         	$oCity.text('请选择').attr('data-id', '').attr('data-value', '');
@@ -167,6 +131,16 @@
         	$('#areaId').attr('id', '').attr('value', '');
         	$oStreet.text('街道/小区/写字楼');
         	$oDetail.text('楼号/单元/门牌号');
+        }
+
+        // 绑定form
+        function handler4BindFormData(data) {
+        	$oName.val(data.name);
+        	$oMobile.val(data.mobile);
+        	$oCity.text(data.city);
+        	$oArea.text(data.area);
+        	$oStreet.text(data.street);
+        	$oDetail.text(data.detail);
         }
 	}
 
