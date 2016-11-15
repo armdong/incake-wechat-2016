@@ -223,7 +223,7 @@ html, body {
 			padding: 30px;
 			border-bottom: 1px solid #dcdcdc;
 
-			span, input, div {
+			span, input, textarea {
 				display: inline-block;
 				line-height: 40px;
 				font-size: 30px; /* px */
@@ -269,10 +269,15 @@ html, body {
 					transform: translateY(-50%);
 				}
 
-				&.txt-detail {
+				&.auto-expand {
+					font-family: 'Microsoft Yahei';
 					outline: none;
 					-webkit-appearance: none;
-					-webkit-user-modify: read-write-plaintext-only;
+					display:block;
+				    box-sizing: padding-box;
+				    overflow:hidden;
+				    width:520px;
+				    border:0;
 				}
 			}
 		}

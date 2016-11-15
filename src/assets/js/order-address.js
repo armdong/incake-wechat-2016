@@ -16,7 +16,27 @@
 
 		// 区域切换
 		fnInitArea();
+
+		// textarea auto-expand
+		fnAutoExpand();
 	});
+
+	function fnAutoExpand() {
+		// Applied globally on all textareas with the "auto-expand" class
+		$(document)
+		    .one('focus.auto-expand', 'textarea.auto-expand', function(){
+		        var savedValue = this.value;
+		        this.value = '';
+		        this.baseScrollHeight = this.scrollHeight;
+		        this.value = savedValue;
+		    })
+		    .on('input.auto-expand', 'textarea.auto-expand', function(){
+		        var minRows = this.getAttribute('data-min-rows')|0, rows;
+		        this.rows = minRows;
+		        rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 40);
+		        this.rows = minRows + rows;
+		    });
+	}
 
 	/**
 	 * 绑定收获地址
@@ -123,24 +143,6 @@
         	});
         });
 
-        // 详细地址获取光标
-        $oNewAddress.on('tap', '.li-detail', function() {
-        	var editor = $oDetail[0], 
-        		range;
-
-        	if(window.getSelection) {
-        		editor.focus();
-        		range = window.getSelection();
-        		range.selectAllChildren(editor);
-        		range.collapseToEnd();
-        	} else if(document.selection) {
-        		range = document.selection.createRange();
-        		range.moveToElementText(editor);
-        		range.collapse(true);
-        		range.select();
-        	}
-        });
-
         // 清空form
         function handler4EmptyFormData() {
         	$oName.val('');
@@ -150,7 +152,7 @@
         	$oArea.text('请选择').attr('data-id', '').attr('data-value', '');
         	$('#areaId').attr('id', '').attr('value', '');
         	$oStreet.text('街道/小区/写字楼');
-        	$oDetail.text('楼号/单元/门牌号');
+        	$oDetail.text('');
         }
 
         // 绑定form
