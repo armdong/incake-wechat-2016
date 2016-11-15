@@ -154,15 +154,15 @@
         var cityIdDom = document.querySelector('#cityId');
 
         var data = [
-            {'id': '021', 'value': '上海'},
-            {'id': '0591', 'value': '福州'},
-            {'id': '0512', 'value': '苏州'},
-            {'id': '0999', 'value': '昆山'},
-            {'id': '0592', 'value': '厦门'},
-            {'id': '214000', 'value': '无锡'},
-            {'id': '010', 'value': '北京'},
-            {'id': '025', 'value': '南京'},
-            {'id': '0571', 'value': '杭州'}
+            {'id': '021', 'value': '上海市'},
+            {'id': '0591', 'value': '福州市'},
+            {'id': '0512', 'value': '苏州市'},
+            {'id': '0999', 'value': '昆山市'},
+            {'id': '0592', 'value': '厦门市'},
+            {'id': '214000', 'value': '无锡市'},
+            {'id': '010', 'value': '北京市'},
+            {'id': '025', 'value': '南京市'},
+            {'id': '0571', 'value': '杭州市'}
         ];
 
         showCityDom.addEventListener('click', function () {

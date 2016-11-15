@@ -248,6 +248,9 @@ html, body {
 
 				&.navigator {
 					position: relative;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
 				}
 				&.navigator:after {
 					display: block;
