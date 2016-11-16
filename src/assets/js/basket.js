@@ -401,6 +401,8 @@ template.helper('specFormat', function(spec) {
 					.children('.unshelve,.soldout')
 					.remove();
 
+				$(this).parent('.footer').remove();
+
 				// TODO 处理清除无效商品逻辑
 				// 清除成功提示
 				var dialog = $(document).dialog({
