@@ -46,12 +46,14 @@
 		var $oAddressList = $('#addressList'),
 			$oAddressWrapper = $oAddressList.parent('.address-wrapper'),
 			$oNewAddress = $('#newAddress'),
+            $oTitle = $oNewAddress.find('.header').children('.title'),
 			$oName = $oNewAddress.find('.txt-name'),
 			$oMobile = $oNewAddress.find('.txt-mobile'),
 			$oCity = $oNewAddress.find('.txt-city'),
 			$oArea = $oNewAddress.find('.txt-area'),
 			$oStreet = $oNewAddress.find('.txt-street'),
 			$oDetail = $oNewAddress.find('.txt-detail'),
+            $oDetailForm = $oNewAddress.find('.detail-form'),
 			tl = new TimelineLite();
 
 		// 绑定数据
@@ -102,6 +104,7 @@
 
         	// 隐藏删除按钮
         	$oNewAddress.find('.btn-del').hide(); 
+            $oTitle.text('新增收货地址');
 
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
@@ -115,6 +118,7 @@
 
         	// 显示删除按钮
         	$oNewAddress.find('.btn-del').show().css('display', 'block');
+            $oTitle.text('编辑收货地址');
 
         	var $oText = $(this).prev('.text');
         	var opt = {
@@ -136,11 +140,32 @@
         });
 
         // 返回列表
-        $oNewAddress.on('tap', '.btn-back', function() {
+        $oNewAddress.children('.header').on('tap', '.btn-back', function() {
         	tl.clear();
         	tl.to($oAddressWrapper, 0.5, {
         		x: '0%'
         	});
+        });
+
+        // 选择详细地址 智能定位
+        $oStreet.on('tap', function() {
+            tl.clear();
+            tl.to($oDetailForm, 0.5, {
+                y: '0%'
+            });
+        });
+
+        // 关闭定位
+        $oDetailForm.children('.header').on('tap', '.btn-back', function() {
+            tl.clear();
+            tl.to($oDetailForm, 0.5, {
+                y: '100%'
+            });
+        });
+
+        // 清空搜索条件
+        $oDetailForm.on('tap', '.btn-clear', function() {
+            $(this).prev('.txt-search').val('');
         });
 
         // 清空form
