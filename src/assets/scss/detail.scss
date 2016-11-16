@@ -165,7 +165,7 @@ html, body {
 					float: left;
 					width: 136px;
 					height: 56px;
-					border: 2px solid #d2d2d2;
+					border: 1px solid #d2d2d2; /* no */
 					margin: 0 0 20px 20px;
 					line-height: 56px;
 					font-size: 28px;
@@ -174,8 +174,6 @@ html, body {
 					&.active {
 						border-color: #ef1b47;
 						color: #ef1b47;
-						outline: 3px solid #ef1b47;
-						outline-offset: -3px;
 					}
 				}
 			}
