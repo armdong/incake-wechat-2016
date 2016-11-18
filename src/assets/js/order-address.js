@@ -156,9 +156,46 @@
             });
         });
 
+        /**
+         * ========================
+         * 百度地图联想
+         * ========================
+         */
+
+        // 配置项
+        var autoOptions = {
+            'input': 'txtSearch',
+            'location': '上海市',
+            onSearchComplete: function(result) {
+                var _data = result;
+                var _html = template('tplResultList', _data);
+                $oResultList.html(_html);
+                return false;
+            } 
+        };
+        var ac = new BMap.Autocomplete(autoOptions);
+        ac.hide();
+
         // 搜索框文本改变事件
         $('#txtSearch').bind('input propertychange', function(){
-            //console.log($(this).val());
+            var keywords = $(this).val();
+            if(keywords === '') {
+                $(this).next('.btn-clear').css('display', 'none');
+            } else {
+                $(this).next('.btn-clear').css('display', 'block');
+            }
+            var acr = BMap.AutocompleteResult
+        });
+
+        /**
+         * ========================
+         * 高德地图联想(已废弃)
+         * ========================
+         */
+        
+        /*
+        // 搜索框文本改变事件
+        $('#txtSearch').bind('input propertychange', function(){
             var keywords = $(this).val();
             cb4BindAddress(keywords);
         });
@@ -181,6 +218,7 @@
                 });
             });
         }
+        */
 
         // 关闭定位
         $oDetailForm.children('.header').on('tap', '.btn-back', function() {
@@ -193,6 +231,7 @@
         // 清空搜索条件
         $oDetailForm.on('tap', '.btn-clear', function() {
             $(this).prev('.txt-search').val('');
+            $(this).css('display', 'none');
         });
 
         // 清空form

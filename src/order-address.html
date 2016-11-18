@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="assets/css/dialog.css">
 	<link rel="stylesheet" href="assets/css/global.css">
 	<link rel="stylesheet" href="assets/css/order-address.css">
+	<script src="http://api.map.baidu.com/api?v=2.0&ak=OaIQ5Eu17zv2DOT9Eqz6PWvI"></script>
 </head>
 <body>
 	
@@ -114,12 +115,15 @@
 					</div>
 				</div>
 				<script type="text/html" id="tplResultList">
-					{{each tips as item i}}
+					{{each wr as item i}}
 					<li class="item">
 						<a href="javascript:;" class="item-wrapper">
 							<div class="text">
-								<p class="detail">{{item.address}}</p>
-								<p>{{item.district}}</p>
+								<p class="detail">{{item.business}}</p>
+								<p>
+									<span class="city">{{item.city}}</span>
+									<span class="area">{{item.district}}</span>
+								</p>
 							</div>
 						</a>
 					</li>
@@ -145,7 +149,7 @@
 		.script('assets/plugins/iosselect/adaptive.js').wait()
 		.script('assets/plugins/iosselect/iscroll.js').wait()
 		.script('assets/plugins/iosselect/iosSelect_rem.js').wait()
-		.script('http://webapi.amap.com/maps?v=1.3&key=4ed293167a8aa051494ef2ad291d18a8').wait()
+		//.script('//api.map.baidu.com/api?v=2.0&ak=OaIQ5Eu17zv2DOT9Eqz6PWvI').wait()
 		.script('assets/js/common.js').wait()
 		.script('assets/js/order-address.js');
 	</script>
