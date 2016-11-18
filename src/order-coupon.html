@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>卡券</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/order-coupon.css">
+</head>
+<body>
+	
+	<!-- 优惠券 begin -->
+	<div class="page-container">		
+		<div class="coupon-wrapper">
+			<!-- 优惠券列表 begin -->
+			<div class="coupon-list" id="couponList"></div>
+			<script type="text/html" id="tplCouponList">
+			{{if hasCoupon}}
+				{{if isMine}}
+				<div class="header clearfix">
+					<p class="title">不使用卡券</p>
+					<a href="javascript:;" class="btn-radio"></a>
+				</div>
+				{{/if}}
+				<ul class="list">
+				{{each list as item i}}
+					{{if item.isUsed}}
+					<li class="used clearfix">
+					{{else}}
+						{{if item.isOverdue}}
+						<li class="overdue clearfix">
+						{{else}}
+						<li class="clearfix">						
+						{{/if}}
+					{{/if}}
+						<div class="discount">
+							<p class="sum"><span>{{item.discount.sum}}</span>{{item.discount.sumText}}</p>
+							<p class="category">{{item.discount.category}}</p>
+						</div>
+						<div class="info">
+							<p class="text">{{item.info.text}}</p>
+							<p class="expiry-date">{{item.info.expiryDate}}</p>
+						</div>
+						<a href="javascript:;" class="btn-details"></a>
+						{{if item.hasTips}}
+						<p class="tips">{{item.info.tips}}</p>
+						{{/if}}
+						{{if item.isUsed}}
+						<p class="tip-used"></p>
+						{{/if}}
+						{{if item.isOverdue}}
+						<p class="tip-overdue"></p>
+						{{/if}}
+					</li>
+				{{/each}}
+				</ul>
+				<a href="javascript:;" class="btn-add">卡券添加/使用/兑换</a>
+			{{else}}
+				<div class="no-coupon">
+					<p class="icon-fail"></p>
+					<p class="tip-text">您还没有卡券哦～</p>
+					<a href="javascript:;" class="btn-add"><span>绑定/添加/使用卡券</span></a>
+				</div>
+			{{/if}}
+			</script>
+			<!-- 优惠券列表 end -->
+			<!-- 卡券添加 begin -->
+			<div class="new-coupon" id="newCoupon">
+				<!--<div class="header">
+					<p class="title">新增收获地址</p>
+					<a href="javascript:;" class="btn-back"></a>
+				</div>
+				<ul class="form">
+					<li class="clearfix">
+						<span class="title">收货人</span>
+						<input class="content txt-name" placeholder="姓名" />
+					</li>
+					<li class="clearfix">
+						<span class="title">联系电话</span>
+						<input class="content txt-mobile" placeholder="手机号码" />
+					</li>
+					<li class="clearfix">
+						<span class="title">选择城市</span>
+						<span class="content navigator txt-city" id="showCity">请选择</span>
+						<input type="hidden" name="city_id" id="cityId" value="">
+					</li>
+					<li class="clearfix">
+						<span class="title">选择区域</span>
+						<span class="content navigator txt-area" id="showArea">请选择</span>
+						<input type="hidden" name="area_id" id="areaId" value="">
+					</li>
+					<li class="clearfix">
+						<span class="title">详细地址</span>
+						<span class="content navigator txt-street">街道/小区/写字楼</span>
+					</li>
+					<li class="li-detail clearfix">
+						<span class="title">&nbsp;</span>
+						<textarea rows="1" data-min-rows="1" class="content txt-detail auto-expand" placeholder="楼号/单元/门牌号"></textarea>
+					</li>
+				</ul>
+				<a href="order-submit.html" class="btn-save">保存并使用</a>
+				<a href="order-address.html" class="btn-del">删除</a>-->
+			</div>
+			<!-- 卡券添加 end -->
+		</div>
+		
+		<!-- 卡券说明 begin -->
+		<div class="mask mask-couponInfo" id="couponInfo">
+			<div class="mask-header">
+				<div class="title">
+					<p>卡券说明</p>
+				</div>
+			</div>
+			<div class="mask-container">
+				<ul class="list">
+					<li><span>①</span>优惠券是仅限在乐视商城使用，按面值总额减免支付的优惠码。</li>
+					<li><span>②</span>优惠券分三种：满减券、免邮券、以旧换新优惠券。</li>
+					<li><span>③</span>优惠券获取方式：通过乐视商城的买赠、活动参与等形式获取。</li>
+					<li><span>④</span>使用满减券、免邮券提交的订单，在订单未支付时取消订单，则订单取消后，系统自动返还相应的优惠券；若订单被支付后，取消某一子单或取消全部子单，优惠券均不返还。</li>
+					<li><span>⑤</span>使用以旧换新优惠券提交的购新订单，在订单未支付时取消订单，系统自动返还相应的优惠券；</li>
+					<li><span>⑥</span>在订单被支付后取消订单或退货，待使用优惠券的所有子单现金部分均退款完成后，请联系客服退还以旧换新优惠券。如仍存在未退款的子单，请继续操作完成退货。</li>
+					<li><span>⑦</span>使用商品券、品类券、免邮券的订单，若发生售后退货，优惠券不予返还。</li>
+					<li><span>⑧</span>优惠券不能进行兑现、出售、转让或其他用途。</li>
+					<li><span>⑨</span>本规则由乐视商城依据国家相关法律法规及规章制度予以解释。</li>
+				</ul>
+			</div>
+			<div class="mask-footer">
+				<a href="javascript:;" class="btn-close">确认</a>
+			</div>
+		</div>
+		<!-- 卡券说明 end -->
+		
+	</div>
+	<!-- 优惠券 end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/order-coupon.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>
