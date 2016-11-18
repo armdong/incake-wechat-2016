@@ -107,45 +107,24 @@
 					</div>
 					<div class="form-wrapper">
 						<div class="search-box clearfix">
-							<input type="text" class="txt-search" placeholder="请输入您要查询的地址">
+							<input type="text" class="txt-search" id="txtSearch" placeholder="请输入您要查询的地址">
 							<a href="javascript:;" class="btn-clear"></a>
 						</div>
-						<ul class="result-list">
-							<li class="item">
-								<a href="javascript:;" class="item-wrapper">
-									<div class="text">
-										<p class="detail">广中西路777弄99号江裕大厦</p>
-										<p>上海市 静安区</p>
-									</div>
-								</a>
-							</li>
-							<li class="item">
-								<a href="javascript:;" class="item-wrapper">
-									<div class="text">
-										<p class="detail">广中西路777弄99号江裕大厦</p>
-										<p>上海市 静安区</p>
-									</div>
-								</a>
-							</li>
-							<li class="item">
-								<a href="javascript:;" class="item-wrapper">
-									<div class="text">
-										<p class="detail">广中西路777弄99号江裕大厦</p>
-										<p>上海市 静安区</p>
-									</div>
-								</a>
-							</li>
-							<li class="item">
-								<a href="javascript:;" class="item-wrapper">
-									<div class="text">
-										<p class="detail">广中西路777弄99号江裕大厦</p>
-										<p>上海市 静安区</p>
-									</div>
-								</a>
-							</li>
-						</ul>
+						<ul class="result-list" id="resultList"></ul>
 					</div>
 				</div>
+				<script type="text/html" id="tplResultList">
+					{{each tips as item i}}
+					<li class="item">
+						<a href="javascript:;" class="item-wrapper">
+							<div class="text">
+								<p class="detail">{{item.address}}</p>
+								<p>{{item.district}}</p>
+							</div>
+						</a>
+					</li>
+					{{/each}}
+				</script>
 				<!-- 详细地址定位 end -->				
 			</div>
 			<!-- 新增地址 end -->
@@ -166,6 +145,7 @@
 		.script('assets/plugins/iosselect/adaptive.js').wait()
 		.script('assets/plugins/iosselect/iscroll.js').wait()
 		.script('assets/plugins/iosselect/iosSelect_rem.js').wait()
+		.script('http://webapi.amap.com/maps?v=1.3&key=4ed293167a8aa051494ef2ad291d18a8').wait()
 		.script('assets/js/common.js').wait()
 		.script('assets/js/order-address.js');
 	</script>

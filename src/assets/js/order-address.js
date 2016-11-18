@@ -54,6 +54,7 @@
 			$oStreet = $oNewAddress.find('.txt-street'),
 			$oDetail = $oNewAddress.find('.txt-detail'),
             $oDetailForm = $oNewAddress.find('.detail-form'),
+            $oResultList = $('#resultList'),
 			tl = new TimelineLite();
 
 		// 绑定数据
@@ -154,6 +155,32 @@
                 y: '0%'
             });
         });
+
+        // 搜索框文本改变事件
+        $('#txtSearch').bind('input propertychange', function(){
+            //console.log($(this).val());
+            var keywords = $(this).val();
+            cb4BindAddress(keywords);
+        });
+
+        // 绑定联想地址
+        function cb4BindAddress(keywords) {
+            AMap.plugin('AMap.Autocomplete',function(){//回调函数
+                //实例化Autocomplete
+                var autoOptions = {
+                    city: "", //城市，默认全国
+                };
+                autocomplete= new AMap.Autocomplete(autoOptions);
+                autocomplete.search(keywords, function(status, result){
+                    //TODO:开发者使用result自己进行下拉列表的显示与交互功能
+                    if(status !== 'error') {
+                        var _data = result;
+                        var _html = template('tplResultList', _data);
+                        $oResultList.html(_html);
+                    }
+                });
+            });
+        }
 
         // 关闭定位
         $oDetailForm.children('.header').on('tap', '.btn-back', function() {
