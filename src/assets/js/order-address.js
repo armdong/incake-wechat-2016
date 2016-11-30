@@ -122,8 +122,7 @@
             $oTitle.text('编辑收货地址');
 
         	var $oText = $(this).prev('.text');
-        	var opt = {
-        		name: $oText.find('.name').text(),
+        	var opt = {        		name: $oText.find('.name').text(),
         		mobile: $oText.find('.mobile').text(),
         		city: $oText.find('.city').text(),
         		area: $oText.find('.area').text(),
