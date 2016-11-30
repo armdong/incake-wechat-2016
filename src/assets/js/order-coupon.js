@@ -19,8 +19,24 @@
 			$oCouponWrapper = $oCouponList.parent('.coupon-wrapper'),
 			$oPageCoupon = $oCouponWrapper.parent('.page-container'),
 			$oNewCoupon = $('#newCoupon'),
+			$oCardList = $oNewCoupon.find('#cardList'),
+			$oBtnCakeCash = $oNewCoupon.find('.btn-cake-cash'),
+			$oBtnCoupon = $oNewCoupon.find('.btn-coupon'),
+			$oLine = $oNewCoupon.find('.header-line');
+			$oBtnSubmit = $oNewCoupon.find('.btn-submit');
+			$oCakeCash = $oNewCoupon.find('.cake-cash'),
+			$oCoupon = $oNewCoupon.find('.coupon'),
+			$oCardNum = $oCakeCash.find('.cardNum'),
+			$oCardPwd = $oCakeCash.find('.cardPwd'),
+			$aBtnDel = $oCakeCash.find('.btn-del'),
+			$oTxtCouponNum = $oCoupon.find('.txtCouponNum'),
+			$oBtnClear = $oCoupon.find('.btn-clear'),
+			$oBtnUse = $oNewCoupon.find('.btn-use'),
 			$oMastCouponInfo = $oPageCoupon.find('#couponInfo'),
 			$oBtnClose = $oMastCouponInfo.find('.btn-close'),
+			$oMastTip = $oPageCoupon.find('#maskTip'),
+			$oBtnCancel = $oMastTip.find('.btn-cancel'),
+			$oBtnContinue = $oMastTip.find('.btn-continue'),
 			tl = new TimelineLite();
 		
 		// 绑定数据
@@ -99,60 +115,153 @@
 		
         // 添加卡券&绑定卡券
         $oCouponList.on('tap', '.btn-add', function() {  
-
+			
+			// 绑定数据
+			var _data2 = {
+				hasCard: true, // 卡券列表是否有数据
+				cardList: [{
+					cardNum: 11111,
+					cardPrice: 189
+				}, {
+					cardNum: 22222,
+					cardPrice: 189
+				}, {
+					cardNum: 33333,
+					cardPrice: 189
+				}, {
+					cardNum: 44444,
+					cardPrice: 189
+				}, {	
+					cardNum: 55555,
+					cardPrice: 189
+				}]
+			};
+			var _html = template('tplCardList', _data2);
+	        $oCardList.html(_html);
+			
         	tl.clear();
         	tl.to($oCouponWrapper, 0.5, {
         		x: '-50%',
         		onStart: handler4EmptyFormData
         	});
         });
-
-        // 编辑收货地址 事件处理函数
-//      $oCouponList.on('tap', '.btn-edit', function() {
-//
-//      	// 显示删除按钮
-//      	$oNewCoupon.find('.btn-del').show().css('display', 'block');
-//          $oTitle.text('编辑收货地址');
-//
-//      	var $oText = $(this).prev('.text');
-//      	var opt = {
-//      		name: $oText.find('.name').text(),
-//      		mobile: $oText.find('.mobile').text(),
-//      		city: $oText.find('.city').text(),
-//      		area: $oText.find('.area').text(),
-//      		street: $oText.find('.street').text(),
-//      		detail: $oText.find('.detail').text()
-//      	};
-//
-//      	// 绑定数据
-//      	handler4BindFormData(opt);
-//
-//      	tl.clear();
-//      	tl.to($oCouponWrapper, 0.5, {
-//      		x: '-50%'
-//      	});
-//      });
-
-        // 返回列表
-//      $oNewCoupon.children('.header').on('tap', '.btn-back', function() {
-//      	tl.clear();
-//      	tl.to($oCouponWrapper, 0.5, {
-//      		x: '0%'
-//      	});
-//      });
-
-
+		
+		// 删除已添加卡券
+		$oCakeCash.on('tap', '.btn-del', function(){
+			$(this).closest('li').remove();
+		});
+		
+        // 添加优惠券
+        $oBtnCoupon.on('tap', function() {
+			//清除表单数据
+			handler4EmptyFormData();
+			
+			// 切换显示内容
+			tl.clear();
+        	tl.to($oLine, 0.2, {
+        		x: '100%'
+        	});
+        	$oBtnCakeCash.removeClass('active');
+        	$oBtnCoupon.addClass('active');
+        	
+        	$oCakeCash.hide();
+        	$oCoupon.show();
+        });
+        
+        // 检测优惠券输入
+        $oTxtCouponNum.keyup(function(){
+        	if($oTxtCouponNum.val()!=""){
+	        	$oBtnClear.show();
+        	}else{
+        		$oBtnClear.hide();
+        	}
+        });
+        
+        // 清除已输入优惠券信息
+         $oBtnClear.on('tap', function() {
+			//清除表单数据
+			$('.txtCouponNum').val('');
+			
+        });
+        
+        // 立即使用卡券
+         $oBtnUse.on('tap', function() {
+         	//判断是否已添加卡券
+         	var state = true;
+         	if(state){
+         		Mask.show();
+				$oMastTip.show();
+         	}
+        });
+        
+		// 继续添加优惠券操作--------------------相关功能代码待完善
+		$oBtnContinue.on('tap', function() {
+		
+		});
+		
+		// 取消添加优惠券
+        $oBtnCancel.on('tap', function() {
+			Mask.hide();
+			$oMastTip.hide();
+		});
+		
+		// 添加蛋糕卡/现金券
+		$oBtnCakeCash.on('tap', function() {
+			// 切换显示内容
+			tl.clear();
+        	tl.to($oLine, 0.2, {
+        		x: '0%'
+        	});
+        	$oBtnCakeCash.addClass('active');
+        	$oBtnCoupon.removeClass('active');
+        	
+        	$oCakeCash.show();
+        	$oCoupon.hide();
+			
+		});
+		
+		// 提交优惠券信息
+        $oBtnSubmit.on('tap', function() {
+        	// 信息优惠券信息验证--------------------相关功能代码待完善
+        	var regInfo = true;
+        	
+        	if(regInfo){
+        		// 添加优惠券至列表
+				var html = '<li class="clearfix"><span class="cardNum">'+$('.cardNum').val()+'</span><span>￥'+$('.cardPwd').val()+'</span><i class="btn-del"></i></li>';
+				$oCardList.append(html);
+				//清除表单数据
+				handler4EmptyFormData();
+        	}else{
+        		fnRegDialog($oCardNum, '请输入正确的卡号或密码！');
+        	}
+        });
+        
         // 清空form
         function handler4EmptyFormData() {
-        	
+        	$('.cardNum').val('');
+        	$('.cardPwd').val('');
+        	$('.txtCouponNum').val('');
         }
 
-        // 绑定form
-        function handler4BindFormData(data) {
-        	
-        }
 	}
 	
-	
+ 
+	/**
+	 * 输入框错误相关提示
+	 * @param  {[type]} msg [提示文字]
+	 * @return {[type]}     [description]
+	 */
+	function fnRegDialog($oDom, msg) {
+		var dialog = $(document).dialog({
+	        type: 'toast',
+	        infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
+	        infoText: msg,
+	        autoClose: '1500',
+	        onClosed: function() {
+	        	$oDom.val('');
+	        	$oDom.trigger('focus');
+	        }
+	    });
+	}
 
 })(Zepto, window, document);
