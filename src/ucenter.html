@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>我的</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/ucenter.css">
+</head>
+<body>
+	
+	<!-- ucenter begin -->
+	<div class="page-container">
+
+		<!-- avator begin -->
+		<div class="avator-container">
+			<div class="avator">
+				<img src="assets/imgs/ucenter/avator_img.png" alt="">
+			</div>
+			<p class="nick-name">zhangsan124</p>
+		</div>
+		<!-- avator end -->
+
+		<!-- order container begin -->
+		<div class="order-container section">
+			<div class="section-header">
+				<div class="header-wrapper navigator">
+					<div class="header-container clearfix">
+						<span class="title">我的订单</span>
+						<a href="javascript:;" class="btn view-all-orders">查看全部订单</a>
+					</div>
+				</div>
+			</div>
+			<div class="section-body">
+				<ul class="clearfix">
+					<li class="all">
+						<a href="javascript:;"><span class="num">2</span></a>
+						<p class="text">全部订单</p>
+					</li>
+					<li class="payment">
+						<a href="javascript:;"><span class="num">1</span></a>
+						<p class="text">待支付</p>
+					</li>
+					<li class="prepare">
+						<a href="javascript:;"><span class="num">0</span></a>
+						<p class="text">准备中</p>
+					</li>
+					<li class="comment">
+						<a href="javascript:;"><span class="num">1</span></a>
+						<p class="text">待评论</p>
+					</li>
+				</ul>
+				<p class="notice">最近一个订单将于2月10日 19:00－21:00 送达</p>
+			</div>
+		</div>
+		<!-- order container end -->
+
+		<!-- favor container begin -->
+		<div class="favor-container section">
+			<div class="section-header">
+				<div class="header-wrapper navigator">
+					<div class="header-container clearfix">
+						<span class="title">我的喜欢</span>
+						<a href="javascript:;" class="btn view-all-favors">查看全部喜欢</a>
+					</div>
+				</div>
+			</div>
+			<div class="section-body"></div>
+		</div>
+		<!-- favor container end -->
+
+	</div>
+	<!-- ucenter end -->
+
+	<!-- common navbar begin -->
+	<div class="navbar clearfix" id="menuNav">
+		<a href="index.html" class="link choiceness">
+			<div class="img"></div>
+			<p>精选</p>
+		</a>
+		<a href="list.html" class="link discovery">
+			<div class="img"></div>
+			<p>发现</p>
+		</a>
+		<a href="basket.html" class="link shopping-basket">
+			<div class="img">
+				<span class="num">9</span>
+			</div>
+			<p>购物篮</p>
+		</a>
+		<a href="ucenter.html" class="link mine active">
+			<div class="img"></div>
+			<p>我的</p>
+		</a>
+	</div>
+	<!-- common navbar end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/ucenter.js');
+	</script>
+	<!-- scripts end -->
+</body>
+</html>
