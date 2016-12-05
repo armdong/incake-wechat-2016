@@ -31,7 +31,7 @@
                 }],
                 btns: [{
                     className: 'btn-pay active',
-                    html: '去付款(<span class="countdown"><i class="minute">30</i>:<i class="second">00</i></span>)'
+                    html: '去付款（<span class="countdown"><i class="minute">30</i>:<i class="second">00</i></span>）'
                 }, {
                     className: 'btn-cacel',
                     html: '取消订单'
@@ -111,12 +111,15 @@
      * @return {[type]} [description]
      */
     function fnLoadOrdersData() {
+    	// 获取url中的订单类型，例如“准备中” preparing
+    	// http://192.168.1.223:3000/ucenter-order.html?ordertype=preparing
+    	// -> orderType: preparing
     	var orderType = utils.getParameterByName('ordertype');
     	orderType === null ? 'all' : orderType;
 
     	// 发送Ajax请求
     	$.ajax({
-    		url: 'loadOrderData.aspx',
+    		url: 'loadOrdersData.aspx', // 获取订单数据api
     		type: 'POST',
     		data: {
     			orderType: orderType
