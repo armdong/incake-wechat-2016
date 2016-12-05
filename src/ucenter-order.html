@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>我的订单</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/plugins/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/ucenter-order.css">
+</head>
+<body>
+	
+	<!-- ucenter order begin -->
+	<div class="page-container" id="orders"></div>
+	<script type="text/html" id="tplOrders">
+		{{if hasOrders}}
+		<!-- order container begin -->
+		<div class="order-container">
+			<ul class="order-list">
+				{{each list as item i}}
+				<li class="order-item">
+					<div class="item-header">
+						<p class="clearfix">
+							<span class="time">{{item.time}}</span>
+							<span class="status {{item.status.className}}">{{item.status.text}}</span>
+						</p>
+					</div>
+					<div class="item-container swiper-container">
+						<div class="product-list swiper-wrapper clearfix">
+							{{each item.orders as order}}
+							<div class="product-item swiper-slide">
+								<a href="{{order.link}}" class="img">
+									<img src="{{order.img}}" alt="">
+								</a>
+							</div>
+							{{/each}}
+						</div>
+					</div>
+					<div class="item-footer clearfix">
+						{{each item.btns as btn}}
+						<a href="javascript:;" class="btn {{btn.className}}">{{#btn.html}}</a>
+						{{/each}}
+					</div>
+				</li>	
+				{{/each}}
+			</ul>
+		</div>
+		<!-- order container end -->
+		{{else}}
+		<!-- no-order begin -->
+		<div class="no-order"></div>
+		<!-- no-order end -->
+		{{/if}}
+	</script>
+	<!-- ucenter order end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/swiper/js/swiper.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/utils.js').wait()
+		.script('assets/js/ucenter-order.js');
+	</script>
+	<!-- scripts end -->
+</body>
+</html>
