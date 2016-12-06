@@ -87,7 +87,7 @@ html, body {
 					}
 
 					/* 已配送 */
-					&.shipped {
+					&.shipped, &.unconfirm {
 						color: #313131;
 					}
 				}

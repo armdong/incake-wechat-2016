@@ -44,7 +44,7 @@
 							{{/each}}
 						</div>
 					</div>
-					<div class="item-footer clearfix">
+					<div class="item-footer clearfix" data-pubtime="{{item.pubTime}}">
 						{{each item.btns as btn}}
 						<a href="javascript:;" class="btn {{btn.className}}">{{#btn.html}}</a>
 						{{/each}}
@@ -75,6 +75,7 @@
 		.script('assets/plugins/fastclick.js').wait()
 		.script('assets/js/common.js').wait()
 		.script('assets/js/utils.js').wait()
+		.script('assets/plugins/date.extend.js').wait()
 		.script('assets/js/ucenter-order.js');
 	</script>
 	<!-- scripts end -->
