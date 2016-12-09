@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>我的订单-评价</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/plugins/swiper/css/swiper.min.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/order-comment.css">
+</head>
+<body>
+	
+	<!-- order comment begin -->
+	<div class="page-container" id="comments"></div>
+	<script type="text/html" id="tplComment">
+		<!-- comment container begin -->
+		<div class="comment-container">
+			<ul class="comment-list">
+				{{each list as item i}}
+				<li class="comment-item">
+					<div class="item-header clearfix">
+						<p class="cake-photo"><img src={{item.cakePhoto}} /></p>
+						<div class="cake-info">
+							<p class="cake-name">{{item.cakeName}}</p>
+							<p class="cake-detail clearfix">
+								<span class="cake-weight">{{item.cakeInfo.cakeWeight}}</span>
+								<span class="cake-number">x&nbsp;{{item.cakeInfo.cakeNumber}}</span>
+								<span class="cake-price">¥{{item.cakeInfo.cakePrice}}</span>
+							</p>
+						</div>
+					</div>
+					<div class="item-evaluate">
+						<ul class="item-star clearfix">
+							<li class="active"></li>
+							<li class="active"></li>
+							<li class="active"></li>
+							<li class="active"></li>
+							<li></li>
+						</ul>
+					</div>
+					<div class="item-remark">
+						<ul class="clearfix">
+							<li>按时送达</li>
+							<li>味道不错</li>
+							<li>基本满意</li>
+						</ul>
+					</div>
+					<div class="item-footer">
+						<div class="comment">
+							<textarea placeholder="您可以写下您的评价哦～"></textarea>
+							<a href="javascript:;" class="btn-submit">提交</a>
+						</div>
+						<p class="sub-comment"></p>
+					</div>
+				</li>	
+				{{/each}}
+			</ul>
+		</div>
+	</script>
+	<!-- order comment end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/swiper/js/swiper.min.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/utils.js').wait()
+		.script('assets/plugins/date.extend.js').wait()
+		.script('assets/js/order-comment.js');
+	</script>
+	<!-- scripts end -->
+</body>
+</html>
