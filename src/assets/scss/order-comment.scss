@@ -120,8 +120,8 @@ html, body {
             }
             li.active {
                 color: #fff;
-                background-color: #ebc8cd;
-                border-color: #ebc8cd;
+                background-color: #dcdcdc;
+                border-color: #dcdcdc;
             }
         }
         
@@ -130,6 +130,7 @@ html, body {
             border-bottom: none;
             
             .comment {
+                position: relative;
                 width: 100%;
                 height: 250px;
                 
@@ -148,9 +149,18 @@ html, body {
                     outline: none;
                 }
                 
+                .number {
+                    position: absolute;
+                    top: 135px;
+                    right: 20px;
+                    font-size: 26px;
+                    line-height: 26px;
+                    color: #656565;
+                }
+                
                 .btn-submit {
                     display: block;
-                    width: 200px;
+                    width: 100%;
                     height: 70px;
                     background-color: #e84e55;
                     border-radius: 6px;
@@ -164,6 +174,7 @@ html, body {
             
 			.sub-comment {
 			    display: none;
+			    width: 100%;
 			    font-size: 30px;
 			    line-height: 40px;
 			    color: #323232;

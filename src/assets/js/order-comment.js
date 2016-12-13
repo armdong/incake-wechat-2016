@@ -81,72 +81,101 @@
      * 初始化评价操作
      */
     function fnInitComment() {
-        var $oCommentContainer = $('#comments');
+        var $oCommentContainer = $('#comments'),
+        	$oTextarea = $oCommentContainer.find('#txtSummary'),
+        	iMaxLen = 50;
         
         // 星级评价
         $oCommentContainer.on('click', '.item-star li', function(){
         	var _starList = $(this).closest('.item-star'),
         		_item = _starList.find('li'),
-        		_index = $(this).index();
+        		_index = $(this).index(),
+        		_height = _starList.closest('.item-evaluate').siblings('.item-footer').find('.comment').css('height');
         	
-        	$(_item).removeClass('active');
-        	for(var i=0; i<=_index; i++){
-    			$(_item[i]).addClass('active');
+        	if(_height != '0px'){
+        		$(_item).removeClass('active');
+	        	for(var i=0; i<=_index; i++){
+	    			$(_item[i]).addClass('active');
+	        	}
+	        	
+	        	var status = _starList.find('.active').length,
+	        		_remarkList = _starList.closest('.item-evaluate').siblings('.item-remark').find('ul'),
+	        		_html = "";
+	        	
+	        	switch (status) {
+	        		case 1:
+	        			_html = "<li>物流太慢</li><li>味道不好</li><li>蛋糕不新鲜</li>"
+	        			break;
+	        		case 2:
+	        			_html = "<li>物流太慢</li><li>味道不满意</li><li>蛋糕不新鲜</li>"
+	        			break;
+	        		case 3:
+	        			_html = "<li>物流有待提升</li><li>味道一般</li><li>总体还行</li>"
+	        			break;
+	        		case 4:
+	        			_html = "<li>按时送达</li><li>味道不错</li><li>基本满意</li>"
+	        			break;
+	        		case 5:
+	        			_html = "<li>服务态度好</li><li>味道赞</li><li>蛋糕很新鲜</li>"
+	        			break;
+	        	}
+	        	
+	        	_remarkList.html(_html);
         	}
-        	
-        	var status = _starList.find('.active').length,
-        		_remarkList = _starList.closest('.item-evaluate').siblings('.item-remark').find('ul'),
-        		_html = "";
-        	
-        	switch (status) {
-        		case 1:
-        			_html = "<li>物流太慢</li><li>味道不好</li><li>蛋糕不新鲜</li>"
-        			break;
-        		case 2:
-        			_html = "<li>物流太慢</li><li>味道不满意</li><li>蛋糕不新鲜</li>"
-        			break;
-        		case 3:
-        			_html = "<li>物流有待提升</li><li>味道一般</li><li>总体还行</li>"
-        			break;
-        		case 4:
-        			_html = "<li>按时送达</li><li>味道不错</li><li>基本满意</li>"
-        			break;
-        		case 5:
-        			_html = "<li>服务态度好</li><li>味道赞</li><li>蛋糕很新鲜</li>"
-        			break;
-        	}
-        	
-        	_remarkList.html(_html);
         	
         });
         
+        $oTextarea.bind('input propertychange', function(e) {
+            var text = $(this).val().trim(),
+                iLen = text.length,
+                $oLastWord = $(this).closest('.comment').find('#lastWord');
+
+            if (iLen > iMaxLen) {
+                $(this).val(text.substring(0, iMaxLen));
+                iLen = iMaxLen;
+            }
+            $oLastWord.html(iMaxLen - iLen);
+        });
         
         // 提交评价
         $oCommentContainer.on('click', '.btn-submit', function(){
         	var _textarea = $(this).siblings('textarea'),
+        		_number = $(this).siblings('.number'),
         		_comment = $(this).closest('.comment'),
+        		_footer = _comment.closest('.item-footer'),
         		_subComment = _comment.siblings('.sub-comment'),
-	        	_remark = _comment.closest('.item-footer').siblings('.item-remark'),
+	        	_remark = _footer.siblings('.item-remark'),
+	        	_evaluate = _footer.siblings('.item-evaluate'),
 				_remarkItem = _remark.find('li');
         	
+        	// 隐藏item-footer
         	_textarea.hide();
+        	_number.hide();
         	$(this).hide();
         	$(this).closest('.comment').css({
 				'height':'0',
 				'transition':'.5s'
 			});
-        	
+			
+        	// 显示评语 
         	if(_textarea.val()!=""){
         		_subComment.text(_textarea.val());
         		_subComment.show();
         	}else{
-        		_comment.closest('.item-footer').css('padding','0');
-        		_remark.css('border','none');
+        		_footer.css('padding','0');
+    			_remark.css('border','none');
         	}
         	
+        	// 显示热门标签
         	_remarkItem.hide();
     		_remark.find('li.active').show();
         	
+    		// 清除热评标签样式	
+    		if(!$(_remarkItem).hasClass('active')){
+    			_evaluate.css('border','none');
+    			_remark.css('padding','0');
+    		}
+    		
         });
         
         // 选择评论选项
@@ -157,7 +186,6 @@
         		$(this).toggleClass('active');
         	}
         });
-        
         
     }
 
