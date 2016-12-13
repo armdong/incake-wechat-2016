@@ -9,64 +9,51 @@
 	<script src="assets/plugins/lib-flexible/flexible.js"></script>
 	<link rel="apple-touch-icon" href="favicon.png">
 	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
-	<title>我的订单-评价</title>
+	<title>我的订单-详情</title>
 	<link rel="stylesheet" href="assets/css/normalize.css">
 	<link rel="stylesheet" href="assets/plugins/swiper/css/swiper.min.css">
 	<link rel="stylesheet" href="assets/css/dialog.css">
 	<link rel="stylesheet" href="assets/css/global.css">
-	<link rel="stylesheet" href="assets/css/order-comment.css">
+	<link rel="stylesheet" href="assets/css/order-detail.css">
 </head>
 <body>
 	
-	<!-- order comment begin -->
-	<div class="page-container" id="comments"></div>
-	<script type="text/html" id="tplComment">
-		<!-- comment container begin -->
-		<div class="comment-container">
-			<ul class="comment-list">
-				{{each list as item i}}
-				<li class="comment-item">
-					<div class="item-header clearfix">
-						<p class="cake-photo"><img src={{item.cakePhoto}} /></p>
-						<div class="cake-info">
-							<p class="cake-name">{{item.cakeName}}</p>
-							<p class="cake-detail clearfix">
-								<span class="cake-weight">{{item.cakeInfo.cakeWeight}}</span>
-								<span class="cake-number">x&nbsp;{{item.cakeInfo.cakeNumber}}</span>
-								<span class="cake-price">¥{{item.cakeInfo.cakePrice}}</span>
-							</p>
-						</div>
-					</div>
-					<div class="item-evaluate">
-						<ul class="item-star clearfix">
-							<li class="active"></li>
-							<li class="active"></li>
-							<li class="active"></li>
-							<li class="active"></li>
-							<li></li>
-						</ul>
-					</div>
-					<div class="item-remark">
-						<ul class="clearfix">
-							<li>按时送达</li>
-							<li>味道不错</li>
-							<li>基本满意</li>
-						</ul>
-					</div>
-					<div class="item-footer">
-						<div class="comment">
-							<textarea id="txtSummary" placeholder="您可以写下您的评价哦～"></textarea>
-							<p class="number"><span id="lastWord">50</span>/50</p>
-							<a href="javascript:;" class="btn-submit">提交</a>
-						</div>
-						<p class="sub-comment"></p>
-					</div>
-				</li>	
-				{{/each}}
+	<!-- order detail begin -->
+	<div class="page-container" id="details">
+		<!-- detail status begin -->
+		<div class="order-status">
+			<ul class="status">
+				<li class="unpay active">待付款</li>
+				<!--<li class="unconfirm">待确认</li>-->
+				<li class="preparing">准备中</li>
+				<li class="shipped">已配送</li>
+				<!--<li class="canceled">已取消</li>-->
+			</ul>
+			<p class="countdown">还剩<span class="minute">30</span>:<span class="second">00</span></p>
+			<p class="estimated">预计<span class="time">12月12日 10:00 — 12:00 送达</span></p>
+		</div>
+		<!-- detail status end -->
+		
+		<!-- consignee info begin -->
+		<div class="consignee-info">
+			<p><span class="consignee">张三</span><span class="mobile">13222222222</span></p>
+			<p>上海市 静安区 广中西路777弄99号江裕大厦506室</p>
+		</div>
+		<!-- consignee info end -->
+		
+		<!-- commodity begin -->
+		<div class="commodity">
+			<p class="title">总共<span class="commodity-count">5</span>件商品</p>
+			<ul class="commodity-list">
+				<li>
+					
+				</li>
 			</ul>
 		</div>
-	</script>
-	<!-- order comment end -->
+		<!-- commodity end -->
+		
+	</div>
+	<!-- order detail end -->
 
 	<!-- scripts begin -->
 	<script src="assets/plugins/LABjs/LAB.min.js"></script>
@@ -82,7 +69,7 @@
 		.script('assets/js/common.js').wait()
 		.script('assets/js/utils.js').wait()
 		.script('assets/plugins/date.extend.js').wait()
-		.script('assets/js/order-comment.js');
+		.script('assets/js/order-detail.js');
 	</script>
 	<!-- scripts end -->
 </body>
