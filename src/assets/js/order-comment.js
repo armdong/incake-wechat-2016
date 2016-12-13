@@ -134,7 +134,7 @@
                 $(this).val(text.substring(0, iMaxLen));
                 iLen = iMaxLen;
             }
-            $oLastWord.html(iMaxLen - iLen);
+            $oLastWord.html(iLen);
         });
         
         // 提交评价
@@ -169,10 +169,10 @@
         	// 显示热门标签
         	_remarkItem.hide();
     		_remark.find('li.active').show();
-        	
+        	alert($(_remarkItem).hasClass('active'));
     		// 清除热评标签样式	
     		if(!$(_remarkItem).hasClass('active')){
-    			_evaluate.css('border','none');
+    			_remark.css('border','none');
     			_remark.css('padding','0');
     		}
     		
