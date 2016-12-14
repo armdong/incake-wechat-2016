@@ -4,3 +4,4 @@ node_modules
 bower_components
 build
 src/assets/css
+debug.log
