@@ -11,176 +11,256 @@ html, body {
 	background-color: #f0f0f0;
     overflow-x: hidden;
     
-	.comment-container {
+	.details-container {
 		width: 100%;
 		min-height: 100%;
-		padding-bottom: 30px;
+		padding-bottom: 90px;
 	}
 
 	img {
 		width: 100%;
 	}
+	
+	.hide {
+	    display: none;
+	}
 }
 
-.page-container .comment-container {
-
-	.comment-list {
-		width: 100%;
-	}
-
-	.comment-item {
-		width: 100%;
-		margin-top: 30px;
-		background-color: #fff;
-
-		.item-header, .item-evaluate, .item-remark, .item-footer {
-			width: 690px;
-			padding: 30px;
-			border-bottom: 1px solid #dcdcdc;
-		}
-
-		.item-header {
-			padding: 30px 0;
-			margin: 0 auto;
-			
-			.cake-photo {
-			    float: left;
-				width: 120px;
-				height: 90px;
-                margin-right: 20px;
-			}
-			.cake-info {
-                float: left;
-                width: 550px;
-                height: 90px;
-                
-                p {
-                    width: 100%;
-                    height: 40px;
-                    font-size: 30px;
-                    line-height: 40px;
-                    color: #323232;
-                }
-                
-                .cake-detail {
-                    span {
-                        float: left;
-                        display: inline-block;
-                    }
-                    .cake-number {
-                        margin-left: 20px;
-                        color: #b5b5b5;
-                    }
-                    .cake-price {
-                        float: right;
-                    }
-                }
-            }
-		}
-
-		.item-evaluate {
-			.item-star {
-			    width: 430px;
-			    margin: 0 auto;
-			    li {
-			        float: left;
-			        width: 70px;
-			        height: 70px;
-			        margin-right: 20px;
-			        background: url(../imgs/icons/icon_comment_star.png) no-repeat;
-			        background-size: contain;
-			    }
-			    li:last-of-type {
-			        margin-right: 0;
-			    }
-			    li.active { 
-			       background: url(../imgs/icons/icon_comment_star_active.png) no-repeat; 
-			       background-size: contain;
-			    }
-			}
-		}
-
-        .item-remark {
-            padding: 40px 30px 10px;
+.page-container .details-container {
+    
+    .details-item { 
+        width: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid #dcdcdc;
+        margin-bottom: 20px;
+        font-size: 30px; /* px */
+        color: #323232;
+        
+        p.title {
+            width: 720px;
+            padding-left: 30px;
+            height: 99px;
+            border-bottom: 1px solid #dcdcdc;
+            line-height: 100px;
+        }        
+    }
+    
+    .order-status {
+        border-bottom: 4px solid #e84e55; /* no */
+        
+        .status {
+            width: 530px;
+            height: 110px;
+            padding-top: 30px;
+            margin: 0 auto;
             
             li {
+                position: relative;
                 float: left;
-                width: 212px;
-                height: 68px;
-                border: 1px solid #969697;
-                border-radius: 35px;
-                margin:0 20px 30px 0;
-                font-size: 30px;
-                line-height: 70px;
+                width: 98px;
+                height: 98px;
+                border: 6px solid #dcdcdc; /* no */
+                border-radius: 55px;
+                margin-right: 100px;
+                font-size: 26px; /* px */
+                line-height: 110px;
+                color: #dcdcdc;
                 text-align: center;
-                color: #505050;
+                
+                &.active {
+                    border-color: #e84e55;
+                    color: #e84e55;
+                }
+                
+                &:last-child {
+                    margin-right: 0;
+                } 
+                
+                &:first-child:after, &:nth-of-type(2):after {
+                    position: absolute;
+                    top: 54px;
+                    left: 124px;
+                    display: block;
+                    width: 72px;
+                    content: '';
+                    border-bottom: 2px solid #dcdcdc; /* no */
+                }
             }
-            li:last-of-type {
-                margin-right: 0;
-            }
-            li.active {
-                color: #fff;
-                background-color: #dcdcdc;
-                border-color: #dcdcdc;
-            }
+            
         }
         
-		.item-footer {
-			padding-bottom: 60px;
-            border-bottom: none;
+        .countdown {
+            margin-left: 100px;
+            font-size: 24px; /* px */
+            line-height: 44px;
+            color: #e84e55;
+        }
+        
+        .estimated {
+            margin:0 30px 4px 0;
+            font-size: 24px; /* px */
+            line-height: 38px;
+            color: #323232;
+            text-align: right;
+        }
+        
+        
+    }
+    
+    .consignee-info {
+        width: 690px;
+        padding: 20px 30px 26px;
+
+        p {
+            line-height: 46px;
+            span {
+                margin-right: 26px;
+            }
             
-            .comment {
-                position: relative;
-                width: 100%;
-                height: 250px;
+            &.address {
+                line-height: 36px;
+            }
+        }
+    }
+    
+    .commodity {
+        .commodity-list {
+            .commodity-item {
+                width: 690px;
+                padding: 30px 0;
+                margin: 0 auto;
+                border-bottom: 1px dotted #dcdcdc;
                 
-                textarea {
-                    width: 652px;
-                    height: 158px;
-                    padding: 10px 18px;
-                    background-color: #f0f0f0;                
-                    border: 1px solid #969697;
-                    border-radius: 6px;
-                    margin-bottom: 20px;
-                    font-size: 30px;
-                    line-height: 48px;
-                    text-align: justify;
-                    resize: none;
-                    outline: none;
+                &:last-child {
+                    border: 0;
                 }
                 
-                .number {
-                    position: absolute;
-                    top: 135px;
-                    right: 20px;
-                    font-size: 26px;
-                    line-height: 26px;
-                    color: #656565;
+                .cake-photo {
+                    float: left;
+                    width: 120px;
+                    height: 90px;
+                    margin-right: 20px;
                 }
-                
-                .btn-submit {
-                    display: block;
-                    width: 100%;
-                    height: 70px;
-                    background-color: #e84e55;
-                    border-radius: 6px;
-                    margin: 0 auto;
-                    font-size: 30px;
-                    line-height: 70px;
-                    text-align: center;
-                    color: #fff;
+                .cake-info {
+                    float: left;
+                    width: 550px;
+                    height: 90px;
+                    
+                    p {
+                        width: 100%;
+                        height: 40px;
+                        font-size: 30px;
+                        line-height: 40px;
+                        color: #323232;
+                    }
+                    
+                    .cake-detail {
+                        span {
+                            float: left;
+                            display: inline-block;
+                        }
+                        .cake-count {
+                            margin-left: 20px;
+                            color: #b5b5b5;
+                        }
+                        .cake-price {
+                            float: right;
+                        }
+                    }
                 }
             }
             
-			.sub-comment {
-			    display: none;
-			    width: 100%;
-			    font-size: 30px;
-			    line-height: 40px;
-			    color: #323232;
-			    text-indent: 1em;
-			    text-align: justify;
-			}
-		}
-	}
+        }
+        
+        .more {
+            width: 100%;
+            height: 49px;
+            border-top: 1px solid #dcdcdc;
+            font-size: 22px;
+            line-height: 50px;
+            color: #1478be;
+            text-align: center;
+        }
+    }
+    
+    .largess-info {
+        
+        .largess-list {
+            width: 690px;
+            padding: 14px 30px 6px;
+            
+            .largess-item {
+                float: left;
+                line-height: 40px;
+                margin-right: 10px;
+                color: #b4b4b4;
+                
+                .largess-name {
+                    margin-right: 6px;
+                }
+                
+                .largess-count {
+                    margin: 0 10px 0 6px;
+                }
+            }
+        }
+    }
+    
+    .detail-info {
+        width: 690px;
+        padding: 30px 30px 12px;
+        
+        p{
+            height: 40px;
+            line-height: 40px;
+            color: #b4b4b4;
+            
+            span {
+                margin-left: 20px;
+            }
+            
+            &.separate {
+                margin-bottom: 30px;
+            }
+        }
+    }
+    
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        
+        a{
+            position: relative;
+            float: left;
+            display: block;
+            width: 374px;
+            height: 90px;
+            background-color: #41466e;
+            font-size: 30px; /* px */
+            line-height: 90px;
+            color: #fff;
+            text-indent: 2em;
+            text-align: center;
+            
+            &.btn-call:after {
+                position: absolute;
+                top: 25px;
+                left: 100px;
+                display: block;
+                width: 40px;
+                height: 38px;
+                background: url(../imgs/icons/icon_mobile.png) no-repeat;
+                background-size: contain;
+                content: '';
+            }         
+            
+            &.btn-payment {
+                float: right;
+                background-color: #303242;
+                text-indent: 0;
+            }
+        }
+    }
+	
 }
