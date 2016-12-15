@@ -27,10 +27,10 @@
 			<div class="details-item order-status">
 				<ul class="status clearfix">
 					<li class="unpay">待付款</li>
-					<!--<li class="unconfirm">待确认</li>-->
+					<li class="unconfirm hide">待确认</li>
 					<li class="preparing">准备中</li>
 					<li class="shipped">已配送</li>
-					<!--<li class="canceled">已取消</li>-->
+					<li class="canceled hide">已取消</li>
 				</ul>
 				<p class="countdown hide">还剩&nbsp;<span class="minute">30</span>:<span class="second">00</span></p>
 				<p class="estimated">预计<span class="time"></span></p>
@@ -48,7 +48,7 @@
 			<div class="details-item commodity">
 				<p class="title">总共<span class="commodity-count">5</span>件商品</p>
 				<ul class="commodity-list" id='commodityList'></ul>
-				<p class="more">查看更多商品&nbsp;&gt;</p>
+				<p class="btn-more">查看更多商品&nbsp;&gt;</p>
 			</div>
 			<script type="text/html" id="tplCommodity">
 				<!-- commodity item begin -->

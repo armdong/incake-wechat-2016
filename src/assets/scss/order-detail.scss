@@ -4,7 +4,7 @@ html, body {
 }
 
 .page-container {
-	width: 750px;
+	max-width: 750px;
 	height: 100%;
 	min-height: 100%;
 	margin: 0 auto;
@@ -31,7 +31,7 @@ html, body {
     .details-item { 
         width: 100%;
         background-color: #fff;
-        border-bottom: 1px solid #dcdcdc;
+        border-bottom: 1px solid #dcdcdc; /* no */
         margin-bottom: 20px;
         font-size: 30px; /* px */
         color: #323232;
@@ -40,15 +40,17 @@ html, body {
             width: 720px;
             padding-left: 30px;
             height: 99px;
-            border-bottom: 1px solid #dcdcdc;
+            border-bottom: 1px solid #dcdcdc; /* no */
             line-height: 100px;
         }        
     }
     
     .order-status {
+        position: relative;
         border-bottom: 4px solid #e84e55; /* no */
         
         .status {
+            position: relative;
             width: 530px;
             height: 110px;
             padding-top: 30px;
@@ -57,11 +59,11 @@ html, body {
             li {
                 position: relative;
                 float: left;
-                width: 98px;
-                height: 98px;
-                border: 6px solid #dcdcdc; /* no */
-                border-radius: 55px;
-                margin-right: 100px;
+                width: 18.6%;
+                height: 102px;
+                border: 3px solid #dcdcdc; /* no */
+                border-radius: 50%; 
+                margin-right: 18%;
                 font-size: 26px; /* px */
                 line-height: 110px;
                 color: #dcdcdc;
@@ -72,14 +74,14 @@ html, body {
                     color: #e84e55;
                 }
                 
-                &:last-child {
+                &.shipped, &.canceled {
                     margin-right: 0;
                 } 
                 
-                &:first-child:after, &:nth-of-type(2):after {
+                &.unpay:after, &.unconfirm:after, &.preparing:after {
                     position: absolute;
                     top: 54px;
-                    left: 124px;
+                    left: 114px;
                     display: block;
                     width: 72px;
                     content: '';
@@ -90,14 +92,16 @@ html, body {
         }
         
         .countdown {
-            margin-left: 100px;
+            position: absolute;
+            top: 140px;
+            left: 100px;
             font-size: 24px; /* px */
             line-height: 44px;
             color: #e84e55;
         }
         
         .estimated {
-            margin:0 30px 4px 0;
+            margin:44px 30px 4px 0;
             font-size: 24px; /* px */
             line-height: 38px;
             color: #323232;
@@ -129,10 +133,10 @@ html, body {
                 width: 690px;
                 padding: 30px 0;
                 margin: 0 auto;
-                border-bottom: 1px dotted #dcdcdc;
+                border-bottom: 1px dotted #dcdcdc; /* no */
                 
-                &:last-child {
-                    border: 0;
+                &:nth-of-type(2) , &:last-child {
+                    border-width: 0;
                 }
                 
                 .cake-photo {
@@ -149,7 +153,7 @@ html, body {
                     p {
                         width: 100%;
                         height: 40px;
-                        font-size: 30px;
+                        font-size: 30px; /* px */
                         line-height: 40px;
                         color: #323232;
                     }
@@ -172,11 +176,11 @@ html, body {
             
         }
         
-        .more {
+        .btn-more {
             width: 100%;
             height: 49px;
-            border-top: 1px solid #dcdcdc;
-            font-size: 22px;
+            border-top: 1px solid #dcdcdc; /* no */
+            font-size: 22px; /* px */
             line-height: 50px;
             color: #1478be;
             text-align: center;
@@ -229,6 +233,7 @@ html, body {
         position: fixed;
         left: 0;
         bottom: 0;
+        width: 100%;
         
         a{
             position: relative;
@@ -245,7 +250,7 @@ html, body {
             
             &.btn-call:after {
                 position: absolute;
-                top: 25px;
+                top: 28px;
                 left: 100px;
                 display: block;
                 width: 40px;
@@ -253,9 +258,13 @@ html, body {
                 background: url(../imgs/icons/icon_mobile.png) no-repeat;
                 background-size: contain;
                 content: '';
+            }
+            
+            &.btn-call.change:after {
+                left: 296px;
             }         
             
-            &.btn-payment {
+            &:last-child {
                 float: right;
                 background-color: #303242;
                 text-indent: 0;

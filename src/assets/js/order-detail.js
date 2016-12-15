@@ -25,7 +25,23 @@
 	                    cakeWeight: '1.6磅',
 	                    cakeCount: '2',
 	                    cakePrice: '378'
-	                }                
+	                }
+	            }, {
+	            	cakePhoto: 'assets/imgs/order/list_img.jpg',
+	            	cakeName: '挚爱红丝绒',
+	                cakeInfo: {
+	                    cakeWeight: '2.4磅',
+	                    cakeCount: '1',
+	                    cakePrice: '588'
+	                }
+                }, {
+	            	cakePhoto: 'assets/imgs/order/list_img.jpg',
+	            	cakeName: '超级蜂巢',
+	                cakeInfo: {
+	                    cakeWeight: '1.6磅',
+	                    cakeCount: '2',
+	                    cakePrice: '378'
+	                }
 	            }, {
 	            	cakePhoto: 'assets/imgs/order/list_img.jpg',
 	            	cakeName: '浓情巧克力',
@@ -64,10 +80,10 @@
 	            }]
             },
             orderData: {
-            	status: 'canceled', //unpay：待付款 unconfirm：待确认 preparing：准备中 shipped：已配送 canceled：已取消
-    			estimatedTime: '12月12日 10:00 - 12:00 送达',
+            	orderType: 'unpay', //unpay：待付款 unconfirm：待确认 preparing：准备中 shipped：已配送 canceled：已取消
+    			estimatedTime: '12月18日 10:00 - 12:00 送达',
             	orderNumber: 'SHW8900004',
-            	orderTime: '2016年12月12日',
+            	orderTime: '2016/12/15 15:20:00',
             	orderMode: '支付宝',
             	orderTotal: '432',
             	orderFreight: '10',
@@ -91,14 +107,22 @@
      * @return {[type]} [description]
      */
     function fnLoadCommodityData() {
-
+		// 获取url中的订单类型，例如“准备中” preparing
+    	// http://192.168.1.223:3000/order-detail.html?ordertype=preparing
+    	// -> orderType: preparing
+    	var orderType = utils.getParameterByName('ordertype');
+    	orderType === null ? 'all' : orderType;
+		
     	// 发送Ajax请求
     	$.ajax({
-    		url: 'loadCommentData.aspx', // 获取订单数据api
+    		url: 'loadCommodityData.aspx', // 获取订单数据api
     		type: 'POST',
+    		data: {
+    			orderType: orderType
+    		},
     		dataType: 'json',
     		success: function() {
-    			fnLoadCommodityData();
+    			fnBindCommodityData(data);
     		}
     	});
     }
@@ -133,53 +157,138 @@
         	$oDetailsItem = $oDetailsContainer.find('.details-item'),
         	$oTime = $oDetailsItem.find('.time'),
         	$oCountdown = $oDetailsItem.find('.countdown'),
-        	status = _data.orderData.status;
+        	$oBtnMore = $oDetailsItem.find('.btn-more');
+        	$oFooter = $oDetailsContainer.find('.footer'),
+        	$oBtnCall = $oFooter.find('.btn-call'),
+        	$oBtnPayment = $oFooter.find('.btn-payment'),
+        	orderType = _data.orderData.orderType;
         
+        // 预计送达时间
         $oTime.text(_data.orderData.estimatedTime);
         
-        // 显示订单状态
-        $('.'+status).addClass('active');
-        if(status=='unpay'){ //待付款
-        	$oCountdown.show();
-        	//启动计时器
-        }else if(status=='unconfirm'){ //待确认
-        	$('.unpay').addClass('unconfirm').removeClass('unpay').addClass('active');
-        	$('.unconfirm').text('待确认');
-        }else if(status=='canceled'){ //已配送
-        	$('.shipped').addClass('canceled').removeClass('shipped').addClass('active');
-        	$('.canceled').text('已取消');
+        // 显示订单状态&改变按钮状态
+        $('.'+orderType).addClass('active');
+        
+        if(orderType=='unpay'){ //待付款
+        	
+        	$oCountdown.removeClass('hide');
+        	
+        	// 初始化倒计时
+        	handle4Countdown();
+        	
+        }else if(orderType=='unconfirm'){ //待确认
+        	
+        	$('.unpay').addClass('hide');
+        	$('.unconfirm').removeClass('hide');
+        	$oBtnPayment.addClass('btn-canceled').removeClass('btn-payment');
+        	$('.btn-canceled').text('取消订单');
+        	// 绑定取消订单操作	---------------功能待完善
+        	
+        }else if(orderType=='preparing'){	//准备中
+        	
+        	$oBtnPayment.hide();
+        	$oBtnCall.css('width','100%');
+        	$oBtnCall.addClass('change');
+        
+        }else if(orderType=='shipped'){ //已配送
+        	
+        	$oBtnPayment.addClass('btn-comment').removeClass('btn-payment');
+        	$('.btn-comment').text('评价');
+        	// 绑定评价订单操作	---------------功能待完善
+        	$('.btn-comment').attr('href','order-comment.html');
+        
+        }else if(orderType=='canceled'){ //已取消
+        	
+        	$('.shipped').addClass('hide');
+        	$('.canceled').removeClass('hide');
+        	$oBtnPayment.hide();
+        	$oBtnCall.css('width','100%');
+        	$oBtnCall.addClass('change');
+        	
+        
         }
         
-        // 提交评价
-//      $oCommentContainer.on('click', '.btn-submit', function(){
-//      	var _textarea = $(this).siblings('textarea'),
-//      		_number = $(this).siblings('.number'),
-//      		_comment = $(this).closest('.comment'),
-//      		_footer = _comment.closest('.item-footer'),
-//      		_subComment = _comment.siblings('.sub-comment'),
-//	        	_remark = _footer.siblings('.item-remark'),
-//	        	_evaluate = _footer.siblings('.item-evaluate'),
-//				_remarkItem = _remark.find('li');
-//      	
-//      	// 隐藏item-footer
-//      	_textarea.hide();
-//      	$(this).hide();
-//      	$(this).closest('.comment').css({
-//				'height':'0',
-//				'transition':'.5s'
-//			});
-//			
-//      });
+        // 查看更多商品
+        $oBtnMore.on('click', function(){
+        	var $oCommodityList = $(this).siblings('.commodity-list'),
+        		$oCommodityItem = $oCommodityList.find('li');
+        	
+        	$(this).hide();
+        	$oCommodityItem.eq(1).css({
+        		'borderBottom':'1px',
+        		'borderStyle': 'dotted',
+        		'borderColor': '#dcdcdc'
+    		});
+        	$oCommodityItem.css('display','block');
+			
+        });
         
-        // 选择评论选项
-//      $oCommentContainer.on('click', '.item-remark li', function(){
-//      	var _height = $(this).closest('.item-remark').siblings('.item-footer').find('.comment').css('height');
-//      	
-//      	if(_height != '0px'){
-//      		$(this).toggleClass('active');
-//      	}
-//      });
-//      
+    }
+    
+    /**
+     * 初始化倒计时处理函数
+     * @return {[type]} [description]
+     */
+    function handle4Countdown() {
+
+    	// 拿到所有待支付订单倒计时DOM
+    	var $aCountDown = $('.details-container').find('.countdown');
+
+		// 拿到下单时间
+		var strTime = $('.order-time').text(),
+			beginTime = new Date(strTime);
+
+		var endTime = beginTime.addMinutes(30),
+			currShowTimeSeconds = 0;
+
+		var $oMinute = $aCountDown.find('.minute'),
+			$oSecond = $aCountDown.find('.second');
+
+		currShowTimeSeconds = getCurrentShowTimeSeconds();
+
+		$aCountDown.timer = setInterval(function() {
+			render();
+			update();
+		}, 50);
+
+		function update() {
+			var nextShowTimeSeconds = getCurrentShowTimeSeconds();
+
+			var nextHours = parseInt(nextShowTimeSeconds / 3600, 10),
+				nextMinutes = parseInt((currShowTimeSeconds - nextHours * 3600) / 60, 10),
+				nextSeconds = nextShowTimeSeconds % 60;
+
+			var currHours = parseInt(currShowTimeSeconds / 3600, 10),
+				currMinutes = parseInt((currShowTimeSeconds - currHours * 3600) / 60, 10),
+				currSeconds = currShowTimeSeconds / 60;
+
+			if(nextSeconds !== currSeconds) {
+				currShowTimeSeconds = nextShowTimeSeconds;
+			}
+		}
+
+		function render() {
+			var hours = parseInt(currShowTimeSeconds / 3600, 10),
+				minutes = parseInt((currShowTimeSeconds - hours * 3600) / 60, 10),
+				seconds = currShowTimeSeconds % 60;
+
+			if(hours === 0 && minutes === 0 && seconds === 0) {
+				// TODO 处理取消订单动作
+				// handle4CancelOrder();
+				
+				clearInterval($aCountDown.timer);
+			}
+
+			$oMinute.html(minutes < 10 ? '0' + minutes : minutes);
+			$oSecond.html(seconds < 10 ? '0' + seconds : seconds);
+		}
+
+		function getCurrentShowTimeSeconds() {
+			var currTime = new Date();
+			var ret = endTime.getTime() - currTime.getTime();
+			ret = Math.round(ret / 1000);
+			return ret >= 0 ? ret : 0;
+		}
     }
 
 })(Zepto, window, document);
