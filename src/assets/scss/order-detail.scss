@@ -246,8 +246,11 @@ html, body {
             font-size: 30px; /* px */
             line-height: 90px;
             color: #fff;
-            text-indent: 2em;
             text-align: center;
+            
+            &.btn-call {
+                text-indent: 2em;
+            }
             
             &.btn-call:after {
                 position: absolute;
@@ -262,13 +265,12 @@ html, body {
             }
             
             &.btn-call.change:after {
-                left: 296px;
+                left: 290px;
             }         
             
             &:last-child {
                 float: right;
                 background-color: #303242;
-                text-indent: 0;
             }
         }
     }

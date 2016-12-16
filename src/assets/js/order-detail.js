@@ -80,7 +80,7 @@
 	            }]
             },
             orderData: {
-            	orderType: 'unpay', //unpay：待付款 unconfirm：待确认 preparing：准备中 shipped：已配送 canceled：已取消
+            	orderType: 'canceled', //unpay：待付款 unconfirm：待确认 preparing：准备中 shipped：已配送 canceled：已取消
     			estimatedTime: '12月18日 10:00 - 12:00 送达',
             	orderNumber: 'SHW8900004',
             	orderTime: '2016/12/15 15:20:00',
@@ -159,7 +159,7 @@
         	$oCountdown = $oDetailsItem.find('.countdown'),
         	$oBtnMore = $oDetailsItem.find('.btn-more');
         	$oFooter = $oDetailsContainer.find('.footer'),
-        	$oBtnCall = $oFooter.find('.btn-call'),
+        	$oBtnCanceled = $oFooter.find('.btn-canceled'),
         	$oBtnPayment = $oFooter.find('.btn-payment'),
         	orderType = _data.orderData.orderType;
         
@@ -176,24 +176,37 @@
         	// 初始化倒计时
         	handle4Countdown();
         	
+        	// 绑定去付款操作	---------------功能待完善
+        	$oBtnPayment.on('click',function(){
+        		
+        	});
+        	
+        	// 绑定取消订单操作	---------------功能待完善
+        	$oBtnCanceled.on('click',function(){
+        		
+        	});
+        	
         }else if(orderType=='unconfirm'){ //待确认
         	
         	$('.unpay').addClass('hide');
         	$('.unconfirm').removeClass('hide');
-        	$oBtnPayment.addClass('btn-canceled').removeClass('btn-payment');
-        	$('.btn-canceled').text('取消订单');
-        	// 绑定取消订单操作	---------------功能待完善
+        	
+        	$oBtnPayment.text('联系客服');
+        	$oBtnPayment.addClass('btn-call').removeClass('btn-payment');
+        	
         	
         }else if(orderType=='preparing'){	//准备中
         	
         	$oBtnPayment.hide();
-        	$oBtnCall.css('width','100%');
-        	$oBtnCall.addClass('change');
+        	$oBtnCanceled.text('联系客服');
+        	$oBtnCanceled.css('width','100%').addClass('btn-call').addClass('change').removeClass('btn-canceled');
         
         }else if(orderType=='shipped'){ //已配送
         	
+        	$oBtnPayment.text('评价');
         	$oBtnPayment.addClass('btn-comment').removeClass('btn-payment');
-        	$('.btn-comment').text('评价');
+        	$oBtnCanceled.text('联系客服');
+        	$oBtnCanceled.addClass('btn-call').removeClass('btn-canceled');
         	// 绑定评价订单操作	---------------功能待完善
         	$('.btn-comment').attr('href','order-comment.html');
         
@@ -201,9 +214,10 @@
         	
         	$('.shipped').addClass('hide');
         	$('.canceled').removeClass('hide');
+        	
         	$oBtnPayment.hide();
-        	$oBtnCall.css('width','100%');
-        	$oBtnCall.addClass('change');
+        	$oBtnCanceled.text('联系客服');
+        	$oBtnCanceled.css('width','100%').addClass('btn-call').addClass('change').removeClass('btn-canceled');
         	
         
         }
