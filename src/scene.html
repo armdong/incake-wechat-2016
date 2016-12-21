@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
+	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="apple-touch-icon" href="favicon.png">
+	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
+	<title>发现</title>
+	<link rel="stylesheet" href="assets/css/normalize.css">
+	<link rel="stylesheet" href="assets/css/dialog.css">
+	<link rel="stylesheet" href="assets/css/global.css">
+	<link rel="stylesheet" href="assets/css/scene.css">
+</head>
+<body>
+	
+	<div class="page-container">
+		
+	</div>
+
+	<!-- common navbar begin -->
+	<div class="navbar clearfix" id="menuNav">
+		<a href="index.html" class="link choiceness">
+			<div class="img"></div>
+			<p>精选</p>
+		</a>
+		<a href="list.html" class="link discovery active">
+			<div class="img"></div>
+			<p>发现</p>
+		</a>
+		<a href="basket.html" class="link shopping-basket">
+			<div class="img">
+				<span class="num">9</span>
+			</div>
+			<p>购物篮</p>
+		</a>
+		<a href="login.html" class="link mine">
+			<div class="img"></div>
+			<p>我的</p>
+		</a>
+	</div>
+	<!-- common navbar end -->
+
+	<!-- addToCart begin -->
+	<div id="addToCart"></div>
+	<script id="tplAddToCart" type="text/html">
+		<a href="javascript:;" class="cart-close"></a>
+		<div class="header">
+			<div class="img">
+				<img src="{{img}}" alt="">
+			</div>
+			<div class="text">
+				<div class="name clearfix">
+					<p class="cn">{{name.cn}}</p>
+					<p class="en">{{name.en}}</p>
+				</div>
+				<p class="note">{{note}}</p>
+			</div>
+			<p class="ext clearfix">
+				<span class="dollar">￥</span>
+				<span class="price">{{price}}</span>
+				<span class="pound">/{{pound}}磅</span>
+			</p>
+		</div>
+		<div class="container">
+			<!-- 规格 -->
+			<section class="spec clearfix">
+				<p class="title">规格：</p>
+				<div class="content">
+					<ul class="spec-list clearfix">
+					{{each spec as item i}}
+						{{if i === 0}}
+						<li class="active">{{item.pound}}磅</li>
+						{{else}}
+						<li>{{item.pound}}磅</li>
+						{{/if}}
+					{{/each}}
+					</ul>
+				</div>
+			</section>
+			<!-- 数量 -->
+			<section class="amount clearfix">
+				<p class="title">数量：</p>
+				<div class="content clearfix">
+					<div class="counter clearfix">
+						<a href="javascript:;" class="btn-minus disabled">-</a>
+						<input type="text" readonly="readonly" class="count" value="1">
+						<a href="javascript:;" class="btn-add">+</a>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="footer clearfix">
+			<a href="javascript:;" class="btn buy-immediately">立即购买</a>
+			<a href="javascript:;" class="btn join-cart">加入购物篮</a>
+		</div>
+	</script>
+	<!-- addToCart end -->
+
+	<!-- scripts begin -->
+	<script src="assets/plugins/LABjs/LAB.min.js"></script>
+	<script>
+		$LAB
+		.script('assets/plugins/zepto/zepto.min.js').wait()
+		.script('assets/plugins/zepto/touch.js').wait()
+		.script('assets/plugins/tweenmax/TweenMax.min.js').wait()
+		.script('assets/plugins/artTemplate/dist/template.js').wait()
+		.script('assets/plugins/underscore/underscore-min.js').wait()
+		.script('assets/plugins/zepto.uriAnchor.js').wait()
+		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
+		.script('assets/plugins/fastclick.js').wait()
+		.script('assets/js/common.js').wait()
+		.script('assets/js/scene.js');
+	</script>
+	<!-- script end -->
+</body>
+</html>
