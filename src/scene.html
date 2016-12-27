@@ -7,6 +7,7 @@
 	<meta content="telephone=no,email=no" name="format-detection">
 	<!-- flexible.js 建议做内联处理，请勿移动位置 -->
 	<script src="assets/plugins/lib-flexible/flexible.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/swiper.min.css"/>
 	<link rel="apple-touch-icon" href="favicon.png">
 	<link rel="Shortcut Icon" href="favicon.png" type="image/x-icon">
 	<title>发现</title>
@@ -14,14 +15,67 @@
 	<link rel="stylesheet" href="assets/css/dialog.css">
 	<link rel="stylesheet" href="assets/css/global.css">
 	<link rel="stylesheet" href="assets/css/scene.css">
+	
 </head>
 <body>
 	
-	<div class="page-container">
-		
-	</div>
-
-	<!-- common navbar begin -->
+		<div class="swiper-container1 swiper-container-horizontal"id="listHeader" >
+			<div class="swiper-wrapper" >
+				<div class="swiper-slide active-nav"category="all">
+					全部
+				</div>
+				<div class="swiper-slide"category="taste">
+					口味
+				</div>
+				<div class="swiper-slide"category="scene">
+					场景
+				</div>
+				<div class="swiper-slide"category="gift">
+					创意/礼品
+				</div>
+				<div class="swiper-slide"category="flower">
+					下午茶
+				</div>
+				<div class="swiper-slide">
+					任然
+				</div>
+				<div class="swiper-slide">
+					婆娑
+				</div>
+				<div class="swiper-slide">
+					时光
+				</div>
+			</div>
+		</div>
+		<div class="swiper-container2 swiper-container-horizontal">
+			<div class="swiper-wrapper clearfix"id="listContainer">
+				<div class="swiper-slide">
+					<section class="sec sec-all active" id="oneAll" category="all"></section>
+				</div>
+				<div class="swiper-slide">
+					<section class="sec sec-all" id="twoAll" category="all"></section>
+				</div>
+				<div class="swiper-slide">
+					<section class="sec sec-all" id="threeAll" category="all"></section>
+				</div>
+				<div class="swiper-slide">
+					<section class="sec sec-all" id="fourAll" category="all"></section>
+				</div>
+				<div class="swiper-slide">
+					<section class="sec sec-all" id="fiveAll" category="all"></section>
+				</div>
+				<div class="swiper-slide">
+					<section class="sec sec-all" id="sixAll" category="all"></section>
+				</div>
+				<div class="swiper-slide">
+					<section class="sec sec-all" id="sevenAll" category="all"></section>
+				</div>
+				<div class="swiper-slide">
+					<section class="sec sec-all" id="eightAll" category="all"></section>
+				</div>
+			</div>
+		</div>
+	<!-- list-page header end -->
 	<div class="navbar clearfix" id="menuNav">
 		<a href="index.html" class="link choiceness">
 			<div class="img"></div>
@@ -43,6 +97,46 @@
 		</a>
 	</div>
 	<!-- common navbar end -->
+	
+	<!-- all-template begin -->
+	<script id="tplAll" type="text/html">
+	{{if hasData}}
+		<div class="list">
+		{{each list as item i}}
+			{{if item.soldout}}
+			<div class="item soldout" spec="{{item.spec | specFormat}}">
+			{{else}}
+			<div class="item" spec="{{item.spec | specFormat}}">
+			{{/if}}
+				<a href="{{item.link}}" class="img">
+					<img src="{{item.img}}" alt="">
+				</a>
+				<div class="text">
+					<div class="name">
+						<p class="cn">{{item.name.cn}}</p>
+						<p class="en">{{item.name.en}}</p>
+					</div>
+					<p class="ext">
+						<span class="price">￥{{item.price}}</span>
+						<span class="pound">/{{item.pound}}磅</span>
+					</p>
+					<a href="javascript:;" class="add-icon"></a>
+				</div>
+			</div>
+		{{/each}}
+		</div>
+		<a href="javascript:;" class="load-more">点击加载更多...</a>
+	{{else}}
+		<div class="no-product">
+			<img src="assets/imgs/list/no_product.png" alt="">
+		</div>
+	{{/if}}
+	</script>
+	
+	
+	
+
+	<!-- flower-template end -->
 
 	<!-- addToCart begin -->
 	<div id="addToCart"></div>
@@ -113,6 +207,7 @@
 		.script('assets/plugins/dialog2/js/dialog.min.js').wait()
 		.script('assets/plugins/fastclick.js').wait()
 		.script('assets/js/common.js').wait()
+		.script('assets/js/swiper.min.js').wait()
 		.script('assets/js/scene.js');
 	</script>
 	<!-- script end -->
