@@ -42,19 +42,19 @@ template.helper('specFormat', function(spec) {
         fnBindAll();
 
         // 绑定口味模块
-        fnBindTaste();
+        //fnBindTaste();
 
         // 绑定场景模块
-        fnBindScene();
+        //fnBindScene();
 
         // 绑定创意/礼品模块
-        fnBindGift();
+        //fnBindGift();
 
         // 绑定下午茶/鲜花模块
-        fnBindFlower();
+        //fnBindFlower();
 
         // 发现切换
-        fnChangeCategories();
+        //fnChangeCategories();
 
         // 口味模块scroll事件
         var lazyScroll = _.debounce(fnLocateTaste, 300);
