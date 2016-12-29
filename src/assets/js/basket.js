@@ -562,4 +562,9 @@ template.helper('specFormat', function(spec) {
 
     	$oNoticeMsg.liMarquee();
     }
+    //遮罩层页面input框禁止获取焦点
+    var $counter = $(".counter");
+    $counter.on("focus.counter",function(){
+    	this.blur();
+    });
 })(Zepto, window, document);
