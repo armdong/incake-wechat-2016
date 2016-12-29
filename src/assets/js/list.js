@@ -1909,5 +1909,9 @@ template.helper('specFormat', function(spec) {
         // End adjust category component if changed
         return false;
     }
+    //遮罩层页面input框禁止获取焦点
+    $(".counter").on("focus",".count",function(){
+    	this.blur();
+    });
 
 })(Zepto, window, document);
