@@ -111,10 +111,10 @@
                         text-align: center;
 
                         .price {
-                            font-size: 24px;
+                            font-size: 24px; /* px */
                         }
                         .pound {
-                            font-size: 18px;
+                            font-size: 18px; /* px */
                         }
                     }
 
@@ -292,10 +292,10 @@
                                 text-align: center;
 
                                 .price {
-                                    font-size: 24px;
+                                    font-size: 24px; /* px */
                                 }
                                 .pound {
-                                    font-size: 18px;
+                                    font-size: 18px; /* px */
                                 }
                             }
 
@@ -445,7 +445,7 @@
                 color: #323232;
 
                 .name {
-                    font-size: 24px;
+                    font-size: 24px; /* px */
                     line-height: 64px;
                     text-overflow: ellipsis;
                     white-space: nowrap;
@@ -453,7 +453,7 @@
                 }
 
                 .desc {
-                    font-size: 18px;
+                    font-size: 18px; /* px */
                     line-height: 28px;
                     display: -webkit-box; 
                     -webkit-box-orient: vertical; 
@@ -562,10 +562,10 @@
                                 text-align: center;
 
                                 .price {
-                                    font-size: 24px;
+                                    font-size: 24px; /* px */
                                 }
                                 .pound {
-                                    font-size: 18px;
+                                    font-size: 18px; /* px */
                                 }
                             }
 
@@ -700,10 +700,10 @@
                                 text-align: center;
 
                                 .price {
-                                    font-size: 24px;
+                                    font-size: 24px; /* px */
                                 }
                                 .pound {
-                                    font-size: 18px;
+                                    font-size: 18px; /* px */
                                 }
                             }
 
@@ -876,14 +876,14 @@
                         text-align: center;
                         font-size: 28px; /* px */
                         color: #323232;
-                        border: 2px solid #d2d2d2;
+                        border: 2px solid #d2d2d2; /* no */
                         margin: 0 20px 20px 0;
 
                         &.active {
                             color: #ef1b47;
                             border-color: #ef1b47;
-                            outline: 3px solid #ef1b47;
-                            outline-offset: -3px;
+                            outline: 3px solid #ef1b47; /* no */
+                            outline-offset: -3px; /* no */
                         }
                     }
                 }
@@ -902,7 +902,7 @@
                     a {
                         width: 56px;
                         font-size: 40px; /* px */
-                        border: 2px solid #303242; 
+                        border: 2px solid #303242; /* no */
                         color: #303242;
                         background-color: #f0f0f0;
 
@@ -915,7 +915,7 @@
 
                     input {
                         width: 180px;
-                        border: 2px solid #d2d2d2; 
+                        border: 2px solid #d2d2d2; /* no */
                         border-radius: 0;
                         border-left-width: 0;
                         border-right-width: 0;

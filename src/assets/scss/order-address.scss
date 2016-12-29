@@ -47,7 +47,7 @@ html, body {
 			width: 666px;
 			height: 66px;
 			margin: 0 auto;
-			border: 2px solid #303242;
+			border: 2px solid #303242; /* no */
 			font-size: 26px; /* px */
 			line-height: 66px;
 			color: #303242;
@@ -74,7 +74,7 @@ html, body {
 			position: relative;
 			width: 100%;
 			padding: 30px 0;
-			border-bottom: 1px solid #dcdcdc;
+			border-bottom: 1px solid #dcdcdc; /* no */
 			background-color: #fff;
 
 			&.disabled {
@@ -187,7 +187,7 @@ html, body {
 		position: relative;
 		width: 100%;
 		height: 90px;
-		border-bottom: 1px solid #dcdcdc;
+		border-bottom: 1px solid #dcdcdc; /* no */
 
 		p {
 			width: 100%;
@@ -221,7 +221,7 @@ html, body {
 		li {
 			width: 690px;
 			padding: 30px;
-			border-bottom: 1px solid #dcdcdc;
+			border-bottom: 1px solid #dcdcdc; /* no */
 
 			span, input, textarea {
 				display: inline-block;
@@ -278,7 +278,7 @@ html, body {
 				    box-sizing: padding-box;
 				    overflow:hidden;
 				    width:520px;
-				    border:0;
+				    border:0; /* no */
 				}
 			}
 		}
@@ -359,7 +359,7 @@ html, body {
 
 			.item {
 				width: 100%;
-				border-bottom: 1px solid #dcdcdc;
+				border-bottom: 1px solid #dcdcdc; /* no */
 
 				.item-wrapper {
 					display: block;

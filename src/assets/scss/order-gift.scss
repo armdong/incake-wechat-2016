@@ -37,7 +37,7 @@ html, body {
 	.section-item {
 		background-color: #fff;
 		width: 100%;
-		border-bottom: 1px solid #dcdcdc;
+		border-bottom: 1px solid #dcdcdc; /* no */
 	}
 
 	.item-wrapper {
@@ -253,7 +253,7 @@ html, body {
 			display: block;
 			width: 100%;
 			height: 100%;
-			font-size: 30px;
+			font-size: 30px; /* px */
 			line-height: 80px;
 			text-align: center;
 			color: #fff;
