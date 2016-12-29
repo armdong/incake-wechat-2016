@@ -81,7 +81,7 @@
             <div class="img"></div>
             <p>精选</p>
         </a>
-        <a href="list.html" class="link discovery active">
+        <a href="list.html" class="link discovery">
             <div class="img"></div>
             <p>发现</p>
         </a>
@@ -99,37 +99,39 @@
     <!-- common navbar end -->
     <!-- all-template begin -->
     <script id="tplAll" type="text/html">
-        {{if hasData}}
-        <div class="list">
-            {{each list as item i}} {{if item.soldout}}
-            <div class="item soldout" spec="{{item.spec | specFormat}}">
-                {{else}}
-                <div class="item" spec="{{item.spec | specFormat}}">
-                    {{/if}}
-                    <a href="{{item.link}}" class="img">
-                        <img src="{{item.img}}" alt="">
-                    </a>
-                    <div class="text">
-                        <div class="name">
-                            <p class="cn">{{item.name.cn}}</p>
-                            <p class="en">{{item.name.en}}</p>
-                        </div>
-                        <p class="ext">
-                            <span class="price">￥{{item.price}}</span>
-                            <span class="pound">/{{item.pound}}磅</span>
-                        </p>
-                        <a href="javascript:;" class="add-icon"></a>
-                    </div>
-                </div>
-                {{/each}}
-            </div>
-            <a href="javascript:;" class="load-more">点击加载更多...</a> {{else}}
-            <div class="no-product">
-                <img src="assets/imgs/list/no_product.png" alt="">
-            </div>
-            {{/if}}
-    </script>
-    <!-- flower-template end -->
+	{{if hasData}}
+		<div class="list">
+		{{each list as item i}}
+			{{if item.soldout}}
+			<div class="item soldout" spec="{{item.spec | specFormat}}">
+			{{else}}
+			<div class="item" spec="{{item.spec | specFormat}}">
+			{{/if}}
+				<a href="{{item.link}}" class="img">
+					<img src="{{item.img}}" alt="">
+				</a>
+				<div class="text">
+					<div class="name">
+						<p class="cn">{{item.name.cn}}</p>
+						<p class="en">{{item.name.en}}</p>
+					</div>
+					<p class="ext">
+						<span class="price">￥{{item.price}}</span>
+						<span class="pound">/{{item.pound}}磅</span>
+					</p>
+					<a href="javascript:;" class="add-icon"></a>
+				</div>
+			</div>
+		{{/each}}
+		</div>
+		<a href="javascript:;" class="load-more">点击加载更多...</a>
+	{{else}}
+		<div class="no-product">
+			<img src="assets/imgs/list/no_product.png" alt="">
+		</div>
+	{{/if}}
+	</script>
+    <!-- all-template end -->
     <!-- addToCart begin -->
     <div id="addToCart"></div>
     <script id="tplAddToCart" type="text/html">

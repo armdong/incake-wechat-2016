@@ -54,7 +54,7 @@ template.helper('specFormat', function(spec) {
         //fnBindFlower();
 
         // 发现切换
-        fnChangeCategories();
+        //fnChangeCategories();
 
         // 口味模块scroll事件
         var lazyScroll = _.debounce(fnLocateTaste, 300);
