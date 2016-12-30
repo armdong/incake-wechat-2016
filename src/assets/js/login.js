@@ -57,7 +57,11 @@
 
 				// 手机号非空验证
 				if(txtMobile === '') {
-					fnMobileDialog($oTxtMobile, '请输入手机号码');
+					//fnMobileDialog($oTxtMobile, '请输入手机号码');
+		            iosOverlay({
+			            text: '请输入手机号码',
+			            icon: "assets/plugins/iOS-Overlay/img/loading.gif"
+			        });
 		            return false;
 				}
 				
@@ -596,22 +600,18 @@
 
 	        	// 隐藏滑动解锁弹框
 				$oMaskAction.hide();
-	        	var dialog = $(document).dialog({
-					type: 'toast',
-					infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
-					infoText: '验证成功',
-					autoClose: '1500',
-					onClosed: function(){
-						$oBtn.css({
-			        		left: '0'
-			        	});
-			        	$oTrack.width(0);
-			        	if(callback) {
-			        		callback();
-			        	}
-						//callback && callback();
-					}
-				});
+				iosOverlay({
+                    text: '验证成功',
+                    duration: 1500,
+                    icon: "assets/plugins/iOS-Overlay/img/success.png",
+                    onhide: function () {
+                        $oBtn.css({
+                            left: '0'
+                        });
+                        $oTrack.width(0);
+                        callback && callback();
+                    }
+                });
 
 				// 成功解锁后卸载dom绑定的事件
 				$oBtn.off('.action'); // 每次滑动解锁成功后卸载之前的事件
@@ -773,16 +773,15 @@
 	 * @return {[type]}     [description]
 	 */
 	function fnMobileDialog($oDom, msg) {
-		var dialog = $(document).dialog({
-	        type: 'toast',
-	        infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
-	        infoText: msg,
-	        autoClose: '1500',
-	        onClosed: function() {
-	        	$oDom.val('');
-	        	$oDom.trigger('focus');
-	        }
-	    });
+		iosOverlay({
+            text: msg,
+            duration: 1500,
+            icon: "assets/plugins/iOS-Overlay/img/fail.png",
+            onhide: function () {
+                $oDom.val('');
+                $oDom.trigger('focus');
+            }
+        });
 	}
 
 	/**
@@ -791,12 +790,11 @@
 	 * @return {[type]}     [description]
 	 */
 	function fnSuccessDialog(msg) {
-		var dialog = $(document).dialog({
-			type: 'toast',
-			infoIcon: 'assets/plugins/dialog2/images/icon/success.png',
-			infoText: msg,
-			autoClose: '1500'
-		});
+		iosOverlay({
+            text: msg,
+            duration: 1500,
+            icon: "assets/plugins/iOS-Overlay/img/success.png"
+        });
 	}
 
 	/**
@@ -805,12 +803,11 @@
 	 * @return {[type]}     [description]
 	 */
 	function fnFailDialog(msg) {
-		var dialog = $(document).dialog({
-			type: 'toast',
-			infoIcon: 'assets/plugins/dialog2/images/icon/fail.png',
-			infoText: msg,
-			autoClose: '1500'
-		});
+		iosOverlay({
+            text: msg,
+            duration: 1500,
+            icon: "assets/plugins/iOS-Overlay/img/fail.png"
+        });
 	}
 
 })(Zepto, window, document);
