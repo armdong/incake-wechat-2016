@@ -82,7 +82,7 @@
      */
     function fnInitComment() {
         var $oCommentContainer = $('#comments'),
-        	$oTextarea = $oCommentContainer.find('#txtSummary'),
+        	$oTextarea = $oCommentContainer.find('.txtSummary'),
         	iMaxLen = 50;
         
         // 星级评价
