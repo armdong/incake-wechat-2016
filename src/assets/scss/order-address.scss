@@ -109,7 +109,7 @@ html, body {
 			.btn-radio {
 				left: 0;
 
-				&.selected {					
+				&.selected {
 					background: {
 						image: url('../imgs/icons/icon_selected.png');
 						size: 42px 42px;
@@ -127,7 +127,7 @@ html, body {
 				display: block;
 				width: 570px;
 				margin: 0 auto;
-				
+
 				p {
 					color: #323232;
 				}
@@ -139,9 +139,9 @@ html, body {
 					margin-top: 10px;
 					font-size: 24px; /* px */
 					line-height: 40px;
-					display: -webkit-box; 
-					-webkit-box-orient: vertical; 
-					-webkit-line-clamp: 2; 
+					display: -webkit-box;
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2;
 					overflow: hidden;
 
 					.default {
@@ -319,7 +319,7 @@ html, body {
 		}
 
 		.search-box {
-			width: 710px; 
+			width: 710px;
 			height: 60px;
 			padding: 15px 0;
 			margin: 0 auto;
@@ -354,48 +354,23 @@ html, body {
 			}
 		}
 
-		.result-list {
+		.map-container {
+			position: absolute;
+			top: 200px;
+			right: 0;
+			bottom: 0;
+			left: 0;
+		}
+		.map-panel {
+			position: absolute;
+			top: 200px;
+			right: 0;
+			left: 0;
+			z-index: 999;
 			width: 100%;
-
-			.item {
-				width: 100%;
-				border-bottom: 1px solid #dcdcdc; /* no */
-
-				.item-wrapper {
-					display: block;
-					width: 710px;
-					margin: 0 auto;
-					background: {
-						image: url('../imgs/icons/icon_location.png');
-						repeat: no-repeat;
-						size: 26px 32px;
-						position: left center;
-					}
-
-					.text {
-						width: 640px;
-						margin-left: auto;
-						padding: 20px;
-
-						p {
-							font-size: 26px; /* px */
-							color: #323232;
-							line-height: 30px;
-
-							&.detail {
-								font-size: 30px; /* px */
-								line-height: 40px;
-								margin-bottom: 10px;
-							}
-						}
-					}
-				}
-			}
+			background-color: rgba(255, 255, 255, 0.7);
+		  max-height: 90%;
+		  overflow-y: auto;
 		}
 	}
-}
-
-/* hack:作用是将百度地图联想提示层不显示 */
-.tangram-suggestion-main {
-	z-index: -1;
 }
